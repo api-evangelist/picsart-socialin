@@ -1,0 +1,1022 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: Picsart GenAI Ads Text2Image API
+  description: '[Official technical documentation portal](https://docs.picsart.io/)
+
+    [Developer Guidelines](https://picsart.io/terms)
+
+    '
+servers:
+- url: https://genai-api.picsart.io/v1
+  description: Production
+security:
+- apiKey: []
+tags:
+- name: Text2Image
+paths:
+  /text2image:
+    post:
+      summary: Text2Image
+      operationId: genai-text2image
+      description: 'The *Text2Image* service helps generate an image based on the text introduced as input by the user.
+
+        The result images can be as big as 1024x1024 pixels.
+
+        '
+      tags:
+      - Text2Image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Text2ImageParameters'
+              - $ref: '#/components/schemas/Text2ImageModels'
+      responses:
+        '202':
+          $ref: '#/components/responses/Text2ImageResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /text2image/inferences/{inference_id}:
+    get:
+      summary: Get the Text2Image result
+      operationId: genai-text2image-getresult
+      description: 'Get the generated images.
+
+        '
+      parameters:
+      - in: path
+        name: inference_id
+        schema:
+          type: string
+        required: true
+        description: The ID returned from the POST method when it's done asynchronously.
+        example: 1116b57cb-1999-4bfd-8c42-c739a006a111
+      tags:
+      - Text2Image
+      responses:
+        '200':
+          $ref: '#/components/responses/Text2ImageStatusResponse'
+        '202':
+          $ref: '#/components/responses/Text2ImageResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /text2sticker:
+    post:
+      summary: Text2Sticker
+      operationId: genai-text2sticker
+      description: 'The *Text2Sticker* service helps generate a sticker based on the text introduced as input by the user.
+
+        The result images can be as big as 1024x1024 pixels.
+
+        '
+      tags:
+      - Text2Image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Text2ImageParameters'
+              - $ref: '#/components/schemas/Text2StickerModels'
+      responses:
+        '202':
+          $ref: '#/components/responses/Text2ImageResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /text2sticker/laserengraving:
+    post:
+      summary: Text2Sticker with Laser Engraving Effect
+      operationId: genai-text2sticker-laser-engraving
+      description: 'This service generates stickers similar to the standard /text2sticker service, and in addition to that it adds a laser engraving effect.
+
+        The result images can be as big as 1024x1024 pixels.
+
+        '
+      tags:
+      - Text2Image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Text2ImageParameters'
+              - $ref: '#/components/schemas/LaserEngravingParameters'
+              - $ref: '#/components/schemas/LaserEngravingModels'
+      responses:
+        '202':
+          $ref: '#/components/responses/Text2ImageResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /text2sticker/inferences/{inference_id}:
+    get:
+      summary: Get the Text2Sticker result
+      operationId: genai-text2sticker-getresult
+      description: 'Get the generated stickers.
+
+        '
+      parameters:
+      - in: path
+        name: inference_id
+        schema:
+          type: string
+        required: true
+        description: The ID returned from the POST method when it's done asynchronously.
+        example: 1116b57cb-1999-4bfd-8c42-c739a006a111
+      tags:
+      - Text2Image
+      responses:
+        '200':
+          $ref: '#/components/responses/Text2ImageStatusResponse'
+        '202':
+          $ref: '#/components/responses/Text2ImageResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /logo:
+    post:
+      summary: Logo Generator
+      operationId: genai-generate-logo
+      description: "Generate logos using company info, general description. You can add additional information to guide on the details you want to get on the logo. It is also possible to provide an example logo to generate similar logos. \n"
+      tags:
+      - Text2Image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LogoParameters'
+              - $ref: '#/components/schemas/LogoModels'
+      responses:
+        '202':
+          $ref: '#/components/responses/Text2ImageResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /logo/inferences/{inference_id}:
+    get:
+      summary: Get the Logo Generator result
+      operationId: genai-generate-logo-getresult
+      description: 'Get the results of your logo generation. Use the inference identifier from the [Logo Generator](https://docs.picsart.io/reference/genai-generate-logo).
+
+        '
+      parameters:
+      - in: path
+        name: inference_id
+        schema:
+          type: string
+        required: true
+        description: The inference identifier returned from the POST method [Logo Generator](https://docs.picsart.io/reference/genai-generate-logo).
+        example: 1116b57cb-1999-4bfd-8c42-c739a006a111
+      tags:
+      - Text2Image
+      responses:
+        '200':
+          $ref: '#/components/responses/Text2ImageStatusResponse'
+        '202':
+          $ref: '#/components/responses/Text2ImageResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+components:
+  schemas:
+    LogoModels:
+      type: object
+      properties:
+        model:
+          type: string
+          enum:
+          - urn:air:sdxl:model:fluxai:flux_kontext_max@1
+          - urn:air:sdxl:model:fluxai:flux_kontext_pro@1
+          - urn:air:fluxai:model:fluxai:flux-2-flex@1
+          - urn:air:fluxai:model:fluxai:flux-2-pro@1
+          - urn:air:fluxai:model:fluxai:flux-2-max@1
+          - urn:air:google:model:google:gemini-2.5-flash-image@1
+          - urn:air:google:model:google:gemini-3-pro-image-preview@1
+          - urn:air:google:model:google:gemini-3.1-flash-image-preview@1
+          - urn:air:google:model:google:gemini-3.1-pro-preview@1
+          - urn:air:hunyuan:model:hunyuan:hunyuan-image@3
+          - urn:air:ideogram:model:ideogram:ideogram@1
+          - urn:air:ideogram:model:ideogram:ideogram@2
+          - urn:air:ideogram:model:ideogram:ideogram-turbo@1
+          - urn:air:ideogram:model:ideogram:ideogram-turbo@2
+          - urn:air:ideogram:model:ideogram:ideogram-2a@1
+          - urn:air:ideogram:model:ideogram:ideogram-2a-turbo@1
+          - urn:air:ideogram:model:ideogram:ideogram@3
+          - urn:air:google:model:google:imagen-4.0-generate-001@1
+          - urn:air:google:model:google:imagen-4.0-ultra-generate-001@1
+          - urn:air:google:model:google:imagen-4.0-fast-generate-001@1
+          - urn:air:openai:model:openai:dall-e-3@1
+          - urn:air:openai:model:openai:gpt-image-1@1
+          - urn:air:openai:model:openai:gpt-image-1.5@1
+          - urn:air:qwen:model:qwen:qwen-image-2.5@1
+          - urn:air:reve:model:reve:reve@1
+          - urn:air:runway:model:runway:gen4-image-ref@1
+          - urn:air:seedream:model:seedream:seedream@4.0
+          - urn:air:seedream:model:seedream:seedream@4.5
+          - urn:air:seedream:model:seedream:seedream@5.0-lite
+          nullable: true
+          default: urn:air:ideogram:model:ideogram:ideogram@2
+          description: 'Optionally choose a specific AI model to use for this request.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    Text2ImageParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt.
+        negative_prompt:
+          type: string
+          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
+          deprecated: true
+        width:
+          type: number
+          description: 'Desired width used to determine the aspect ratio and resolution tier. The actual output width is determined by the AI provider based on the closest matching supported aspect ratio.
+
+            Supported ratios vary by model (common: 1:1, 4:3, 3:4, 16:9, 9:16, 21:9).
+
+            '
+          example: 512
+          default: 1024
+          maximum: 1024
+          minimum: 64
+        height:
+          type: number
+          description: 'Desired height used to determine the aspect ratio and resolution tier. The actual output height is determined by the AI provider based on the closest matching supported aspect ratio.
+
+            Supported ratios vary by model (common: 1:1, 4:3, 3:4, 16:9, 9:16, 21:9).
+
+            '
+          example: 512
+          default: 1024
+          maximum: 1024
+          minimum: 64
+        count:
+          type: number
+          default: 2
+          minimum: 1
+          maximum: 10
+          description: The number of images to generate.
+    Text2StickerModels:
+      type: object
+      properties:
+        model:
+          type: string
+          enum:
+          - urn:air:sdxl:model:fluxai:flux_kontext_max@1
+          - urn:air:sdxl:model:fluxai:flux_kontext_pro@1
+          - urn:air:fluxai:model:fluxai:flux-2-flex@1
+          - urn:air:fluxai:model:fluxai:flux-2-pro@1
+          - urn:air:fluxai:model:fluxai:flux-2-max@1
+          - urn:air:google:model:google:gemini-2.5-flash-image@1
+          - urn:air:google:model:google:gemini-3-pro-image-preview@1
+          - urn:air:google:model:google:gemini-3.1-flash-image-preview@1
+          - urn:air:google:model:google:gemini-3.1-pro-preview@1
+          - urn:air:hunyuan:model:hunyuan:hunyuan-image@3
+          - urn:air:ideogram:model:ideogram:ideogram@1
+          - urn:air:ideogram:model:ideogram:ideogram@2
+          - urn:air:ideogram:model:ideogram:ideogram-turbo@1
+          - urn:air:ideogram:model:ideogram:ideogram-turbo@2
+          - urn:air:ideogram:model:ideogram:ideogram-2a@1
+          - urn:air:ideogram:model:ideogram:ideogram-2a-turbo@1
+          - urn:air:ideogram:model:ideogram:ideogram@3
+          - urn:air:google:model:google:imagen-4.0-generate-001@1
+          - urn:air:google:model:google:imagen-4.0-ultra-generate-001@1
+          - urn:air:google:model:google:imagen-4.0-fast-generate-001@1
+          - urn:air:openai:model:openai:dall-e-3@1
+          - urn:air:openai:model:openai:gpt-image-1@1
+          - urn:air:openai:model:openai:gpt-image-1.5@1
+          - urn:air:qwen:model:qwen:qwen-image-2.5@1
+          - urn:air:reve:model:reve:reve@1
+          - urn:air:runway:model:runway:gen4-image-ref@1
+          - urn:air:seedream:model:seedream:seedream@4.0
+          - urn:air:seedream:model:seedream:seedream@4.5
+          - urn:air:seedream:model:seedream:seedream@5.0-lite
+          nullable: true
+          default: urn:air:sdxl:model:fluxai:flux_kontext_max@1
+          description: 'Optionally choose a specific AI model to use for this request.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    LaserEngravingParameters:
+      type: object
+      properties:
+        engrave_color:
+          type: string
+          description: 'Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87). (If this parameter is present, the other bg_ parameters must be empty).
+
+            '
+          default: black
+        background_color:
+          type: string
+          description: 'Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87). (If this parameter is present, the other bg_ parameters must be empty).
+
+            '
+          default: white
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          - SVG
+          description: "Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n  * SVG\n"
+    LaserEngravingModels:
+      type: object
+      properties:
+        model:
+          type: string
+          enum:
+          - urn:air:sdxl:model:fluxai:flux_kontext_max@1
+          - urn:air:sdxl:model:fluxai:flux_kontext_pro@1
+          default: urn:air:sdxl:model:fluxai:flux_kontext_max@1
+          nullable: true
+          description: 'Optionally choose a specific AI model to use for this request.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+    Text2ImageModels:
+      type: object
+      properties:
+        model:
+          type: string
+          enum:
+          - urn:air:sdxl:model:fluxai:flux_kontext_max@1
+          - urn:air:sdxl:model:fluxai:flux_kontext_pro@1
+          - urn:air:fluxai:model:fluxai:flux-2-flex@1
+          - urn:air:fluxai:model:fluxai:flux-2-pro@1
+          - urn:air:fluxai:model:fluxai:flux-2-max@1
+          - urn:air:google:model:google:gemini-2.5-flash-image@1
+          - urn:air:google:model:google:gemini-3-pro-image-preview@1
+          - urn:air:google:model:google:gemini-3.1-flash-image-preview@1
+          - urn:air:google:model:google:gemini-3.1-pro-preview@1
+          - urn:air:hunyuan:model:hunyuan:hunyuan-image@3
+          - urn:air:ideogram:model:ideogram:ideogram@1
+          - urn:air:ideogram:model:ideogram:ideogram@2
+          - urn:air:ideogram:model:ideogram:ideogram-turbo@1
+          - urn:air:ideogram:model:ideogram:ideogram-turbo@2
+          - urn:air:ideogram:model:ideogram:ideogram-2a@1
+          - urn:air:ideogram:model:ideogram:ideogram-2a-turbo@1
+          - urn:air:ideogram:model:ideogram:ideogram@3
+          - urn:air:google:model:google:imagen-4.0-generate-001@1
+          - urn:air:google:model:google:imagen-4.0-ultra-generate-001@1
+          - urn:air:google:model:google:imagen-4.0-fast-generate-001@1
+          - urn:air:openai:model:openai:dall-e-3@1
+          - urn:air:openai:model:openai:gpt-image-1@1
+          - urn:air:openai:model:openai:gpt-image-1.5@1
+          - urn:air:qwen:model:qwen:qwen-image-2.5@1
+          - urn:air:reve:model:reve:reve@1
+          - urn:air:runway:model:runway:gen4-image-ref@1
+          - urn:air:seedream:model:seedream:seedream@4.0
+          - urn:air:seedream:model:seedream:seedream@4.5
+          - urn:air:seedream:model:seedream:seedream@5.0-lite
+          nullable: true
+          default: urn:air:sdxl:model:fluxai:flux_kontext_max@1
+          description: 'Optionally choose a specific AI model to use for this request.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    LogoParameters:
+      type: object
+      required:
+      - brand_name
+      - business_description
+      properties:
+        brand_name:
+          type: string
+          description: Simply add your brand or company name.
+        business_description:
+          type: string
+          description: Describe your business, what it does. This information will be used to create logos that describe your brand.
+        color_tone:
+          type: string
+          enum:
+          - Auto
+          - Gray
+          - Blue
+          - Pink
+          - Orange
+          - Brown
+          - Yellow
+          - Green
+          - Purple
+          - Red
+          description: "Optionally select one of the color tones for the generated logos (Auto is default). Options are as follows:\n  * Auto\n  * Gray\n  * Blue\n  * Pink\n  * Orange\n  * Brown\n  * Yellow\n  * Green\n  * Purple\n  * Red\n"
+          default: Auto
+        logo_description:
+          type: string
+          description: Describe your logo details. What elements and details it should include, and how you imagine it should look like.
+        reference_image:
+          description: Use one of the reference parameters to give a logo example. The service will then use this along with business and logo description to create a similar logo. Reference logo image (binary). (If this parameter is present, the other reference logo parameters must be empty.)
+          type: string
+          format: binary
+        reference_image_url:
+          type: string
+          description: Reference logo URL. (If this parameter is present, the other reference logo parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        reference_image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Reference logo image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other reference logo parameters must be empty.)
+        count:
+          type: number
+          default: 2
+          minimum: 1
+          maximum: 10
+          description: The number of logos to generate.
+  responses:
+    '402':
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    Text2ImageResponse:
+      description: Accepted.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: processing
+                enum:
+                - success
+                - error
+                - processing
+                nullable: false
+              inference_id:
+                type: string
+                nullable: true
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '405':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '415':
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    Text2ImageStatusResponse:
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                nullable: false
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      nullable: true
+                    url:
+                      type: string
+                      nullable: false
+                    status:
+                      type: string
+                      nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '503':
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Picsart-API-Key
