@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.picsart.io/docs/creative-apis-versioning
+versioning:
+  scheme: uri-path
+  pattern: >-
+    Each API carries a version suffix in the URL (e.g. api.picsart.io/1.0/,
+    video-api.picsart.io/v1/). Versions are whole numbers, incremented per breaking
+    change; numbers may be skipped.
+  current:
+    image: '1.0'
+    video: v1
+    genai: v1
+    variable_data: v1
+  compatibility: >-
+    Picsart follows the API expand-contract pattern to add elements without a
+    version bump; a new version is released only for breaking/incompatible changes.
+    Older versions keep working until the consumer migrates.
+  docs: https://docs.picsart.io/docs/creative-apis-versioning
+deprecation:
+  policy_url: https://docs.picsart.io/docs/creative-apis-versioning
+  announced_via: https://docs.picsart.io/docs/creative-apis-releases
+  examples:
+  - change: "*_id input parameters (image_id, reference_image_id, mask_id) removed across Image + GenAI APIs"
+    sunset_date: '2026-06-01'
+    migration: Migrate to *_url inputs or binary upload inputs.
+  - change: "'mode' parameter deprecated in favor of the standard HTTP Prefer header (RFC 7240) for sync/async control"
+    announced: '2026-04'
+status_page: https://status.picsart.io/
+sla:
+  uptime_target: "99.5%"
+  source: https://docs.picsart.io/ (documented Enterprise uptime guarantee)

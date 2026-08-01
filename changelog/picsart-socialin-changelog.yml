@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.picsart.io/docs/creative-apis-releases
+scheme: dated-monthly
+current_versions:
+  image: '1.0'
+  genai: '1.0'
+  video: '1.0'
+  variable_data: '1.0'
+entries:
+- date: '2026-04'
+  highlights:
+  - WAN 2.7 (Alibaba) available in AI Hub for Text-to-Video and Image-to-Video (10 credits/sec).
+  - Sync/async control moved to the standard HTTP Prefer header (RFC 7240); 'mode' parameter deprecated.
+  - Request content types expanded to include application/json and x-www-form-urlencoded.
+  - BMP added as a supported input image format.
+  - Text-to-Video and Image-to-Video gained an export parameter for output control.
+  breaking:
+  - "Deprecation deadline: *_id input parameters removed across Image + GenAI APIs on 2026-06-01."
+  - GenAI job statuses standardized to success / error / processing.
+  legal:
+  - Enterprise Generative AI Additional Terms of Use published, effective 2026-04-30.
+- date: '2026-03'
+  highlights:
+  - AI Hub updates and Image API enhancements.
+- date: '2026-02'
+  highlights:
+  - AI Hub updates; GenAI Text-to-Video & Image-to-Video additions; Image and Video API updates.
+- date: '2026-01'
+  highlights:
+  - Programmable Image, GenAI, and Video APIs v1.0 updates kicking off 2026.
+- date: '2025-12'
+  highlights:
+  - Variable Data Content API v1.0 introduced alongside Image, GenAI, and Video APIs.
+note: >-
+  Recent window only; the live release notes at the source URL are the source of
+  truth for the full history.

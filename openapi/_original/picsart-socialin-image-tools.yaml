@@ -1,0 +1,4443 @@
+openapi: 3.0.0
+
+info:
+  version: '2.0'
+  title: Picsart Programmable Image APIs
+  description: |
+    [Official technical documentation portal](https://docs.picsart.io/)
+    [Developer Guidelines](https://picsart.io/terms)
+    
+
+servers:
+  - url: https://api.picsart.io/tools/1.0
+    description: Production
+
+paths:
+  /removebg:
+    post:
+      summary: Remove & Change Background
+      operationId: image-remove-background
+      description: >
+        Discover the magic of seamless background removal with our removebg service, powered by cutting-edge AI technology.
+        Our sophisticated algorithm effortlessly identifies and isolates the foreground, 
+        ensuring every detail from the delicate intricacies of jewelry to the finest strands of hair is captured with unparalleled precision. 
+        Designed to excel across a vast array of use cases, our service guarantees immaculate cutouts, 
+        whether for professional product photos, dynamic campaign graphics, or personal images meant for creative exploration. 
+        Experience flawless edges and exceptional detail preservation every time, elevating your images beyond the ordinary. 
+      tags:
+        - Remove Background
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/RemoveBackgroundParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /upscale:
+    post:
+      summary: Upscale
+      operationId: image-upscale
+      description: >
+        The *upscale* service increases the resolutions of an image by a given upscale factor, without increasing its file size. Upscale increases the quality and resolution of your photos by leveraging predictive and generative AI to add pixels to your image. It works especially well on images without noise.
+      tags:
+        - Photo enhancement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/UpscaleParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /upscale/ultra:
+    post:
+      summary: Ultra Upscale
+      operationId: image-ultra-upscale
+      description:  >
+        *Upscale Ultra* is a new upscaling technique which does upscaling with noise suppression.
+        It works well on images with faces, small resolution images, stickers and objects with geometric shapes and clear edges.
+        Upscale ultra increases the quality and resolution of low quality photos by leveraging predictive and generative AI technology in order to "complete" missing pixels for a best in class smoothing and enhancement effect.
+        It works especially good on small resolution images with faces.
+      tags:
+        - Photo enhancement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/UpscaleUltraParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /upscale/ultra/{transaction_id}:
+    get:
+      summary: Get the Ultra Upscale result
+      operationId: image-ultra-upscale-getresult
+      description: >
+        Use this method, along with transaction_id, to retrieve the upscale ultra finished image if the transformation was done asynchronously.
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The ID returned from the POST method when it's done asynchronously.
+      tags:
+        - Photo enhancement
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '422':
+          $ref: '#/components/responses/422'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /upscale/enhance:
+    post:
+      summary: Ultra Enhance
+      operationId: image-ultra-enhance
+      description:  >
+        *Ultra enhance* is a new upscaling technique with a generative model which provides high frequency detail. It works well on images without noise and preserves details in a superior way.
+        
+        **Limitations:** 
+        
+         **Minimums/Maximums:**
+           * Up to 64Mpx output images
+        
+         **Examples:**
+           Examples of where ultra enhance can be utilized include the following:
+           * Low resolution images
+           * Images that need smoothing and realistic details 
+           * To de-noise an image
+           * Works best with the Face Enhance service
+        
+         **Source Image:**
+           If you plan to upscale enhance an image several times, we recommend you first upload the source image using the *Upload* method and then use the reference image ID. Otherwise, you can source the image by providing a file or a URL to an online image.
+      tags:
+        - Photo enhancement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/UpscaleEnhanceParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  
+  /enhance/face:
+    post:
+      summary: Face Enhancement
+      operationId: image-face-enhance
+      description: >
+        With our *enhance face* tool, you can turn your old, blurry photos into clear portraits and selfies.
+        ur AI technology will find faces, perform restoration and do color enhancement simultaneously.
+        It will improve the skin texture and sharpen details while keeping a good balance of realness and fidelity with much less artifacts.
+      tags:
+        - Photo enhancement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/FaceEnhanceParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  
+  /effects:
+    get:
+      summary: Effect Names
+      operationId: image-list-effect-names
+      description: >
+        This service retrieves a list of supported effects.
+      tags:
+        - Effects
+      responses:
+        '200':
+          $ref: '#/components/responses/effectRetrievalSuccess'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+    post:
+      summary: Effects
+      operationId: image-apply-effect
+      description: >
+        With the *effects* service you can apply up to 24 different effects to an image.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/EffectsParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /effects/previews:
+    post:
+      summary: Effect Previews
+      operationId: image-create-effect-previews
+      description: >
+        The *effects previews* service applies an effect to a given input image and returns a preview (i.e., thumbnail) of the effect.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/EffectsPreviewsParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200EffectsPreviews'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /effects/laserengraving:
+    post:
+      summary: Laser Engraving Effect
+      operationId: image-apply-laser-engraving-effect
+      description: >
+        Apply a laser engraving effect to your stickers.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/LaserEngravingEffectParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /effects/ai:
+    get:
+      summary: AI Effect Names
+      operationId: image-list-ai-effect-names
+      description: >
+        This service retrieves the list of supported AI effects.
+      tags:
+        - Effects
+      responses:
+        '200':
+          $ref: '#/components/responses/effectRetrievalSuccess'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+    post:
+      summary: AI Effects
+      operationId: image-apply-ai-effect
+      description: >
+        With the *AI Effects* service you can apply up to 40+ different AI effects to an image.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/AIEffectsParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /adjust:
+    post:
+      summary: Adjust
+      operationId: image-adjust
+      description: >
+        The *adjust* service applies adjustments to an input image. There are 11 different adjustments in all available. The adjust service can be used with all photo types.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/AdjustParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '402':
+          $ref: '#/components/responses/402'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /selective-blur:
+    post:
+      summary: Selective Blur
+      operationId: image-selective-blur
+      description: >
+        Use AI to define the segment that should be blurred, e.g. foreground or background, faces or car plates.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/SelectiveBlurParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '402':
+          $ref: '#/components/responses/402'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /color-transfer:
+    post:
+      summary: Color Transfer
+      operationId: image-transfer-color
+      description: >
+        The *color transfer* tool transfers the color style from a reference image to the target image.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/ColorTransferParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /styletransfer:
+    post:
+      summary: Style Transfer
+      operationId: image-transfer-style
+      description: >
+        The *style transfer* tool transfers a style from a reference image to a content image. The smart algorithm blends the two images together so the output looks like the content image, but "painted" in the style of the reference image.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/StyleTransferParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /masks/previews:
+    post:
+      summary: Mask Previews
+      operationId: image-create-mask-previews
+      description: >
+        The *masks previews* service applies mask effects to a given input image and returns a preview (i.e., thumbnail) of the effect.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/MasksPreviewParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200MasksPreviews'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /masks:
+    post:
+      summary: Masks
+      operationId: image-apply-mask
+      description: >
+        The *masks* service applies a mask to an image.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/MasksParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /background/texture:
+    post:
+      summary: Texture Generator
+      deprecated: true
+      operationId: image-generate-texture
+      description: >
+        This service is now renamed to [Pattern Generator](https://docs.picsart.io/reference/image-generate-pattern). This name is now deprecated and we recommend moving all integratings to using the new name.
+      tags:
+        - Content Generation
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/TextureParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /background/pattern:
+    post:
+      summary: Pattern Generator
+      operationId: image-generate-pattern
+      description: >
+        The *pattern generator* tool generates a background texture pattern for the input image. You can create unlimited patterns from the same source image.
+      tags:
+        - Content Generation
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/TextureParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /vectorizer:
+    post:
+      summary: Image Vectorizer
+      operationId: image-vectorize-raster-to-svg
+      description: >
+        With the *vectorizer* tool you can instantly turn your raster image into high quality vector graphic as it converts a PNG image to a SVG image.
+        Using geometric figures, like curves and lines, the vectorizer converts the pixel information of raster input into vector image, which can be enlarged and edited without quality loss.
+      tags:
+        - Conversion
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/VectorizerParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /design2replay:
+    post:
+      summary: Design Import (beta)
+      operationId: image-design-import
+      description: >
+        With the *Design Import* tool you can instantly turn your design files (AI, SVG) into a Replay file (Picsart's proprietary project file format) that can be consumed by the [Photo and Video Editor SDK](https://docs.picsart.io/docs/photo-video-editor-overview).
+          
+        Use this to import your existing designs and make them resuable in Picsart.
+
+        
+        **Suported Formats:** Examples of where the vectorizer can be used include:
+          * AI (Adobe Illustrator)
+          * SVG (Scalable Vector Graphics)
+      x-readme:
+        explorer-enabled: false
+      x-explorer-enabled: false
+      tags:
+        - Conversion
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/FileParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /design2replay/{transaction_id}:
+    get:
+      summary: Get the Design Import Result
+      operationId: image-design-import-getresult
+      description: >
+        Get the result of the Design Import. Use the inference identifier from the POST request to fetch the latest status and result here.
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The ID returned from the POST method.
+          example: 1116b57cb-1999-4bfd-8c42-c739a006a111
+      tags:
+        - Conversion
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /surfacemap:
+    post:
+      summary: Surfacemap Image
+      operationId: image-surfacemap
+      description: >
+        With the *surface map* tool you can "print" a sticker over an (target) image.
+        Using a mask, the Surfacemap tool maps the sticker pixels using the texture and curves on the target image
+        thus ultimately giving a live-print-preview effect.
+      tags:
+        - Surfacemap
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/SurfacemapParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /watermark:
+    post:
+      summary: Add Watermark
+      operationId: image-add-watermark
+      description: >
+        Add watermark to your image.
+      tags:
+        - Watermark
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/WatermarkParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /upload:
+    post:
+      summary: Upload Image
+      operationId: image-upload
+      description: >
+        The *upload* service is used to upload an image when you want to apply several transformations to it.
+          By uploading an image first, you'll receive a transaction_id which you can use repeatedly for transformations and thereby avoid having to upload an image for each and every one.
+          If you're sure you only want to do a single transformation to an image, there's no benefit to using this service. Just jump right to that service.
+        
+         **Limitations:** Supported source image formats are JPG, PNG, WEBP, TIFF, BMP, MPO, MJPEG, and HEIC (HEIF).
+        
+         **Source Image:**
+           You can source the image by providing a file or a URL to an online image.
+      tags:
+        - Utilities
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /image/{transaction_id}:
+    get:
+      summary: Get the Image result
+      operationId: image-getresult
+      description: >
+        Use the image editing transaction ID to get the result image file URL.
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The ID returned from the POST method when it's done asynchronously.
+      tags:
+        - Utilities
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /balance:
+    get:
+      summary: Credits Balance
+      operationId: image-credits-balance
+      description: >
+        Check your balance of credits.
+      tags:
+        - Utilities
+      
+      responses:
+        '200':
+          $ref: '#/components/responses/balanceRetrievalSuccess'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /edit:
+    post:
+      summary: Basic Editing
+      operationId: image-edit
+      description: >
+        The *Edit* service applies basic image editing to an input image.
+        The basic editing operations are resize, crop, flip, rotate and perspective manipulation.
+      tags:
+        - Editing
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/EditParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /smart-crop:
+    post:
+      summary: Smart Crop
+      operationId: image-smart-crop
+      description: >
+        Use AI to define the segment that should be cropped, e.g. foreground or product name (e.g. hat, gloves, boots, etc).
+      tags:
+        - Editing
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/SmartCropParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '402':
+          $ref: '#/components/responses/402'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /blend:
+    post:
+      summary: Blending
+      operationId: image-blend
+      description: >
+        Whether you're adding a custom watermark, layering in a texture, 
+        or composing multi-image layouts for eCommerce or social media, 
+        Blend service turns simple images into sophisticated visuals with just one call.
+
+        This endpoint lets you seamlessly combine a base image with another visual layer - 
+        like an overlay, mask, or logo - while giving you full control over how the two interact. 
+        Think of it as your virtual creative layer engine: the same power you'd expect from a professional design tool, 
+        now embedded into your workflow or platform.
+
+        No need for manual edits or complex graphic design tools. 
+        With the blend API, your app or service can automate visually rich output that's both fast and fully customizable.
+      tags:
+        - Editing
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/OverlayParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /zoom:
+    post:
+      summary: Zoom
+      operationId: image-zoom
+      description: >
+        Zoom your images with 1-75 scale factors.
+      tags:
+        - Editing
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/ZoomParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '402':
+          $ref: '#/components/responses/402'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /multi-matting:
+    post:
+      summary: Image Segmentation
+      operationId: image-segmentation
+      description: >
+        Performs multi-matting segmentation on the input image, identifying and isolating specific classes like hair, clothes, or sky.
+      tags:
+        - Classification
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/MultiMattingSegmentationParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /tags:
+    post:
+      summary: Image Tagging
+      operationId: image-tagging
+      description: >
+        This tagging service analyzes the image and suggests hashtags that are relevant to the content.
+      tags:
+        - Classification
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200Tagging'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  
+  /describe:
+    post:
+      summary: Describe Image
+      operationId: image-describer
+      description: >
+        The image *Describer* service helps generate a detailed text description for the provided image (image2text).
+      tags:
+        - Classification
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImageParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200ImageDescription'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+
+  /cars/classify:
+    post:
+      summary: Classify the Car Image
+      operationId: image-cars-classifier
+      description: >
+        The car image *Classifier* service categorizes all provided images. The supported categories are exterior, interior, engine, undercarriage, other.
+
+        It is mandatory that the provided input image is a car image. If the image is not a car image, the service will not generate an error, and the result may not be relevant.
+      tags:
+        - Classification
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ImageParameters'
+                - $ref: '#/components/schemas/CarClassificationModels'
+      responses:
+        '200':
+          $ref: '#/components/responses/200CarClassification'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /extract-colors:
+    post:
+      summary: Extract Image Colors
+      operationId: image-extract-colors
+      description: >
+        Extract the key colors from an image to understand its visual style and palette.
+        
+        The service analyzes an image and returns up to five prominent colors, including dominant foreground and background tones.
+      tags:
+        - Classification
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImageParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200Colors'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+
+security:
+  - apiKey: []
+
+components:
+  schemas:
+    UploadParameters:
+      type: object
+      properties:
+        image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    ImageParameters:
+      type: object
+      properties:
+        image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
+    FileParameters:
+      type: object
+      properties:
+        file:
+          description: Source file (binary). (If this parameter is present, the other source parameters must be empty.)
+          type: string
+          format: binary
+        file_url:
+          type: string
+          description: Source file URL. (If this parameter is present, the other source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    ImageParametersJSON:
+      type: object
+      properties:
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    FileParametersJSON:
+      type: object
+      properties:
+        file_url:
+          type: string
+          description: Source file URL. (If this parameter is present, the other source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    ExportParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    UpscaleParameters:
+      type: object
+      required:
+        - upscale_factor
+      properties:
+        upscale_factor:
+          type: integer
+          default: 2
+          enum:
+            - 2
+            - 4
+            - 6
+            - 8
+          description: >
+            Choose one of the upscale factors. The options are as follows
+              * 2
+              * 4
+              * 6
+              * 8
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    EffectsParameters:
+      type: object
+      required:
+        - effect_name
+      properties:
+        effect_name:
+          type: string
+          enum:
+            - '1972'
+            - apr1
+            - apr2
+            - apr3
+            - blur
+            - gblur
+            - lensblur
+            - motionblur
+            - smartblur
+            - pixelize
+            - brl1
+            - brnz1
+            - brnz2
+            - brnz3
+            - brnz4
+            - cyber1
+            - cyber2
+            - dodger
+            - fattal2
+            - food1
+            - food2
+            - icy1
+            - icy2
+            - icy3
+            - light1
+            - light2
+            - light3
+            - light4
+            - light5
+            - light6
+            - light7
+            - light8
+            - light9
+            - light10
+            - light11
+            - light12
+            - light13
+            - light14
+            - light15
+            - light16
+            - light17
+            - light18
+            - light19
+            - light20
+            - mnch1
+            - mnch2
+            - mnch3
+            - nature1
+            - nature2
+            - noise
+            - ntrl1
+            - ntrl2
+            - popart
+            - saturation
+            - sft1
+            - sft2
+            - sft3
+            - sft4
+            - shadow1
+            - shadow2
+            - sketch1
+            - sketch2
+            - sketch3
+            - sketcher1
+            - sketcher2
+            - spc1
+            - tl1
+            - tl2
+            - urban1
+            - urban2
+            - water1
+            - water2
+          description: >
+            Choose an effect from the dropdown menu. The list of effects are as follows
+              * 1972
+              * apr1
+              * apr2
+              * apr3
+              * blur
+              * gblur
+              * lensblur
+              * motionblur
+              * smartblur
+              * pixelize
+              * brl1
+              * brnz1
+              * brnz2
+              * brnz3
+              * brnz4
+              * cyber1
+              * cyber2
+              * dodger
+              * fattal2
+              * food1
+              * food2
+              * icy1
+              * icy2
+              * icy3
+              * light1
+              * light2
+              * light3
+              * light4
+              * light5
+              * light6
+              * light7
+              * light8
+              * light9
+              * light10
+              * light11
+              * light12
+              * light13
+              * light14
+              * light15
+              * light16
+              * light17
+              * light18
+              * light19
+              * light20
+              * mnch1
+              * mnch2
+              * mnch3
+              * nature1
+              * nature2
+              * noise
+              * ntrl1
+              * ntrl2
+              * popart
+              * saturation
+              * sft1
+              * sft2
+              * sft3
+              * sft4
+              * shadow1
+              * shadow2
+              * sketch1
+              * sketch2
+              * sketch3
+              * sketcher1
+              * sketcher2
+              * spc1
+              * tl1
+              * tl2
+              * urban1
+              * urban2
+              * water1
+              * water2
+        fade:
+          type: integer
+          description: >
+            Fade the effect. 0 means no fade and 100 means it's disabled. Note that some effects do not support fade:
+              * lensblur
+              * light1
+              * light10
+              * light11
+              * light12
+              * light13
+              * light14
+              * light15
+              * light16
+              * light17
+              * light18
+              * light19
+              * light2
+              * light20
+              * light3
+              * light4
+              * light5
+              * light6
+              * light7
+              * light8
+              * light9
+              * pixelize
+              * saturation
+              * shadow1
+              * shadow2
+          default: 0
+          maximum: 100
+          minimum: 0
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    LaserEngravingEffectParameters:
+      type: object
+      properties:
+        engrave_color:
+          type: string
+          description: >
+            Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
+          default: black
+        background_color:
+          type: string
+          description: >
+            Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
+          default: white
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+            - SVG
+          description: >
+            Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+              * SVG
+    AIEffectsParameters:
+      type: object
+      required:
+        - effect_name
+      properties:
+        effect_name:
+          type: string
+          enum:
+            - winterblues
+            - wispy
+            - geode
+            - '744'
+            - sketchy
+            - dystopia
+            - libtest2
+            - pastel
+            - moonlight
+            - rainbow
+            - money
+            - popsketch
+            - hintofyellow
+            - badlands
+            - letitsnow
+            - flora
+            - staygold
+            - holidayparty
+            - galaxy
+            - crushedmarble
+            - pow
+            - shades_of_gray
+            - haze
+            - shamrock
+            - '815'
+            - flare
+            - prettyinpink
+            - rosegold
+            - wonderland
+            - whiteice
+            - nightcore
+            - pleinair34_120
+            - soul
+            - rosequartz
+            - animation
+            - feast
+            - undead
+            - highlight
+            - neopop
+            - midnight
+            - colorbright
+            - cartoon1
+            - cartoon2
+          description: >
+            Choose an effect from the dropdown menu. The list of effects are as follows
+              * winterblues
+              * wispy
+              * geode
+              * 744
+              * sketchy
+              * dystopia
+              * libtest2
+              * pastel
+              * moonlight
+              * rainbow
+              * money
+              * popsketch
+              * hintofyellow
+              * badlands
+              * letitsnow
+              * flora
+              * staygold
+              * holidayparty
+              * galaxy
+              * crushedmarble
+              * pow
+              * shades_of_gray
+              * haze
+              * shamrock
+              * 815
+              * flare
+              * prettyinpink
+              * rosegold
+              * wonderland
+              * whiteice
+              * nightcore
+              * pleinair34_120
+              * soul
+              * rosequartz
+              * animation
+              * feast
+              * undead
+              * highlight
+              * neopop
+              * midnight
+              * colorbright
+              * cartoon1
+              * cartoon2
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    EffectsPreviewsParameters:
+      type: object
+      required:
+        - effect_names
+      properties:
+        effect_names:
+          description: >
+            Select up to 10 effects. The list of effects are as follows:
+              * 1972
+              * apr1
+              * apr2
+              * apr3
+              * blur
+              * gblur
+              * lensblur
+              * motionblur
+              * smartblur
+              * pixelize
+              * brl1
+              * brnz1
+              * brnz2
+              * brnz3
+              * brnz4
+              * cyber1
+              * cyber2
+              * dodger
+              * fattal2
+              * food1
+              * food2
+              * icy1
+              * icy2
+              * icy3
+              * light1
+              * light2
+              * light3
+              * light4
+              * light5
+              * light6
+              * light7
+              * light8
+              * light9
+              * light10
+              * light11
+              * light12
+              * light13
+              * light14
+              * light15
+              * light16
+              * light17
+              * light18
+              * light19
+              * light20
+              * mnch1
+              * mnch2
+              * mnch3
+              * nature1
+              * nature2
+              * noise
+              * ntrl1
+              * ntrl2
+              * popart
+              * saturation
+              * sft1
+              * sft2
+              * sft3
+              * sft4
+              * shadow1
+              * shadow2
+              * sketch1
+              * sketch2
+              * sketch3
+              * sketcher1
+              * sketcher2
+              * spc1
+              * tl1
+              * tl2
+              * urban1
+              * urban2
+              * water1
+              * water2
+            You can provide the values as a list, but also as a comma separated string, e.g. "apr1, apr2".
+          type: array
+          items:
+            type: string
+            enum:
+              - '1972'
+              - apr1
+              - apr2
+              - apr3
+              - blur
+              - gblur
+              - lensblur
+              - motionblur
+              - smartblur
+              - pixelize
+              - brl1
+              - brnz1
+              - brnz2
+              - brnz3
+              - brnz4
+              - cyber1
+              - cyber2
+              - dodger
+              - fattal2
+              - food1
+              - food2
+              - icy1
+              - icy2
+              - icy3
+              - light1
+              - light2
+              - light3
+              - light4
+              - light5
+              - light6
+              - light7
+              - light8
+              - light9
+              - light10
+              - light11
+              - light12
+              - light13
+              - light14
+              - light15
+              - light16
+              - light17
+              - light18
+              - light19
+              - light20
+              - mnch1
+              - mnch2
+              - mnch3
+              - nature1
+              - nature2
+              - noise
+              - ntrl1
+              - ntrl2
+              - popart
+              - saturation
+              - sft1
+              - sft2
+              - sft3
+              - sft4
+              - shadow1
+              - shadow2
+              - sketch1
+              - sketch2
+              - sketch3
+              - sketcher1
+              - sketcher2
+              - spc1
+              - tl1
+              - tl2
+              - urban1
+              - urban2
+              - water1
+              - water2
+          minItems: 1
+          uniqueItems: true
+        preview_size:
+          type: integer
+          description: Enter the width of the preview image. The max value is 240px. The default is 120px.
+          default: 120
+          maximum: 240
+          minimum: 50
+        fade:
+          type: integer
+          description: >
+            Fade the effect. 0 means no fade and 100 means it's disabled. Note that some effects do not support fade:
+              * lensblur
+              * light1
+              * light10
+              * light11
+              * light12
+              * light13
+              * light14
+              * light15
+              * light16
+              * light17
+              * light18
+              * light19
+              * light2
+              * light20
+              * light3
+              * light4
+              * light5
+              * light6
+              * light7
+              * light8
+              * light9
+              * pixelize
+              * saturation
+              * shadow1
+              * shadow2
+          default: 0
+          maximum: 100
+          minimum: 0
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats. Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    AdjustParameters:
+      type: object
+      properties:
+        brightness:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        contrast:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        clarity:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        saturation:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        hue:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        shadows:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        highlights:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        temperature:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to +100.
+          default: 0
+        sharpen:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to +100.
+          default: 0
+        noise:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to +100.
+          default: 0
+        vignette:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to +100.
+          default: 0
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats. Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    SelectiveBlurParameters:
+      required:
+        - segment
+      type: object
+      properties:
+        segment:
+          type: string
+          maxLength: 90
+          minLength: 1
+          description: >
+            The segment to add the blur effect to.
+
+            Use either 'foreground', or 'background', or define the name of the segments such as 'faces' or 'car plates'.
+
+            Recommendation: use short and clear names of the segment (e.g. object or area).
+            We don't recommend using long prompts.
+        blur:
+          type: integer
+          minimum: 1
+          maximum: 100
+          description: The blur amount to add.
+          default: 50
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats. Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    SmartCropParameters:
+      required:
+        - segment
+      type: object
+      properties:
+        segment:
+          type: string
+          maxLength: 90
+          minLength: 1
+          description: >
+            The segment to crop.
+
+            Use either 'foreground', or define the name of the segments such as 'hat' or 'boots'.
+
+            Recommendation: use short and clear names of the segment (e.g. object or area).
+            We don't recommend using long prompts.
+        ratio:
+          type: string
+          enum:
+            - '1:1'
+            - '4:3'
+            - '3:2'
+            - '16:9'
+            - '21:9'
+            - '4:5'
+            - '9:16'
+            - '2:3'
+            - '5:4'
+          description: >
+            Optionally enforce the ration of the result image. When both width and height parameters are provided, they should match this ratio.
+
+            In case either width or height are provided, the other value will be calculated based on this ratio.
+        width:
+          type: integer
+          description: Specify the width of the output image in pixels.
+          minimum: 0
+        height:
+          type: integer
+          description: Specify the height of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
+          minimum: 0
+        margin:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: >
+            The margin to add around the crop segment. Values are defined in pixels.
+
+            When ratio is provided, that is applied after the margin is applied to guarantee the minimum gap before the edge of the image.
+          default: 0
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats. Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    ZoomParameters:
+      required:
+        - scale_factor
+      type: object
+      properties:
+        scale_factor:
+          type: integer
+          minimum: 1
+          maximum: 75
+          description: The scale factor. 50 means 2x, and 75 means 1.5x.
+          default: 2
+        anchor_point:
+          type: string
+          default: 'center-middle'
+          enum:
+            - 'left-top'
+            - 'left-middle'
+            - 'left-bottom'
+            - 'center-top'
+            - 'center-middle'
+            - 'center-bottom'
+            - 'right-top'
+            - 'right-middle'
+            - 'right-bottom'
+            - 'ai'
+          description: Anchor point for zooming. Determines which part of the image to focus on. Expect longer response times when 'ai' is used.
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats. Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    ColorTransferParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+        reference_image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        reference_image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Enter the Picsart image ID if you previously uploaded the image.
+        reference_image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    StyleTransferParameters:
+      type: object
+      properties:
+        level:
+          type: string
+          default: l1
+          enum:
+            - l1
+            - l2
+            - l3
+            - l4
+            - l5
+          description: >
+            Select a level from the dropdown menu. Smaller numbers preserve more from the original image, bigger numbers make the original image look closer to the reference image. The level options are as follows.
+              * l1
+              * l2
+              * l3
+              * l4
+              * l5
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+        reference_image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        reference_image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Enter the Picsart image ID if you previously uploaded the image.
+        reference_image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    RemoveBackgroundParameters:
+      type: object
+      properties:
+        output_type:
+          type: string
+          default: cutout
+          enum:
+            - mask
+            - cutout
+          description: >
+            Select one of the two output options. If you submit a photo of a person, **cutout** returns the person as a sticker while **mask** returns a mask photo of the person.
+        bg_image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.) This only has an effect when output=cutout.
+          type: string
+          format: binary
+          nullable: true
+        bg_image_url:
+          type: string
+          nullable: true
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.) If this has a value, the output value is dismissed.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        bg_image_id:
+          type: string
+          nullable: true
+          deprecated: true
+          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.) See /upload method. If this has a value, the output value is dismissed.
+        bg_color:
+          type: string
+          nullable: true
+          description: >
+            Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87). (If this parameter is present, the other bg_ parameters must be empty).
+        bg_blur:
+          type: integer
+          default: 0
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to +100.
+        bg_width:
+          type: integer
+          description: >
+            Size, in pixels, for the width. If left blank, the background is left at its original width.
+        bg_height:
+          type: integer
+          description: >
+            Size, in pixels, for the height. If left blank, the background is left at its original height.
+        scale:
+          type: string
+          enum:
+            - fit
+            - fill
+          default: fit
+          description: >
+            Fit is where the longer side (width/height) fits the background. Fill is where the shorter side fits the background. Fit is the default.
+        auto_center:
+          type: boolean
+          default: false
+          description: >
+            Automatically center the object. Works only, when output_type=cutout.
+              We don't recommend using this flag when the object is visible only partially (e.g. half-cup or half-shoe is in the image).
+        stroke_size:
+          type: integer
+          nullable: true
+          default: 0
+          minimum: 0
+          maximum: 100
+          description: >
+            Add a solid stroke (border) around the cutout result. Works when output_type=cutout. Set 0 to remove. Takes values from 0 to 100.
+        stroke_color:
+          type: string
+          nullable: true
+          default: FFFFFF
+          description: >
+            Define the color of the stroke. 
+              Can be a hexcolor code (e.g., #82d5fa, #fff; with or without #) or a color name (e.g., blue; in English).
+              For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
+              Gets applied if the stroke_size is 1 and above.
+        stroke_opacity:
+          type: integer
+          nullable: true
+          default: 100
+          minimum: 0
+          maximum: 100
+          description: >
+            Define the opacity of the stroke added to the cutout result. Works when output_type=cutout and stroke_size is 1 and above.
+              Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.
+        shadow:
+          type: string
+          enum:
+            - disabled
+            - custom
+            - bottom-right
+            - bottom
+            - bottom-left
+            - left
+            - right
+            - top-left
+            - top
+            - top-right
+          default: disabled
+          description: >
+            A universal parameter to configure the shadow. The default value is "disabled" and it will make sure that the shadow is not rendered.
+            The "custom" value allows to define custom position for the shadow, when this value is chosen, the shadow_offset_x and the shadow_offset_y will get applied.
+            Other values are shadow directions with preset shadow setup (10px).
+        shadow_opacity:
+          type: integer
+          default: 20
+          nullable: true
+          minimum: 0
+          maximum: 100
+          description: Shadow Opacity. Works when shadow is enabled (a non-disabled value).
+        shadow_blur:
+          type: integer
+          default: 50
+          nullable: true
+          minimum: 0
+          maximum: 100
+          description: Shadow Blur. Works when shadow is enabled.
+        shadow_offset_x:
+          type: integer
+          nullable: true
+          minimum: -100
+          maximum: 100
+          description: Shadow Offset X. This is mandatory to specify when shadow=custom.
+        shadow_offset_y:
+          type: integer
+          nullable: true
+          minimum: -100
+          maximum: 100
+          description: Shadow Offset Y. This is mandatory to specify when shadow=custom.
+        model:
+          type: string
+          enum:
+            - urn:air:picsart:model:picsart:sod@8.2
+            - urn:air:picsart:model:picsart:sod@10
+            - urn:air:picsart:model:picsart:sod@10.1
+            - urn:air:picsart:model:picsart:sod@11
+          default: urn:air:picsart:model:picsart:sod@10
+          nullable: true
+          description: >
+            Optionally choose a specific AI model to use for this request.
+            
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy.
+            Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+        format:
+          type: string
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          default: PNG
+          description: >
+            Optionally select one of the image formats (PNG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    RemoveBackgroundParametersJSON:
+      type: object
+      properties:
+        output_type:
+          type: string
+          default: cutout
+          enum:
+            - mask
+            - cutout
+          description: >
+            Select one of the two output options. If you submit a photo of a person, **cutout** returns the person as a sticker while **mask** returns a mask photo of the person.
+        bg_image_url:
+          type: string
+          nullable: true
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.) If this has a value, the output value is dismissed.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        bg_color:
+          type: string
+          nullable: true
+          description: >
+            Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87). (If this parameter is present, the other bg_ parameters must be empty).
+        bg_blur:
+          type: integer
+          default: 0
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to +100.
+        bg_width:
+          type: integer
+          description: >
+            Size, in pixels, for the width. If left blank, the background is left at its original width.
+        bg_height:
+          type: integer
+          description: >
+            Size, in pixels, for the height. If left blank, the background is left at its original height.
+        scale:
+          type: string
+          enum:
+            - fit
+            - fill
+          default: fit
+          description: >
+            Fit is where the longer side (width/height) fits the background. Fill is where the shorter side fits the background. Fit is the default.
+        auto_center:
+          type: boolean
+          default: false
+          description: >
+            Automatically center the object. Works only, when output_type=cutout.
+              We don't recommend using this flag when the object is visible only partially (e.g. half-cup or half-shoe is in the image).
+        stroke_size:
+          type: integer
+          nullable: true
+          default: 0
+          minimum: 0
+          maximum: 100
+          description: >
+            Add a solid stroke (border) around the cutout result. Works when output_type=cutout. Set 0 to remove. Takes values from 0 to 100.
+        stroke_color:
+          type: string
+          nullable: true
+          default: FFFFFF
+          description: >
+            Define the color of the stroke. 
+              Can be a hexcolor code (e.g., #82d5fa, #fff; with or without #) or a color name (e.g., blue; in English).
+              For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
+              Gets applied if the stroke_size is 1 and above.
+        stroke_opacity:
+          type: integer
+          nullable: true
+          default: 100
+          minimum: 0
+          maximum: 100
+          description: >
+            Define the opacity of the stroke added to the cutout result. Works when output_type=cutout and stroke_size is 1 and above.
+              Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.
+        shadow:
+          type: string
+          enum:
+            - disabled
+            - custom
+            - bottom-right
+            - bottom
+            - bottom-left
+            - left
+            - right
+            - top-left
+            - top
+            - top-right
+          default: disabled
+          description: >
+            A universal parameter to configure the shadow. The default value is "disabled" and it will make sure that the shadow is not rendered.
+            The "custom" value allows to define custom position for the shadow, when this value is chosen, the shadow_offset_x and the shadow_offset_y will get applied.
+            Other values are shadow directions with preset shadow setup (10px).
+        shadow_opacity:
+          type: integer
+          default: 20
+          nullable: true
+          minimum: 0
+          maximum: 100
+          description: Shadow Opacity. Works when shadow is enabled (a non-disabled value).
+        shadow_blur:
+          type: integer
+          default: 50
+          nullable: true
+          minimum: 0
+          maximum: 100
+          description: Shadow Blur. Works when shadow is enabled.
+        shadow_offset_x:
+          type: integer
+          nullable: true
+          minimum: -100
+          maximum: 100
+          description: Shadow Offset X. This is mandatory to specify when shadow=custom.
+        shadow_offset_y:
+          type: integer
+          nullable: true
+          minimum: -100
+          maximum: 100
+          description: Shadow Offset Y. This is mandatory to specify when shadow=custom.
+        model:
+          type: string
+          enum:
+            - urn:air:picsart:model:picsart:sod@10
+          default: urn:air:picsart:model:picsart:sod@10
+          nullable: true
+          description: >
+            Optionally choose a specific AI model to use for this request.
+            
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy.
+            Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+        format:
+          type: string
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          default: PNG
+          description: >
+            Optionally select one of the image formats (PNG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    MultiMattingSegmentationParameters:
+      type: object
+      required:
+        - segmentation_class
+      properties:
+        segmentation_class:
+          type: string
+          enum:
+            - hair
+            - skin
+            - lips
+            - teeth
+            - eyes
+            - clothes
+            - glasses
+            - background
+            - foreground
+            - sky
+          description: >
+            The type of segmentation to perform. Must be one of the following values:
+              * hair
+              * skin
+              * lips
+              * teeth
+              * eyes
+              * clothes
+              * glasses
+              * background
+              * foreground
+              * sky
+    MasksParameters:
+      type: object
+      required:
+        - mask
+      properties:
+        format:
+          type: string
+          default: PNG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats. Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+        blend:
+          type: string
+          enum:
+            - normal
+            - screen
+            - overlay
+            - multiply
+            - darken
+            - lighten
+            - add
+          default: screen
+          description: >
+            Select one of the appearance types from the list (_screen_ is chosen if left blank). The options are as follows:
+              * normal
+              * screen
+              * overlay
+              * multiply
+              * darken
+              * lighten
+              * add
+        mask:
+          type: string
+          enum:
+            - lace1
+            - lace2
+            - lace3
+            - lace4
+            - shdw2
+            - shdw17
+            - rpl3
+            - rpl5
+            - prsm3
+            - prsm9
+            - prsm10
+          description: >
+            Select one of the mask types from the list. The options are as follows:
+              * lace1
+              * lace2
+              * lace3
+              * lace4
+              * shdw2
+              * shdw17
+              * rpl3
+              * rpl5
+              * prsm3
+              * prsm9
+              * prsm10
+        opacity:
+          type: integer
+          minimum: 0
+          maximum: 100
+          default: 100
+          description: Enter an integer value from 0 to +100. The larger the number, the greater the opacity. Default is 100.
+        hue:
+          type: integer
+          minimum: -180
+          maximum: 180
+          default: 0
+          description: Enter an integer value from -180 to +180. Default is 0.
+        mask_flip:
+          type: string
+          enum:
+            - left
+            - right
+            - mirror horizontal
+            - mirror vertical
+            - turnaround
+          description: >
+            Choose a mask flip option. The choices are as follows.
+              * left
+              * right
+              * mirror horizontal
+              * mirror vertical
+              * turnaround
+    MasksPreviewParameters:
+      type: object
+      required:
+        - mask
+      properties:
+        format:
+          type: string
+          default: PNG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+        blend:
+          type: string
+          enum:
+            - normal
+            - screen
+            - overlay
+            - multiply
+            - darken
+            - lighten
+            - add
+          default: screen
+          description: >
+            Select one of the appearance types from the list (it will be _screen_ if left blank). The options are as follows.
+              * normal
+              * screen
+              * overlay
+              * multiply
+              * darken
+              * lighten
+              * add
+        mask:
+          type: array
+          items:
+            type: string
+            enum:
+              - lace1
+              - lace2
+              - lace3
+              - lace4
+              - shdw2
+              - shdw17
+              - rpl3
+              - rpl5
+              - prsm3
+              - prsm9
+              - prsm10
+          minItems: 1
+          description: >
+            Select up to 10 mask types from the list. The options are as follows
+              * lace1
+              * lace2
+              * lace3
+              * lace4
+              * shdw2
+              * shdw17
+              * rpl3
+              * rpl5
+              * prsm3
+              * prsm9
+              * prsm10
+        opacity:
+          type: integer
+          minimum: 0
+          maximum: 100
+          default: 100
+          description: Enter an integer value from 0 to +100. The larger the number, the greater the opacity.
+        hue:
+          type: integer
+          minimum: -180
+          maximum: 180
+          default: 0
+          description: Enter an integer value from -180 to +180.
+        mask_flip:
+          type: string
+          enum:
+            - left
+            - right
+            - mirror horizontal
+            - mirror vertical
+            - turnaround
+          description: >
+            Choose a mask flip option. The choices are as follows.
+              * left
+              * right
+              * mirror horizontal
+              * mirror vertical
+              * turnaround
+        preview_size:
+          type: integer
+          default: 120
+          description: Enter the max size for the width or height of the preview image. The max value is 240px. If left blank it's 120px.
+    TextureParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+        width:
+          type: integer
+          description: Specify the width of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
+          default: 1024
+          maximum: 8000
+        height:
+          type: integer
+          description: Specify the height of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
+          default: 1024
+          maximum: 8000
+        offset_x:
+          type: integer
+          description: Specify the pattern location, with x(width). Calculation starts from the center of the image. Default is 0.
+          default: 0
+        offset_y:
+          type: integer
+          description: Specify the pattern location  with y(height). Calculation starts from the center of the image. Default is 0.
+          default: 0
+        pattern:
+          type: string
+          enum:
+            - hex
+            - mirror
+            - diamond
+            - hex2
+            - tile
+          default: hex
+          description: Choose a pattern for the background texture. Default is hex.
+        rotate:
+          type: integer
+          minimum: -180
+          maximum: 180
+          default: 0
+          description: Enter an integer value to rotate the texture pattern from -180 to +180. Default is 0.
+        scale:
+          type: number
+          format: float
+          minimum: 0.5
+          maximum: 10
+          default: 1.0
+          description: Enter a floating point number between 0.5 - 10.0 to scale the background texture. Default is 1.0.
+    VectorizerParameters:
+      type: object
+      properties:
+        downscale_to:
+          type: integer
+          default: 2048
+          description: >
+            Large images can be downscaled. Use -1 to turn off downscaling.
+            Otherwise the image is downscaled by 0.5 until max(width, height) < downscale_to.
+            When downscale_to is disabled with -1, the image width and height should be less than 4000px.
+    UpscaleUltraParameters:
+      type: object
+      properties:
+        upscale_factor:
+          type: integer
+          default: 2
+          enum:
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
+            - 9
+            - 10
+            - 11
+            - 12
+            - 13
+            - 14
+            - 15
+            - 16
+          description: >
+            Upscale an image with a given upscale factor. The upscale factor increases the image’s resolution without increasing its size. Upscale factor can be between 2 - 16 (default is 2).
+        product_type:
+          type: string
+          nullable: true
+          deprecated: true
+          enum:
+            - product
+            - portrait
+            - nature
+            - graphics
+          description: >
+            Deprecated. Optionally define your image type. If you know what your image is about, it's better this type is provided. It will help the service optimize and use the best model for that image type.
+            Available options are as follows:
+              * product
+              * portrait
+              * nature
+              * graphics
+        image_type:
+          type: string
+          nullable: true
+          enum:
+            - product
+            - portrait
+            - nature
+            - graphics
+          description: >
+            Optionally define your image type. If you know what your image is about, it's better this type is provided. It will help the service optimize and use the best model for that image type.
+            Available options are as follows:
+              * product
+              * portrait
+              * nature
+              * graphics
+        mode:
+          type: string
+          deprecated: true
+          default: sync
+          enum:
+            - sync
+            - async
+            - auto
+          description: >
+            Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence.
+            For migration guidance and examples, see the <a href="https://docs.picsart.io/docs/sync-async-execution">Sync and Async Execution guide</a>.
+            
+            Use this query parameter to establish the processing mode. Acceptable values are sync, async and auto:
+              * sync: issues a synchronous request, response is given when the result is ready.
+              * async: forces an asynchronous request, the response, which is instantaneous, contains a "transaction_id" which is used to poll for the result.
+              * auto: the processing mode decision is made by the service, which depends upon the expected processing time.
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats. Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    UpscaleEnhanceParameters:
+      type: object
+      properties:
+        upscale_factor:
+          type: integer
+          default: 2
+          enum:
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
+            - 9
+            - 10
+            - 11
+            - 12
+            - 13
+            - 14
+            - 15
+            - 16
+          description: >
+            Upscale an image with a given upscale factor. The upscale factor increases the image’s resolution without increasing its size. Upscale factor can be between 2 - 16 (default is 2).
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    SurfacemapParameters:
+      type: object
+      properties:
+        mask:
+          description: Source mask file (binary). (If this parameter is present, the other mask source parameters must be empty.)
+          type: string
+          format: binary
+        mask_url:
+          type: string
+          description: Source mask URL. (If this parameter is present, the other mask source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        mask_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source mask ID of an mask previously uploaded to Picsart or result mask ID from a different API. (If this parameter is present, the other mask source parameters must be empty.)
+        sticker:
+          description: Source sticker file (binary). (If this parameter is present, the other sticker source parameters must be empty.)
+          type: string
+          format: binary
+        sticker_url:
+          type: string
+          description: Source sticker URL. (If this parameter is present, the other sticker source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        sticker_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source sticker ID of an sticker previously uploaded to Picsart or result sticker ID from a different API. (If this parameter is present, the other sticker source parameters must be empty.)
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    FaceEnhanceParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is the default). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    EditParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: JPG
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+        mode:
+          type: string
+          nullable: true
+          enum:
+            - resize
+            - crop
+          description: For *crop* mode, the outcome image will be center-cropped with the given size (width, height). For the *resize* mode, the smallest size will be fitted to preserve the original proportion of the image. When the outcome size is not provided with width and height, no cropping or resizing will be applied (see alternative options such as rotate, flip and perspective).
+        size:
+          type: integer
+          nullable: true
+          description: When defined, this parameter overrides and applies the value for both width and height.
+        width:
+          type: integer
+          description: Width of outcome image. If the provided width is larger than the original width of the file, the original size of the image will be selected. When crop size is defined, but the x,y starting position is not provided, the crop will be a center-crop (i.e., equally cutting from each side).
+          nullable: true
+        height:
+          type: integer
+          description: Height of outcome image. If the provided height is larger than the original width of the file, the original size of the image will be selected. When crop size is defined, but the x,y starting position is not provided, the crop will be a center-crop (i.e, equally cutting from each side).
+          nullable: true
+        crop_x:
+          type: integer
+          nullable: true
+          description: >
+            crop_x, toghether with crop_y, define the anchor point of the crop. This point will be the center of the crop area.
+            The top-left corner corresponds to (0,0) point and the bottom-right corner corresponds to (widht,height) point.
+        crop_y:
+          type: integer
+          nullable: true
+          description: >
+            crop_y, toghether with crop_x, define the anchor point of the crop. This point will be the center of the crop area.
+            The top-left corner corresponds to (0,0) point and the bottom-right corner corresponds to (widht,height) point.
+        crop_anchor:
+          type: string
+          enum:
+            - center
+            - top-left
+            - top-right
+            - bottom-left
+            - bottom-right
+          default: center
+          nullable: true
+          description: >
+            By default when crop_anchor or crop_x,crop_y pair are not provided, the crop will be done around the center of the image.
+            This parameter is an easier option to crop_x,crop_y pair where the respective corner of the image will be cropped.
+            Options for crop anchor are as follows:
+              * center
+              * top-left
+              * top-right
+              * bottom-left
+              * bottom-right
+        flip:
+          type: string
+          enum:
+            - horizontal
+            - vertical
+          description: Choose a way to flip the image.
+        rotate:
+          type: number
+          format: float
+          default: 0.0
+          minimum: -180.0
+          maximum: 180.0
+          description: Enter a float value to rotate the image from -180 to +180. Default is 0.
+        perspective_horizontal:
+          type: integer
+          default: 0
+          minimum: -45
+          maximum: 45
+          description: The horizontal perspective after edits.
+        perspective_vertical:
+          type: integer
+          default: 0
+          minimum: -45
+          maximum: 45
+          description: The vertical perspective after edits.
+        quality:
+          type: integer
+          default: 90
+          minimum: 10
+          maximum: 100
+          description: This refers to the level of accuracy of the image processing. The greater the quality (i.e., the larger the number), the larger the image file size. The default value is 90, which is a good compromise between quality and file size.
+    CarClassificationModels:
+      type: object
+      properties:
+        model:
+          type: string
+          enum:
+            - urn:air:openai:model:openai:gpt-5@1
+            - urn:air:openai:model:openai:gpt-5.1@1
+            - urn:air:openai:model:openai:gpt-5.1-chat@1
+            - urn:air:openai:model:openai:gpt-5.2@1
+            - urn:air:openai:model:openai:gpt-5-mini@1
+            - urn:air:openai:model:openai:gpt-4o@1
+            - urn:air:openai:model:openai:gpt-4o-mini@1
+            - urn:air:openai:model:openai:gpt-4-turbo@1
+            - urn:air:openai:model:openai:gpt-4.1@1
+            - urn:air:openai:model:openai:gpt-4.1-mini@1
+            - urn:air:openai:model:openai:gpt-o3@1
+            - urn:air:anthropic:model:anthropic:claude-sonnet-4-0@1
+            - urn:air:anthropic:model:anthropic:claude-opus-4-0@1
+            - urn:air:anthropic:model:anthropic:claude-3-7-sonnet-latest@1
+            - urn:air:anthropic:model:anthropic:claude-3-5-sonnet-latest@1
+            - urn:air:anthropic:model:anthropic:claude-sonnet-4-5@1
+            - urn:air:anthropic:model:anthropic:claude-sonnet-4-5-latest@1
+            - urn:air:anthropic:model:anthropic:claude-3-5-haiku-latest@1
+            - urn:air:anthropic:model:anthropic:claude-haiku-4-5@1
+            - urn:air:anthropic:model:anthropic:claude-sonnet-4-6@1
+            - urn:air:google:model:google:gemini-2.0-flash-001@1
+            - urn:air:google:model:google:gemini-2.0-flash-lite@1
+            - urn:air:google:model:google:gemini-2.5-pro@1
+            - urn:air:google:model:google:gemini-2.5-flash@1
+            - urn:air:google:model:google:gemini-3-pro-preview@1
+          nullable: true
+          default: 'urn:air:openai:model:openai:gpt-5.1-chat@1'
+          description: >
+            Optionally choose a specific AI model to use for this request.
+            
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy.
+            Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+    OverlayParameters:
+      type: object
+      properties:
+        overlay_image:
+          description: Overlay image file (binary). (If this parameter is present, the other image source parameters must be empty.) This only has an effect when output=cutout.
+          type: string
+          format: binary
+          nullable: true
+        overlay_image_url:
+          type: string
+          nullable: true
+          description: Overlay image URL. (If this parameter is present, the other image source parameters must be empty.) If this has a value, the output value is dismissed.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        overlay_image_id:
+          type: string
+          nullable: true
+          deprecated: true
+          description: Deprecated. Overlay image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.) See /upload method. If this has a value, the output value is dismissed.
+        opacity:
+          type: integer
+          nullable: true
+          default: 100
+          minimum: 0
+          maximum: 100
+          description: >
+            Define the opacity of the overlay added to the main image.
+              Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.
+        blend_mode:
+          type: string
+          enum:
+            - normal
+            - darken
+            - multiply
+            - lighten
+            - screen
+            - color_dodge
+            - overlay
+            - soft_light
+            - hard_light
+            - hue
+            - saturation
+            - color
+            - luminosity
+          nullable: true
+          default: normal
+          description: >
+            The blend mode.
+            Choose one of normal, darken, multiply, lighten, screen, color_dodge, overlay, soft_light, hard_light, hue, saturation, color, luminosity. 
+            Defaults to normal.
+        format:
+          type: string
+          enum:
+            - JPG
+            - PNG
+            - WEBP
+          default: JPG
+          description: >
+            Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:
+              * JPG
+              * PNG
+              * WEBP
+    WatermarkParameters:
+      type: object
+      properties:
+        watermark:
+          description: Source watermark image file (binary). (If this parameter is present, the other watermark image source parameters must be empty.)
+          type: string
+          format: binary
+          nullable: true
+        watermark_url:
+          type: string
+          description: Source watermark image URL. (If this parameter is present, the other watermark image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          nullable: true
+        anchor_point:
+          type: string
+          default: center-middle
+          enum:
+            - left-top
+            - left-middle
+            - left-bottom
+            - center-top
+            - center-middle
+            - center-bottom
+            - right-top
+            - right-middle
+            - right-bottom
+            - pattern
+        watermark_width:
+          type: integer
+          minimum: 1
+          nullable: true
+        watermark_height:
+          type: integer
+          minimum: 1
+          nullable: true
+        watermark_opacity:
+          type: integer
+          nullable: true
+          default: 50
+          minimum: 0
+          maximum: 100
+          description: >
+            Define the opacity of the watermark. Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.
+        watermark_angle:
+          type: integer
+          minimum: 0
+          maximum: 360
+          nullable: true
+          description: >
+            Define the angle of the watermark. Takes values from 0 to 360.
+        watermark_padding_x:
+          type: integer
+          minimum: 0
+          default: 0
+          nullable: true
+          description: >
+            Define the horizontal padding of the watermark.
+        watermark_padding_y:
+          type: integer
+          minimum: 0
+          default: 0
+          nullable: true
+          description: >
+            Define the vertical padding of the watermark.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+        - detail
+    401_Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: "Unauthorized"
+        detail:
+          type: string
+      required:
+        - detail
+
+  responses:
+    '200':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    nullable: true
+                  url:
+                    type: string
+                    format: uri
+                    nullable: false
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200EffectsPreviews':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      nullable: true
+                    url:
+                      type: string
+                      format: uri
+                      nullable: false
+                    effect_name:
+                      type: string
+                      nullable: false
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200MasksPreviews':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      nullable: true
+                    url:
+                      type: string
+                      format: uri
+                      nullable: false
+                    mask_name:
+                      type: string
+                      nullable: false
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200Tagging':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                nullable: false
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200ImageDescription':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  description:
+                    type: string
+                    nullable: false
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200CarClassification':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  class:
+                    type: string
+                    enum:
+                      - front
+                      - rear
+                      - left-side
+                      - right-side
+                      - 34-front-right
+                      - 34-front-left
+                      - 34-rear-right
+                      - 34-rear-left
+                      - top
+                      - interior
+                      - engine
+                      - detail
+                    nullable: false
+                  vin:
+                    type: string
+                    nullable: true
+                  odo:
+                    type: string
+                    nullable: true
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200Colors':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: string
+                minItems: 1
+                maxItems: 5
+                uniqueItems: true
+                description: The colors with highest usage in the image.
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '202':
+      description: Requested successfully accepted when doing asynchronous transformation.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              transaction_id:
+                type: string
+                nullable: true
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    balanceRetrievalSuccess:
+      description: Successful retrieval of the credits balance (remaining credits).
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              credits:
+                type: integer
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    effectRetrievalSuccess:
+      description: Successful retrieval of all effects.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      nullable: false
+              status:
+                type: string
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/401_Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '402':
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '405':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '415':
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '422':
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '503':
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Picsart-API-Key

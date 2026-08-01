@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Picsart Programmable Video APIs
+  version: 1.0.0
+extends: openapi/picsart-socialin-video-tools.yaml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: picsart-socialin
+      x-apievangelist-auth: X-Picsart-API-Key (apiKey header)
+      x-apievangelist-rate-limits: rate-limits/picsart-socialin-rate-limits.yml
+      x-apievangelist-errors: errors/picsart-socialin-error-codes.yml
+      x-apievangelist-conventions: conventions/picsart-socialin-conventions.yml
+      x-apievangelist-lifecycle: lifecycle/picsart-socialin-lifecycle.yml
+      x-apievangelist-mcp: https://mcp.picsart.io/v1

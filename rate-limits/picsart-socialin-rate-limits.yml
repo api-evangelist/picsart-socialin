@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.picsart.io/docs/creative-apis-quotas-and-limits
+scope: account
+limits:
+- tier: subscription
+  limit_count: 500
+  window: 1m
+  description: Users with a subscription are limited to 500 requests per minute.
+- tier: free
+  credit_count: 200
+  description: >-
+    Free accounts get 200 demo credits; when exhausted the API returns HTTP 402
+    Payment Required.
+- tier: credits
+  description: >-
+    Purchased credits can be used without a request cap (rate limits still apply).
+exceeded_status: 429
+headers:
+- name: X-Picsart-RateLimit-Limit
+  description: The allowed quota count in total. Applies only to 200 OK responses.
+  sample: '500'
+- name: X-Picsart-RateLimit-Available
+  description: The available quota count in the quota interval. Applies only to 200 OK responses.
+  sample: '499'
+- name: X-Picsart-RateLimit-Reset-Time
+  description: The number of seconds before the rate limit counter will be reset.
+  sample: '60'
+guidance: >-
+  Watch for 429 errors and build a retry mechanism keyed on
+  X-Picsart-RateLimit-Reset-Time. Contact the sales team (apibusiness@picsart.io)
+  for higher volume.

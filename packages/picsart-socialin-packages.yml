@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.picsart.io/docs/picsart-creative-apis-sdk-libraries
+packages:
+- language: typescript
+  registry: npm
+  name: picsart-creative-apis-ts-sdk
+  url: https://www.npmjs.com/package/picsart-creative-apis-ts-sdk
+  repo: https://github.com/PicsArt/picsart-creative-apis-ts-sdk
+  install: npm install picsart-creative-apis-ts-sdk
+  version: '1.0.0'
+  official: true
+  note: >-
+    Official Picsart Creative APIs TypeScript/JavaScript SDK. npm publication and
+    version confirmed via the npm registry.
+- language: python
+  registry: pypi
+  name: picsart-creative-apis-py-sdk
+  url: https://github.com/PicsArt/picsart-creative-apis-python-sdk
+  repo: https://github.com/PicsArt/picsart-creative-apis-python-sdk
+  install: pip install picsart-creative-apis-py-sdk
+  version: '1.0.0'
+  official: true
+  note: >-
+    Official Picsart Creative APIs Python SDK. Package name read from the repo
+    pyproject.toml; a PyPI record was not confirmed at probe time (install from
+    the GitHub repository).
+- language: java
+  registry: maven
+  name: com.picsart:picsart-creative-apis-java-sdk
+  url: https://github.com/PicsArt/picsart-creative-apis-java-sdk
+  repo: https://github.com/PicsArt/picsart-creative-apis-java-sdk
+  install: "implementation 'com.picsart:picsart-creative-apis-java-sdk:1.0.0'"
+  version: '1.0.0'
+  official: true
+  note: >-
+    Official Picsart Creative APIs Java/Kotlin SDK. Maven coordinates
+    (com.picsart:picsart-creative-apis-java-sdk) documented in the repo README;
+    a Maven Central record was not confirmed at probe time.

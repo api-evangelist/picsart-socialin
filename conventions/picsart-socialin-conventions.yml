@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.picsart.io/docs
+authentication:
+  style: api-key
+  header: X-Picsart-API-Key
+  docs: https://docs.picsart.io/docs/creative-apis-authentication
+request_content_types:
+  supported:
+  - multipart/form-data
+  - application/json
+  - application/x-www-form-urlencoded
+  note: >-
+    Use multipart only for true inline binary uploads; base64 DATA URIs are
+    supported in URL fields (e.g. image_url). JSON is the recommended default.
+  docs: https://docs.picsart.io/docs/request-content-types
+sync_async:
+  mechanism: HTTP Prefer header (RFC 7240)
+  default: synchronous
+  note: >-
+    Endpoints are synchronous by default. Use the Prefer header to opt into async;
+    the legacy 'mode' parameter is deprecated. Async jobs are retrieved via the
+    per-service *-getresult operations by polling.
+  docs: https://docs.picsart.io/docs/sync-async-execution
+async_status_values:
+  standardized: [success, error, processing]
+  note: GenAI job statuses standardized (April 2026); switch on success/error, treat others as keep-waiting.
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key mechanism is documented. Operations are credit-metered;
+    retries can incur additional credit charges, so the docs advise caution with
+    automatic retries.
+rate_limiting:
+  signaled: true
+  headers: [X-Picsart-RateLimit-Limit, X-Picsart-RateLimit-Available, X-Picsart-RateLimit-Reset-Time]
+  exceeded_status: 429
+  see: rate-limits/picsart-socialin-rate-limits.yml
+error_envelope:
+  fields: [message, detail]
+  format: custom-json
+  see: errors/picsart-socialin-error-codes.yml
+versioning:
+  see: lifecycle/picsart-socialin-lifecycle.yml
+credits:
+  model: >-
+    All operations are metered in credits; a credits-balance operation exists per
+    service (image-credits-balance, video-credits-balance, genai-credits-balance,
+    vd-credits-balance).

@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/*.yaml + conventions/ + errors/
+skills:
+- file: picsart-socialin-remove-background.md
+  name: Remove an image background with Picsart
+  api: openapi/picsart-socialin-image-tools.yaml
+  operations: [image-upload, image-remove-background, image-getresult, image-credits-balance]
+- file: picsart-socialin-text2image.md
+  name: Generate an image from text with Picsart GenAI
+  api: openapi/picsart-socialin-genai-tools.yaml
+  operations: [genai-text2image, genai-text2image-getresult, genai-credits-balance]
+- file: picsart-socialin-upscale-enhance.md
+  name: Upscale and enhance an image with Picsart
+  api: openapi/picsart-socialin-image-tools.yaml
+  operations: [image-upscale, image-ultra-upscale, image-ultra-upscale-getresult, image-ultra-enhance, image-face-enhance]
+- file: picsart-socialin-transcribe-video.md
+  name: Transcribe a video's audio with Picsart
+  api: openapi/picsart-socialin-video-tools.yaml
+  operations: [video-upload, video-transcribe-audio, video-transcribe-audio-getresult, video-credits-balance]

@@ -1,8 +1,17 @@
 aid: picsart-socialin
 name: PicsArt (Socialin)
-description: PicsArt (Socialin) is a company surfaced as a portfolio company of insight-partners and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Picsart (Socialin Inc.) is a digital creation and photo/video editing company
+  whose Picsart Enterprise "Creative APIs" give developers programmable access to
+  image editing, video editing, generative AI, and variable-data content
+  generation. The REST APIs cover remove-background, upscaling, enhancement,
+  effects, masking, watermarking, and vectorization for images; trimming,
+  cropping, concatenation, transcription, and CTV encoding for video; text-to-image,
+  text-to-sticker, logo generation, inpainting/outpainting, and text-to-video for
+  GenAI; plus a variable-data content export pipeline. All services authenticate
+  with an X-Picsart-API-Key header, are described with OpenAPI 3.0/3.1, ship
+  official TypeScript, Java, and Python SDKs, a hosted Model Context Protocol (MCP)
+  server, a Postman workspace, and an embeddable Photo and Video Editor SDK.
 url: https://raw.githubusercontent.com/api-evangelist/picsart-socialin/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,17 +19,355 @@ x-backed-by:
 - insight-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://docs.picsart.io/images/logo.svg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 28
+  pass: local-v1
 tags:
 - Company
-apis: []
+- Image Editing
+- Video Editing
+- Generative AI
+- Photo
+- Creative Tools
+- Image Processing
+- Background Removal
+- Machine Learning
+- Content Generation
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: picsart-socialin:picsart-socialin-ads-api
+  name: PicsArt (Socialin) Ads API
+  description: The Ads API from PicsArt (Socialin) — 1 operation(s) for ads.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Ads
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-ads-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-audio-api
+  name: PicsArt (Socialin) Audio API
+  description: The Audio API from PicsArt (Socialin) — 2 operation(s) for audio.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Audio
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-audio-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-classification-api
+  name: PicsArt (Socialin) Classification API
+  description: The Classification API from PicsArt (Socialin) — 5 operation(s) for classification.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Classification
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-classification-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-content-generation-api
+  name: PicsArt (Socialin) Content Generation API
+  description: >-
+    The Content Generation API from PicsArt (Socialin) — 2 operation(s) for content generation.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Content Generation
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-content-generation-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-conversion-api
+  name: PicsArt (Socialin) Conversion API
+  description: The Conversion API from PicsArt (Socialin) — 3 operation(s) for conversion.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Conversion
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-conversion-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-edit-api
+  name: PicsArt (Socialin) Edit API
+  description: The Edit API from PicsArt (Socialin) — 6 operation(s) for edit.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Edit
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-edit-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-editing-api
+  name: PicsArt (Socialin) Editing API
+  description: The Editing API from PicsArt (Socialin) — 4 operation(s) for editing.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Editing
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-editing-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-effects-api
+  name: PicsArt (Socialin) Effects API
+  description: The Effects API from PicsArt (Socialin) — 10 operation(s) for effects.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Effects
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-effects-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-image2image-inpainting-api
+  name: PicsArt (Socialin) Image2Image / Inpainting API
+  description: >-
+    The Image2Image / Inpainting API from PicsArt (Socialin) — 8 operation(s) for image2image / inpainting.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Image2Image / Inpainting
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-image2image-inpainting-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-metadata-api
+  name: PicsArt (Socialin) Metadata API
+  description: The Metadata API from PicsArt (Socialin) — 4 operation(s) for metadata.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-metadata-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-photo-enhancement-api
+  name: PicsArt (Socialin) Photo enhancement API
+  description: >-
+    The Photo enhancement API from PicsArt (Socialin) — 5 operation(s) for photo enhancement.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Photo enhancement
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-photo-enhancement-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-remove-background-api
+  name: PicsArt (Socialin) Remove Background API
+  description: >-
+    The Remove Background API from PicsArt (Socialin) — 2 operation(s) for remove background.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Remove Background
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-remove-background-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-replay-api
+  name: PicsArt (Socialin) Replay API
+  description: The Replay API from PicsArt (Socialin) — 2 operation(s) for replay.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Replay
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-replay-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-surfacemap-api
+  name: PicsArt (Socialin) Surfacemap API
+  description: The Surfacemap API from PicsArt (Socialin) — 1 operation(s) for surfacemap.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Surfacemap
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-surfacemap-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-text2audio-api
+  name: PicsArt (Socialin) Text2Audio API
+  description: The Text2Audio API from PicsArt (Socialin) — 3 operation(s) for text2audio.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Text2Audio
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-text2audio-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-text2image-api
+  name: PicsArt (Socialin) Text2Image API
+  description: The Text2Image API from PicsArt (Socialin) — 7 operation(s) for text2image.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Text2Image
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-text2image-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-text2text-api
+  name: PicsArt (Socialin) Text2Text API
+  description: The Text2Text API from PicsArt (Socialin) — 1 operation(s) for text2text.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Text2Text
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-text2text-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-text2video-image2video-api
+  name: PicsArt (Socialin) Text2Video & Image2Video API
+  description: >-
+    The Text2Video & Image2Video API from PicsArt (Socialin) — 3 operation(s) for text2video & image2video.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Text2Video & Image2Video
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-text2video-image2video-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-transcriptions-api
+  name: PicsArt (Socialin) Transcriptions API
+  description: The Transcriptions API from PicsArt (Socialin) — 2 operation(s) for transcriptions.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Transcriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-transcriptions-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-utilities-api
+  name: PicsArt (Socialin) Utilities API
+  description: The Utilities API from PicsArt (Socialin) — 5 operation(s) for utilities.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-utilities-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-variable-data-content-api
+  name: PicsArt (Socialin) Variable Data Content API
+  description: >-
+    The Variable Data Content API from PicsArt (Socialin) — 3 operation(s) for variable data content.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Variable Data Content
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-variable-data-content-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-video-enhancement-api
+  name: PicsArt (Socialin) Video enhancement API
+  description: >-
+    The Video enhancement API from PicsArt (Socialin) — 2 operation(s) for video enhancement.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Video enhancement
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-video-enhancement-api-openapi.yml
+- aid: picsart-socialin:picsart-socialin-watermark-api
+  name: PicsArt (Socialin) Watermark API
+  description: The Watermark API from PicsArt (Socialin) — 1 operation(s) for watermark.
+  humanURL: https://docs.picsart.io/reference/
+  baseURL: https://api.picsart.io/tools/1.0
+  tags:
+  - Watermark
+  properties:
+  - type: OpenAPI
+    url: openapi/picsart-socialin-watermark-api-openapi.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/picsart-socialin-agentic-access.yml
+- type: DomainSecurity
+  url: security/picsart-socialin-domain-security.yml
+- type: Authentication
+  url: authentication/picsart-socialin-authentication.yml
 - type: Website
-  url: http://picsart.com/
+  url: https://picsart.com/
+- type: DeveloperPortal
+  url: https://picsart.io/developers/
+- type: Documentation
+  url: https://docs.picsart.io/
+- type: APIReference
+  url: https://docs.picsart.io/reference/
+- type: GettingStarted
+  url: https://docs.picsart.io/docs/creative-apis-getting-started
+- type: SignUp
+  url: https://console.picsart.io/
+- type: Pricing
+  url: https://picsart.io/pricing/
+- type: Support
+  url: https://help.picsart.io/
+- type: Blog
+  url: https://picsart.io/blog/
+- type: GitHubOrganization
+  url: https://github.com/PicsArt
+- type: ChangeLog
+  url: https://docs.picsart.io/docs/creative-apis-releases
+- type: StatusPage
+  url: https://status.picsart.io/
+- type: Postman
+  url: https://docs.picsart.io/docs/creative-apis-run-on-postman
+- type: TermsOfService
+  url: https://picsart.com/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://picsart.com/privacy-policy/
+- type: LLMsTxt
+  url: llms/picsart-socialin-llms.txt
+- type: Packages
+  url: packages/picsart-socialin-packages.yml
+- type: SDKs
+  url: packages/picsart-socialin-packages.yml
+- type: MCPServer
+  url: mcp/picsart-socialin-mcp.yml
+- type: RateLimits
+  url: rate-limits/picsart-socialin-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/picsart-socialin-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/picsart-socialin-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/picsart-socialin-lifecycle.yml
+- type: Conventions
+  url: conventions/picsart-socialin-conventions.yml
+- type: Conformance
+  url: conformance/picsart-socialin-conformance.yml
+- type: Components
+  url: components/picsart-socialin-components.yml
+- type: DataModel
+  url: data-model/picsart-socialin-data-model.yml
+- type: ChangeLog
+  url: changelog/picsart-socialin-changelog.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  name: Picsart Programmable Image APIs overlay
+  url: overlays/picsart-socialin-image-tools-overlay.yaml
+- type: Overlay
+  name: Picsart Programmable Video APIs overlay
+  url: overlays/picsart-socialin-video-tools-overlay.yaml
+- type: Overlay
+  name: Picsart GenAI API overlay
+  url: overlays/picsart-socialin-genai-tools-overlay.yaml
+- type: Overlay
+  name: Picsart Variable Data Content APIs overlay
+  url: overlays/picsart-socialin-variable-data-tools-overlay.yaml

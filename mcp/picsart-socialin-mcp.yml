@@ -1,0 +1,73 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.picsart.io/docs/mcp-creative-apis
+server:
+  name: picsart
+  transport: http
+  protocol: streamable-http
+  url: https://mcp.picsart.io/v1
+  alt_url: wss://mcp.picsart.io/v1
+  auth:
+    scheme: bearer
+    header: Authorization
+    token_source: https://console.picsart.io/
+  clients:
+  - Cursor
+  - Windsurf
+  - Claude Desktop
+  - GitHub Copilot (VS Code)
+  - GitHub Copilot CLI
+  - OpenClaw
+  - Hermes Agent
+description: >-
+  Official hosted Picsart Creative APIs Model Context Protocol (MCP) server. Lets
+  AI editors and agent runtimes call Picsart Image, Video, and GenAI tools and
+  read the docs directly. Remote Streamable HTTP endpoint (with a wss:// fallback).
+  Tools mirror the API Reference operation grouping across the Image, Video, and
+  GenAI services.
+tools:
+- name: image-remove-background
+  description: Remove & change background
+- name: image-upscale
+  description: Upscale
+- name: image-ultra-upscale
+  description: Ultra Upscale
+- name: image-ultra-enhance
+  description: Ultra Enhance
+- name: image-face-enhance
+  description: Face Enhancement
+- name: image-apply-effect
+  description: Effects
+- name: image-apply-ai-effect
+  description: AI Effects
+- name: image-vectorize-raster-to-svg
+  description: Image Vectorizer
+- name: image-tagging
+  description: Image Tagging
+- name: image-describer
+  description: Describe Image
+- name: video-upscale-fps
+  description: Video FPS Upscale
+- name: video-remove-background
+  description: Remove video background
+- name: video-transcribe-audio
+  description: Transcribe Audio
+- name: video-encode-ctv
+  description: Make Video CTV-Compatible
+- name: genai-text2image
+  description: Text2Image
+- name: genai-text2sticker
+  description: Text2Sticker
+- name: genai-generate-logo
+  description: Logo Generator
+- name: genai-image-inpainting
+  description: Inpaint Image
+- name: genai-image-outpainting
+  description: Outpaint Image
+- name: genai-smart-background
+  description: Smart Background
+note: >-
+  Tool list is a representative subset captured from the docs; the live server
+  exposes the full Image/Video/GenAI operation set (see the openapi/ specs for the
+  complete operationId list).

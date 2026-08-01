@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/*.yaml + https://docs.picsart.io/docs
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: Image, Video, and GenAI specs are OpenAPI 3.0.0.
+- id: openapi-3.1
+  conforms: true
+  evidence: Variable Data Content spec is OpenAPI 3.1.0.
+- id: apikey-auth
+  conforms: true
+  evidence: All services use an apiKey security scheme in the X-Picsart-API-Key header.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security schemes declared in any spec.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {message, detail} JSON envelope, not application/problem+json.
+- id: rfc7240-prefer-async
+  conforms: true
+  evidence: Sync/async execution is controlled via the standard HTTP Prefer header.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: No /.well-known/security.txt served (401/404 on probe).
+- id: rate-limit-headers
+  conforms: true
+  evidence: X-Picsart-RateLimit-* response headers signal quota and reset time.

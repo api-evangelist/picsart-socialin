@@ -1,0 +1,76 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.picsart.io/docs/creative-apis-error-codes
+format: custom-envelope
+envelope:
+  fields: [message, detail]
+  content_type: application/json
+  note: >-
+    Picsart Creative APIs return errors as a JSON object with a human-readable
+    "message" and, where available, a "detail" field. Not RFC 9457
+    problem+json. HTTP status codes below are also declared across the
+    openapi/ specs.
+errors:
+- status: 400
+  title: Bad Request
+  meaning: >-
+    The server could not understand the request due to invalid syntax or input
+    parameters that did not meet the requirements.
+  action: Review the request and ensure it follows the correct API format and includes all mandatory parameters.
+- status: 401
+  title: Unauthorized
+  meaning: >-
+    Semantically "unauthenticated" — the client must authenticate. The API key is
+    missing or invalid.
+  action: Provide a valid API key in the X-Picsart-API-Key request header (or query string).
+- status: 402
+  title: Payment Required
+  meaning: The free-account demo credit balance (200 credits) has been exhausted.
+  action: Purchase credits or subscribe to continue using the API.
+- status: 403
+  title: Forbidden
+  meaning: The client is authenticated but is not permitted to access the resource.
+  action: Verify the plan/permissions associated with the API key.
+- status: 404
+  title: Not Found
+  meaning: The requested resource or API version does not exist.
+  action: Double-check the request URL and the API version being used.
+- status: 405
+  title: Method Not Allowed
+  meaning: The HTTP method is not supported for the target endpoint.
+  action: Use the HTTP method documented for the operation.
+- status: 413
+  title: Request Entity Too Large
+  meaning: The size of the request exceeds the server's limit.
+  action: Optimize the payload size or use chunked transfer encoding for large payloads.
+- status: 415
+  title: Unsupported Media Type
+  meaning: >-
+    The Content-Type header is set to the wrong value (e.g. non-JSON to a
+    JSON-only endpoint).
+  action: Set the correct Content-Type for the request body.
+- status: 422
+  title: Unprocessable Content
+  meaning: >-
+    The server understands the content type and syntax but was unable to process
+    the contained instructions.
+  action: Correct the semantic issues in the request parameters.
+- status: 429
+  title: Too Many Requests
+  meaning: The rate limit / quota was exceeded (500 requests per minute for subscriptions).
+  action: Back off using the X-Picsart-RateLimit-Reset-Time header and retry after the window.
+- status: 431
+  title: Request Header Fields Too Large
+  meaning: The size of the request headers exceeds the server's limit.
+  action: Review and reduce the size of request headers.
+- status: 500
+  title: Internal Server Error
+  meaning: The server encountered an unexpected condition.
+  action: Check status.picsart.io; if the problem persists contact apitechsupport@picsart.com.
+- status: 503
+  title: Service Unavailable
+  meaning: The service is temporarily unavailable (maintenance or outage).
+  action: Check status.picsart.io and retry once the service is restored.
+support:
+  status_page: https://status.picsart.io/
+  email: apitechsupport@picsart.com

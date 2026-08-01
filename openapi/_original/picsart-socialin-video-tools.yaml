@@ -1,0 +1,2796 @@
+openapi: 3.0.0
+
+info:
+  version: '1.0'
+  title: Picsart Programmable Video APIs
+  description: |
+    [Official technical documentation portal](https://docs.picsart.io/)
+    [Developer Guidelines](https://picsart.io/terms)
+
+servers:
+  - url: https://video-api.picsart.io/v1
+    description: Production
+
+paths:
+  /upscale/fps:
+    post:
+      summary: Video FPS Upscale
+      operationId: video-upscale-fps
+      description:  >
+        Upscale your low FPS videos to 60FPS high-quality videos using Generative AI technology.
+      tags:
+        - Video enhancement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /upscale/fps/{transaction_id}:
+    get:
+      summary: Get the Video FPS Upscale result
+      operationId: video-upscale-fps-getresult
+      description: >
+        Use this method, along with transaction_id, to retrieve the upscaled video.
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The ID returned from the POST method when it's done asynchronously.
+      tags:
+        - Video enhancement
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /remove-background:
+    post:
+      summary: Remove & Change Background from Videos
+      operationId: video-remove-background
+      description: >
+        Remove Background from videos, or replace with custom backdrops.
+      tags:
+        - Remove Background
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/RemoveBackgroundParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /adjust:
+    post:
+      summary: Adjust Video
+      operationId: video-adjust
+      description: >
+        Adjusts the input video file with 14 different options.
+        
+        **Options:**
+          * Adjust audio and/or volume
+          * Adjust video volume
+          * Adjust brightness and/or contrast
+          * Adjust clarity and/or saturation
+          * Adjust speed and/or reverse the video
+          * Adjust hue and/or shadows
+          * Adjust highlights and/or temperature
+          * Adjust noise or sharpen the video
+          * Adjust vignette
+        
+        If you choose an adjustment setting value out of the allowed range, the default value of 0 is used instead.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/AdjustParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /effects:
+    post:
+      summary: Video Effects
+      operationId: video-apply-effect
+      description: >
+        Apply up to 24 different effects to a video.
+      tags:
+        - Effects
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/EffectsParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /edit:
+    post:
+      summary: Edit Video
+      operationId: video-edit
+      description: >
+        Comprehensive editing with one operation. Apply effect, adjust, trim, crop, resize, change codecs, compression, framerates, etc.
+      tags:
+        - Edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/EditParameters'
+                - $ref: '#/components/schemas/ExtendedExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /trim:
+    post:
+      summary: Trim Video
+      operationId: video-trim
+      description: >
+        Trim the input video clip: pull a specific segment or trim to your desired video clip duration.
+      tags:
+        - Edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/TrimParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /crop:
+    post:
+      summary: Crop Video
+      operationId: video-crop
+      description: >
+        Crop the input video clip to the desired size.
+      tags:
+        - Edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/CropParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /concat:
+    post:
+      summary: Concatenate Videos and Images
+      operationId: video-concat
+      description: >
+        Concatenate several videos clips and images with transitions into one timeline. Helpful when adding intro/outro- or creating slideshows.
+      tags:
+        - Edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ConcatParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /concat/highlights:
+    summary: Create a Video highlight
+    post:
+      operationId: video-concat-highlights
+      description: >
+        Create a highlights video from the original one. This picks highlight clips and concatenates them into one output video.
+      tags:
+        - Edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/ConcatSegmentsParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /fit:
+    post:
+      summary: Fit Video
+      operationId: video-fit
+      description: >
+        Fit your original video to different ratios or width and height options.
+        Apply fit when resizing and cropping is not an option.
+      tags:
+        - Edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/FitParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /metadata:
+    post:
+      summary: Get Video Metadata
+      operationId: video-metadata
+      description: >
+        Analysis the Video and provides the Metadata.
+      tags:
+        - Metadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200Metadata'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /metadata/thumbnail/extract:
+    post:
+      summary: Get Video Thumbnail
+      operationId: video-get-thumbnail
+      description: >
+        Extracts (reads) Video Thumbnail.
+      tags:
+        - Metadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/VideoGetThumbnailParameters'
+      responses:
+        '200':
+          $ref: '#/components/responses/200Thumbnails'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /metadata/thumbnail:
+    post:
+      summary: Set Video Thumbnail
+      operationId: video-set-thumbnail
+      description: >
+        Update/Set the Video Thumbnail.
+      tags:
+        - Metadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/ImageParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /metadata/thumbnail/{transaction_id}:
+    get:
+      summary: Get the Video with updated Thumbnail
+      operationId: video-set-thumbnail-getresult
+      description: >
+        Use this method, along with transaction_id, to retrieve the updated video with the new thumbnail.
+      tags:
+        - Metadata
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The ID returned from the POST method when it's done asynchronously.
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /encode/ctv:
+    post:
+      summary: Make Video CTV-Compatible
+      operationId: video-encode-ctv
+      description: >
+        Converts your original video to meet <a href="https://docs.picsart.io/docs/ctv-ads-format-requirements/">CTV requirements</a>.
+      tags:
+        - Ads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /audio/adjust:
+    post:
+      summary: Adjust Audio
+      operationId: video-adjust-audio
+      description: >
+        Adjusts the input video's audio volume, allows to add a new audio channel and control its volume.
+      tags:
+        - Audio
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/AdjustAudioParameters'
+                - $ref: '#/components/schemas/ExportParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /export/audio:
+    post:
+      summary: Extract Audio
+      operationId: video-extract-audio
+      description: >
+        Extract the input video's audio channel.
+      tags:
+        - Audio
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/ExtractAudioParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /audio/transcribe:
+    post:
+      summary: Transcribe Audio
+      operationId: video-transcribe-audio
+      description: >
+        Transcribe your audio or video files. The input file can have one of the following mime types:
+          * audio/flac
+          * audio/mpeg
+          * audio/x-m4a
+          * audio/ogg
+          * audio/x-wav
+          * video/mp4
+          * video/mpeg
+          * video/webm
+        Note, that the maximum audio/video file size supported is 25mb.
+      tags:
+        - Transcriptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/TranscribeFileParameters'
+                - $ref: '#/components/schemas/TranscribeParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /audio/transcribe/{transaction_id}:
+    get:
+      summary: Get the Transcribe Audio result
+      operationId: video-transcribe-audio-getresult
+      description: >
+        Use this method, along with transaction_id, to retrieve the audio transcription.
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The Transaction ID returned from the [Transcribe Audio](https://docs.picsart.io/reference/video-transcribe-audio-1).
+      tags:
+        - Transcriptions
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '422':
+          $ref: '#/components/responses/422'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /watermark:
+    post:
+      summary: Add Watermark
+      operationId: video-add-watermark
+      description: >
+        Add watermark to your video.
+      tags:
+        - Watermark
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/VideoParameters'
+                - $ref: '#/components/schemas/WatermarkParameters'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /video/{transaction_id}:
+    get:
+      summary: Get the Video result
+      operationId: video-getresult
+      description: >
+        Use the video editing transaction ID to get the result video URL.
+        This method works for effects, adjust, trim, crop, resize, fit, concatenation, highlights services.
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The ID returned from the POST method when it's done asynchronously.
+      tags:
+        - Utilities
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /audio/{transaction_id}:
+    get:
+      summary: Get the Audio result
+      operationId: video-getaudioresult
+      description: >
+        Use the video editing transaction ID to get the result audio file URL.
+      parameters:
+        - in: path
+          name: transaction_id
+          schema:
+            type: string
+          required: true
+          description: The ID returned from the POST method when it's done asynchronously.
+      tags:
+        - Utilities
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /upload:
+    post:
+      summary: Upload files
+      operationId: video-upload
+      description: >
+        Upload resources such as videos, audios or images. The provided URL can be passed as inputs to video operation.
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UploadParameters'
+      tags:
+        - Utilities
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+  /balance:
+    get:
+      summary: Credits Balance
+      operationId: video-credits-balance
+      description: >
+        Check your balance of credits.
+      tags:
+        - Utilities
+      
+      responses:
+        '200':
+          $ref: '#/components/responses/balanceRetrievalSuccess'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '413':
+          $ref: '#/components/responses/413'
+        '415':
+          $ref: '#/components/responses/415'
+        '422':
+          $ref: '#/components/responses/422'
+        '429':
+          $ref: '#/components/responses/429'
+        '431':
+          $ref: '#/components/responses/431'
+        '500':
+          $ref: '#/components/responses/500'
+        '503':
+          $ref: '#/components/responses/503'
+
+security:
+  - apiKey: []
+
+components:
+  schemas:
+    FileParameters:
+      type: object
+      properties:
+        file_url:
+          type: string
+          description: Source video or audio URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    TranscribeFileParameters:
+      type: object
+      properties:
+        file_url:
+          type: string
+          description: Source video or audio URL. The maximum file size is 25mb.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    VideoParameters:
+      type: object
+      properties:
+        video_url:
+          type: string
+          description: Source video URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    ImageParameters:
+      type: object
+      properties:
+        image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    ExportParameters:
+      type: object
+      properties:
+        export:
+          type: object
+          properties: 
+            format:
+              type: string
+              default: MP4
+              enum:
+                - MOV
+                - MP4
+                - WEBM
+                - GIF
+              description: >
+                Optionally select one of the output video formats (MP4 is chosen if left blank). Container options are as follows
+                  * MOV
+                  * MP4
+                  * WEBM
+                  * GIF
+            frame_rate:
+              type: integer
+              default: 30
+              minimum: 1
+              maximum: 60
+              description: The output video frame rate.
+            bitrate:
+              type: integer
+              minimum: 1
+              maximum: 10000
+              description: The output video bitrate in kb/s. Leave empty to set automatically and optimize accordingly.
+          default:
+            format: MP4
+            frame_rate: 30
+    ExtendedExportParameters:
+      type: object
+      properties:
+        export:
+          type: object
+          properties: 
+            format:
+              type: string
+              default: MP4
+              enum:
+                - MOV
+                - MP4
+                - WEBM
+                - GIF
+              description: >
+                Optionally select one of the output video formats (MP4 is chosen if left blank). Container options are as follows
+                  * MOV
+                  * MP4
+                  * WEBM
+                  * GIF
+            max_size_mb:
+              type: integer
+              nullable: true
+              description: The maximum target size in megabytes (not strict).
+            quality:
+              type: string
+              enum:
+                - low
+                - medium
+                - high
+              default: medium
+              description: The quality of the output video. You can choose from low, medium or high quality outputs. By default medium is applied.
+            codec:
+              type: string
+              enum:
+                - default
+                - HEVC
+                - h264
+                - theora
+                - vp8
+                - vp9
+                - gif
+                - av1
+                - cinepak
+                - ffv1
+                - MPEG4
+                - vc2
+              default: default
+              description: The video codec. Use "default" to keep the video codec the same.
+            audio_codec:
+              type: string
+              enum:
+                - default
+                - aac
+                - ac3
+                - opus
+                - mp3
+                - ogg_vorbis
+                - ogg_speex
+                - wav
+                - flac
+                - PCM
+              default: default
+              description: The audio codec. Use "default" to keep the video codec the same.
+            frame_rate:
+              type: integer
+              default: 30
+              minimum: 1
+              maximum: 60
+              description: The output video frame rate.
+            bitrate:
+              type: integer
+              minimum: 1
+              maximum: 10000
+              description: The output video bitrate in kb/s. Leave empty to set automatically and optimize accordingly.
+            color_space:
+              type: string
+              enum:
+                - SRGB
+                - DisplayP3
+              default: SRGB
+              description: The color space of the output video.
+          default:
+            format: MP4
+            quality: medium,
+            codec: default,
+            audio_codec: default,
+            frame_rate: 30,
+            color_space: SRGB
+    RemoveBackgroundParameters:
+      type: object
+      properties:
+        bg_color:
+          type: string
+          nullable: true
+          description: >
+            Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue).
+            For full transparency, use 'transparent' or '#00000000'. In this case, the export format .webm will be enforced and applied.
+            For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87 or #00000066).
+            The default is greenscreen's '#008800'.
+            Use either bg_color or bg_image_url.
+          default: '#008800'
+        bg_image_url:
+          type: string
+          nullable: true
+          description: >
+            The background image URL.
+            Use either bg_color or bg_image_url.
+            When not provided the default value of the bg_color=#008800 will be applied to the background.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    TranscribeParameters:
+      type: object
+      properties:
+        language:
+          type: string
+          default: en
+          enum:
+            - af
+            - ar
+            - am
+            - az
+            - be
+            - bs
+            - bg
+            - ca
+            - zh
+            - hr
+            - cs
+            - da
+            - nl
+            - en
+            - et
+            - fi
+            - fr
+            - gl
+            - de
+            - el
+            - he
+            - hi
+            - hu
+            - is
+            - id
+            - it
+            - ja
+            - kn
+            - kk
+            - ko
+            - lv
+            - lt 
+            - mk
+            - ms
+            - mr
+            - mi
+            - ne
+            - no
+            - fa
+            - pl
+            - pt
+            - ro
+            - ru
+            - sr
+            - sk
+            - sl
+            - es
+            - sw
+            - sv
+            - tl
+            - ta
+            - th
+            - tr
+            - uk
+            - ur
+            - vi
+            - cy
+          description: >
+            Optionally select one of the languages in the 2-character format (ISO 639-1).
+            Options are as follows:
+              * Afrikaans - af
+              * Arabic - ar
+              * Armenian - am
+              * Azerbaijani - az
+              * Belarusian - be
+              * Bosnian - bs
+              * Bulgarian - bg
+              * Catalan - ca
+              * Chinese - zh
+              * Croatian - hr
+              * Czech - cs
+              * Danish - da
+              * Dutch - nl
+              * English - en
+              * Estonian - et
+              * Finnish - fi
+              * French - fr
+              * Galician - gl
+              * German - de
+              * Greek - el
+              * Hebrew - he
+              * Hindi - hi
+              * Hungarian - hu
+              * Icelandic - is
+              * Indonesian - id
+              * Italian - it
+              * Japanese - ja
+              * Kannada - kn
+              * Kazakh - kk
+              * Korean - ko
+              * Latvian - lv
+              * Lithuanian - lt 
+              * Macedonian - mk
+              * Malay - ms
+              * Marathi - mr
+              * Maori - mi
+              * Nepali - ne
+              * Norwegian - no
+              * Persian - fa
+              * Polish - pl
+              * Portuguese - pt
+              * Romanian - ro
+              * Russian - ru
+              * Serbian - sr
+              * Slovak - sk
+              * Slovenian - sl
+              * Spanish - es
+              * Swahili - sw
+              * Swedish - sv
+              * Tagalog - tl
+              * Tamil - ta
+              * Thai - th
+              * Turkish - tr
+              * Ukrainian - uk
+              * Urdu - ur
+              * Vietnamese - vi
+              * Welsh - cy
+        format:
+          type: string
+          default: TXT
+          enum:
+            - TXT
+            - SRT
+            - VTT
+            - SBV
+          description: >
+            Optionally select one of the transcription formats (TXT is chosen if left blank).
+            Options are as follows:
+              * TXT
+              * SRT
+              * VTT
+              * SBV
+        granularity:
+          type: string
+          default: 'sentence'
+          enum:
+            - 1-word
+            - 2-words
+            - sentence 
+          description: Define the granularity of the subtitles. This works for SRT, VTT and SBV formats only.
+    ExtractAudioParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: mp3
+          enum:
+            - mp3
+            - m4a
+            - wav
+            - flac
+          description: >
+            Optionally select one of the audio formats (mp3 is chosen if left blank).
+            Options are as follows:
+              * mp3
+              * m4a
+              * wav
+              * flac
+    AdjustParameters:
+      type: object
+      properties:
+        audio_url:
+          type: string
+          description: The sound file url.
+          nullable: true
+        audio_volume:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The volume of the audio.
+          default: 100
+        video_volume:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The volume of the video.
+          default: 100
+        brightness:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        contrast:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        clarity:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        saturation:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        hue:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        shadows:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        highlights:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        temperature:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        sharpen:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to 100.
+          default: 0
+        noise:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to 100.
+          default: 0
+        vignette:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to 100.
+          default: 0
+    AdjustAudioParameters:
+      type: object
+      properties:
+        audio_url:
+          type: string
+          description: The sound file url.
+          nullable: true
+        audio_volume:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The volume of the audio.
+          default: 100
+        video_volume:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The volume of the video.
+          default: 100
+    EffectsParameters:
+      type: object
+      properties:
+        effect_name:
+          type: string
+          enum:
+            - apr1
+            - apr2
+            - apr3
+            - brnz1
+            - brnz2
+            - brnz3
+            - brnz4
+            - cyber1
+            - cyber2
+            - cyber3
+            - icy1
+            - icy2
+            - icy3
+            - icy4
+            - mnch1
+            - mnch2
+            - mnch3
+            - noise
+            - ntrl1
+            - ntrl2
+            - ntrl3
+            - pixelize
+            - saturation
+            - sft1
+            - sft2
+            - sft3
+            - sft4
+            - tl1
+            - tl2
+            - sharpen
+            - vignette
+            - Focal Zoom
+            - Lens Blur
+            - Motion Blur
+            - Radial Blur
+            - Smart Blur
+            - Blur
+            - Black And White
+            - stenciler1
+            - stenciler3
+            - stenciler4
+            - stenciler6
+            - stenciler7
+            - DTN1
+            - DTN2
+            - DTN3
+            - DTN4
+            - DTN5
+          description: >
+            Choose an effect from the dropdown menu. The list of effects are as follows
+              * apr1
+              * apr2
+              * apr3
+              * brnz1
+              * brnz2
+              * brnz3
+              * brnz4
+              * cyber1
+              * cyber2
+              * cyber3
+              * icy1
+              * icy2
+              * icy3
+              * icy4
+              * mnch1
+              * mnch2
+              * mnch3
+              * noise
+              * ntrl1
+              * ntrl2
+              * ntrl3
+              * pixelize
+              * saturation
+              * sft1
+              * sft2
+              * sft3
+              * sft4
+              * tl1
+              * tl2
+              * sharpen
+              * vignette
+              * Focal Zoom
+              * Lens Blur
+              * Motion Blur
+              * Radial Blur
+              * Smart Blur
+              * Blur
+              * Black And White
+              * stenciler1
+              * stenciler3
+              * stenciler4
+              * stenciler6
+              * stenciler7
+              * DTN1
+              * DTN2
+              * DTN3
+              * DTN4
+              * DTN5
+    TrimParameters:
+      type: object
+      properties:
+        start:
+          type: integer
+          default: 0
+          minimum: 0
+          description: This is the point in time of the video from where the trimming begins in milliseconds.
+        end:
+          type: integer
+          default: 1000
+          minimum: 1000
+          description: This is the point in time of the video where the trimming ends in milliseconds. It must be greater than `start`.
+      required:
+        - start
+        - end
+    CropParameters:
+      type: object
+      properties:
+        width:
+          type: integer
+          minimum: 16
+          description: >
+            Width of the outcome video. If the new width is larger than the original width, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original width. Value must be at least 16 px.
+        height:
+          type: integer
+          minimum: 16
+          description: >
+            Height of the output video. If the new height is larger than the original height, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original height. Value must be at least 16 px.
+        start_x:
+          type: integer
+          default: 0
+          minimum: 0
+          description: The starting x location of the crop in px as measured from the left edge.
+        start_y:
+          type: integer
+          default: 0
+          minimum: 0
+          description: The starting y location of the crop in px as measured from the bottom edge.
+    EditParameters:
+      type: object
+      properties:
+        fit:
+          $ref: '#/components/schemas/FitParameters'
+        crop:
+          $ref: '#/components/schemas/CropParameters'
+        #- $ref: '#/components/schemas/EffectsParameters'
+        #- $ref: '#/components/schemas/TrimParameters'
+    VideoGetThumbnailParameters:
+      type: object
+      properties:
+        source:
+          type: string
+          default: auto
+          enum:
+            - auto
+            - container
+            - timestamp
+        timestamps:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 4
+          nullable: true
+          description: >
+            List up to 4 timestamps to extract frames from.  <a href="https://docs.picsart.io/docs/video-timestamps/">Several timestamp formats</a> are supported.
+    Transition:
+      type: object
+      properties:
+        transition:
+          type: string
+          default: none
+          enum:
+            - none
+            - fade
+            - zoom_in
+            - zoom_out
+            - spin
+            - fly_in_from_left
+            - fly_in_from_right
+            - fly_in_from_top
+            - fly_in_from_bottom
+            - fly_out_to_left
+            - fly_out_to_right
+            - fly_out_to_bottom
+            - fly_out_to_top
+    ConcatParameters:
+      type: object
+      properties:
+        items:
+          type: array
+          description: List of videos and images to combine into a slideshow.
+          items:
+            allOf:
+              - $ref: '#/components/schemas/ConcatVideoParameters'
+              - $ref: '#/components/schemas/ConcatImageParameters'
+              - $ref: '#/components/schemas/Transition'
+          minItems: 1
+          maxItems: 10
+        bg_audio_url:
+          type: string
+          description: Background audio/sound URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          nullable: true
+        bg_audio_repeat:
+          type: boolean
+          default: true
+          nullable: true
+          description: Use true to repeat the audion in the background for the whole video duration or false if you want to play the audio only once.
+        bg_audio_volume:
+          type: integer
+          default: 100
+          minimum: 0
+          maximum: 100
+          nullable: true
+          description: Control the audio volume. Adjust from 0 to 100. 0 will mute the audio completely and 100 will have it at max.
+    ConcatVideoParameters:
+      type: object
+      properties:
+        video_url:
+          type: string
+          description: Source video URL. (Use either image_url or video_url.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          nullable: true
+        volume:
+          type: integer
+          default: 100
+          minimum: 0
+          maximum: 100
+          nullable: true
+          description: Control the video volume. Adjust from 0 to 100. 0 will mute the video completely and 100 will have it at max.
+    ConcatImageParameters:
+      type: object
+      properties:
+        image_url:
+          type: string
+          description: Source image URL. (Use either image_url or video_url.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          nullable: true
+        scale:
+          type: string
+          enum:
+            - fit
+            - fill
+          default: fit
+          nullable: true
+          description: >
+            Fit is where the longer side (width/height) fits the video canvas (e.g. see the width and height params). Fill is where the shorter side fits the background. Fit is the default.
+        duration:
+          type: integer
+          minimum: 1
+          default: 1000
+          description: Duration of the image in milliseconds. Applies only if the image_url is provided.
+          nullable: true
+    ConcatSegmentsParameters:
+      type: object
+      properties:
+        trim_segments:
+          type: array
+          description: List of segments to combine/merge.
+          items:  
+            type: object
+            properties: 
+              start:
+                type: integer
+                default: 0
+                minimum: 0
+                nullable: false
+                description: The start time of the segment in milliseconds.
+              end:
+                type: integer
+                minimum: 1
+                nullable: false
+                description: The end time of the segment in milliseconds.
+              transition:
+                type: string
+                enum:
+                  - none
+                  - fade
+                  - zoom_in
+                  - zoom_out
+                  - spin
+                  - fly_in_from_left
+                  - fly_in_from_right
+                  - fly_in_from_top
+                  - fly_in_from_bottom
+                  - fly_out_to_left
+                  - fly_out_to_right
+                  - fly_out_to_bottom
+                  - fly_out_to_top
+                default: 'none'
+                nullable: true
+                description: The transition between segments.
+            required:
+              - start
+              - end
+          minItems: 2
+          maxItems: 10
+    FitParameters:
+      type: object
+      properties:
+        ratio:
+          type: number
+          format: float
+          nullable: true
+          minimum: 0.1
+          maximum: 10.0
+          description: >
+            The value should be a single floating point number which represents the ratio of width and height. The formula is: parameter value = width / height. The default value is that of the original video.
+        width:
+          type: integer
+          minimum: 16
+          nullable: true
+          description: >
+            Width of the outcome video. If the new width is larger than the original width, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original width. Value must be at least 16 px.
+        height:
+          type: integer
+          minimum: 16
+          nullable: true
+          description: >
+            Height of the outcome video. If the new height is larger than the original height, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original height. Value must be at least 16 px.
+        bg_color:
+          type: string
+          nullable: true
+          description: >
+            Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87). (If this parameter is present, the other bg_ parameters must be empty).
+        bg_blur:
+          type: integer
+          default: 0
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to 100.
+        bg_image_url:
+          type: string
+          description: Background image URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        bg_video_url:
+          type: string
+          description: Background video URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    WatermarkParameters:
+      type: object
+      properties:
+        watermark:
+          description: Source watermark image file (binary). (If this parameter is present, the other watermark image source parameters must be empty.)
+          type: string
+          format: binary
+          nullable: true
+        watermark_url:
+          type: string
+          description: Source watermark image URL. (If this parameter is present, the other watermark image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          nullable: true
+        anchor_point:
+          type: string
+          default: center-middle
+          enum:
+            - left-top
+            - left-middle
+            - left-bottom
+            - center-top
+            - center-middle
+            - center-bottom
+            - right-top
+            - right-middle
+            - right-bottom
+            - pattern
+        watermark_width:
+          type: integer
+          minimum: 1
+          nullable: true
+        watermark_height:
+          type: integer
+          minimum: 1
+          nullable: true
+        watermark_opacity:
+          type: integer
+          nullable: true
+          default: 50
+          minimum: 0
+          maximum: 100
+          description: >
+            Define the opacity of the watermark. Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.
+        watermark_angle:
+          type: integer
+          minimum: 0
+          maximum: 360
+          nullable: true
+          description: >
+            Define the angle of the watermark. Takes values from 0 to 360.
+        watermark_padding_x:
+          type: integer
+          minimum: 0
+          default: 0
+          nullable: true
+          description: >
+            Define the horizontal padding of the watermark.
+        watermark_padding_y:
+          type: integer
+          minimum: 0
+          default: 0
+          nullable: true
+          description: >
+            Define the vertical padding of the watermark.
+    UploadParameters:
+      type: object
+      properties:
+        file:
+          description: Source file (binary).
+          nullable: false
+          type: string
+          format: binary
+      required:
+        - file
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+        - detail
+    401_Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: "Unauthorized"
+        detail:
+          type: string
+      required:
+        - detail
+
+  responses:
+    '200':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    nullable: true
+                  url:
+                    type: string
+                    format: uri
+                    nullable: false
+              status:
+                type: string
+                enum:
+                  - success
+                  - error
+                  - processing
+                  - queued
+                nullable: false
+          example:
+            status: success
+            data:
+              id: 75c68cf6-9881-46a5-a3e8-6907640901eb
+              url: https://cdn.picsart.io/d04d0fd0-192f-4532-bd9a-aa63a728e39c.mp4
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    'renders200':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              jobs:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: The identifier of the rendering task.
+                      type: string
+                      nullable: true
+                    status:
+                      description: >
+                        The status of the rendering. Supported values are
+                          * rendering
+                          * done
+                          * error
+                      type: string
+                      enum:
+                        - rendering
+                        - done
+                        - error
+                      nullable: false
+                    timeElapsed:
+                      description: The time elapsed since the rendering started.
+                      type: number
+                      minimum: 0.0
+                      format: float
+                      nullable: true
+                    timeEstimate:
+                      type: string
+                      nullable: true
+                    progress:
+                      description: The progress of the rendering in the range of 0-100 where 0 means it's just starting and 100 means it's complete.
+                      type: integer
+                      minimum: 0
+                      maximum: 100
+                      example: 15
+                      nullable: true
+                    error:
+                      type: string
+                      nullable: true
+                    result:
+                      description: URL of the result video.
+                      type: string
+                      example: https://{base_url}/{jobGuid}/output/{jobGuid}.mp4
+                      nullable: true
+          examples:
+            rendering:
+              value:
+                {
+                  "jobs": [
+                    {
+                      "id": "{jobGuid}",
+                      "status": "rendering",
+                      "timeElapsed": 0.0,
+                      "timeEstimate": null,
+                      "progress": 33,
+                      "error": null,
+                      "result": ""
+                    }
+                  ]
+                }
+            done:
+              value:
+                {
+                  "jobs": [
+                    {
+                      "id": "{jobGuid}",
+                      "status": "done",
+                      "timeElapsed": 0.0,
+                      "timeEstimate": null,
+                      "progress": 100,
+                      "error": null,
+                      "result": "https://{base_url}/{jobGuid}/output/{jobGuid}.mp4"
+                    }
+                  ]
+                }
+            error:
+              value:
+                {
+                  "jobs": [
+                    {
+                      "id": "{jobGuid}",
+                      "status": "error",
+                      "timeElapsed": 0.0,
+                      "timeEstimate": null,
+                      "progress": 5,
+                      "error": "Error message",
+                      "result": ""
+                    }
+                  ]
+                }
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200Thumbnails':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      nullable: true
+                    url:
+                      type: string
+                      format: uri
+                      nullable: false
+                  minItems: 0
+                  maxItems: 4
+              status:
+                type: string
+                enum:
+                  - success
+                  - error
+                  - processing
+                  - queued
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200Metadata':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  video_streams:
+                    type: integer
+                    description: Number of video streams in the file (including thumbnails)
+                    nullable: true
+                  audio_streams:
+                    type: integer
+                    description: Number of audio streams in the file
+                    nullable: true
+                  bit_rate:
+                    type: integer
+                    description: Overall bit rate of the file in bits per second
+                    nullable: true
+                  size:
+                    type: integer
+                    description: File size in bytes
+                    nullable: true
+                  duration:
+                    type: number
+                    description: Total duration of the file in seconds
+                    nullable: true
+                  format_name:
+                    type: string
+                    description: Container format name
+                    nullable: true
+                  video_codec_name:
+                    type: string
+                    description: Video codec name
+                    nullable: true
+                  video_width:
+                    type: integer
+                    description: Video width in pixels
+                    nullable: true
+                  video_height:
+                    type: integer
+                    description: Video height in pixels
+                    nullable: true
+                  video_duration:
+                    type: number
+                    description: Video stream duration in seconds
+                    nullable: true
+                  video_bit_rate:
+                    type: integer
+                    description: Video stream bit rate in bits per second
+                    nullable: true
+                  video_pix_fmt:
+                    type: string
+                    description: Video pixel format
+                    nullable: true
+                  video_fps:
+                    type: integer
+                    description: Video frame rate (frames per second)
+                    nullable: true
+                  audio_codec_name:
+                    type: string
+                    description: Audio codec name
+                    nullable: true
+                  audio_sample_rate:
+                    type: integer
+                    description: Audio sample rate in Hz
+                    nullable: true
+                  audio_channels:
+                    type: integer
+                    description: Number of audio channels
+                    nullable: true
+                  audio_channel_layout:
+                    type: string
+                    description: Audio channel layout
+                    nullable: true
+                  audio_duration:
+                    type: number
+                    description: Audio stream duration in seconds
+                    nullable: true
+                  audio_bit_rate:
+                    type: integer
+                    description: Audio stream bit rate in bits per second
+                    nullable: true
+                  thumbnail_codec_name:
+                    type: string
+                    description: Thumbnail codec name
+                    nullable: true
+                  thumbnail_width:
+                    type: integer
+                    description: Thumbnail width in pixels
+                    nullable: true
+                  thumbnail_height:
+                    type: integer
+                    description: Thumbnail height in pixels
+                    nullable: true
+                  thumbnail_pix_fmt:
+                    type: string
+                    description: Thumbnail pixel format
+                    nullable: true
+              status:
+                type: string
+                enum:
+                  - success
+                  - error
+                  - processing
+                  - queued
+                nullable: false
+          example:
+            status: success
+            video:
+              id: 75c68cf6-9881-46a5-a3e8-6907640901eb
+              url: https://cdn.picsart.io/d04d0fd0-192f-4532-bd9a-aa63a728e39c.mp4
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '202':
+      description: Request successfully accepted for an asynchronous transformation.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              transaction_id:
+                type: string
+                nullable: true
+              status:
+                type: string
+                enum:
+                  - success
+                  - error
+                  - processing
+                  - queued
+                nullable: false
+          example:
+            value:
+              transaction_id: 931aed0a-5efd-4b62-9712-069b7147eec5
+              status: processing
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    balanceRetrievalSuccess:
+      description: Successful retrieval of the credits balance (remaining credits).
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              credits:
+                type: integer
+                nullable: false
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/401_Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '402':
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '405':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '415':
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '422':
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '503':
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-Picsart-API-Key

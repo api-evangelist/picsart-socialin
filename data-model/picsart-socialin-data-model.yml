@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/*.yaml
+note: >-
+  Picsart Creative APIs are stateless media-processing endpoints — the OpenAPI
+  component schemas are request parameter DTOs (e.g. UpscaleParameters,
+  RemoveBackgroundParameters) rather than persistent, cross-referenced entities.
+  The conceptual model below is the request → async-job → result flow shared
+  across the Image, Video, GenAI, and Variable Data services.
+entities:
+- name: Upload
+  description: An uploaded source image/video/file, addressable for reuse across operations.
+  operations: [image-upload, video-upload]
+  identifier: file reference / *_url input
+- name: Operation
+  description: >-
+    A single processing request (transform or generation) submitted to a service
+    endpoint; may run synchronously or async depending on the HTTP Prefer header.
+  identifier: transaction / inference id
+- name: Result
+  description: The output artifact of an async operation, fetched by polling the service getresult endpoint.
+  operations: [image-getresult, video-getresult, genai-text2image-getresult, vd-export-variable-data-content-getresult]
+  relationships:
+  - {type: belongs_to, target: Operation, via: transaction_id}
+- name: CreditsBalance
+  description: The account credit balance consumed by metered operations.
+  operations: [image-credits-balance, video-credits-balance, genai-credits-balance, vd-credits-balance]
+relationships:
+- {from: Operation, to: Upload, type: references, via: image_url/video_url input}
+- {from: Result, to: Operation, type: belongs_to, via: async job id}
+- {from: Operation, to: CreditsBalance, type: decrements, via: credit metering}

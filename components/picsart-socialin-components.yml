@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.picsart.io/docs/photo-video-editor-overview
+components:
+- family: Photo and Video Editor SDK
+  kind: embeddable-editor
+  description: >-
+    A prebuilt, embeddable Picsart Photo and Video Editor surface that can be
+    dropped into web applications (including React.js) with configurable
+    look-and-feel, export options, template/Web-to-Print support, and video
+    editing features.
+  surfaces:
+  - Photo editing
+  - Video editing
+  - Web-to-Print / template design
+  integrations:
+  - framework: react
+    docs: https://docs.picsart.io/docs/photo-video-editor-reactjs
+  quick_start: https://docs.picsart.io/docs/photo-video-editor-quick-start
+  customization: https://docs.picsart.io/docs/photo-video-editor-customizing-the-look-feel
+  export: https://docs.picsart.io/docs/photo-video-editor-export
+  docs: https://docs.picsart.io/docs/photo-video-editor-overview
+note: >-
+  Client-side embeddable UI surface, distinct from the server-side Creative APIs
+  SDKs in packages/.

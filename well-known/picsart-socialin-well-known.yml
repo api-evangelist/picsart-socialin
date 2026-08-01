@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: probed
+source: live probe of /.well-known/ on Picsart API and website hosts
+note: >-
+  No /.well-known/ discovery documents were served. API hosts require the
+  X-Picsart-API-Key header (401) or rate-limited the probe (429); the marketing
+  hosts returned 404. Recorded as a valid negative result — no WellKnown or
+  SecurityTxt pointer emitted.
+hosts:
+- host: https://api.picsart.io
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+- host: https://genai-api.picsart.io
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+- host: https://video-api.picsart.io
+  documents:
+  - {path: /.well-known/security.txt, status: 429}
+  - {path: /.well-known/openid-configuration, status: 401}
+- host: https://vd-api.picsart.io
+  documents:
+  - {path: /.well-known/security.txt, status: 429}
+- host: https://picsart.io
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+- host: https://picsart.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}

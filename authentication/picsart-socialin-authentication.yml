@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/picsart-socialin-genai-tools.yaml, openapi/picsart-socialin-image-tools.yaml,
+  openapi/picsart-socialin-variable-data-tools.yaml, openapi/picsart-socialin-video-tools.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-Picsart-API-Key
+  sources:
+  - openapi/picsart-socialin-genai-tools.yaml
+  - openapi/picsart-socialin-image-tools.yaml
+  - openapi/picsart-socialin-variable-data-tools.yaml
+  - openapi/picsart-socialin-video-tools.yaml
