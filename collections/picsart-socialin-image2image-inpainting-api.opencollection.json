@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Image2Image / Inpainting API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image2Image / Inpainting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Edit Image with a Prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/painting/edit",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Edit any image with a prompt. Apply any transformation, any type of detail you can imaging and the AI will apply it to the image.\nChoose from the big range of models if you have preferences or to take control of the output quality.\n"
+        },
+        {
+          "info": {
+            "name": "Inpaint Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/painting/inpaint",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The **Inpainting** service offers inpainting (image2Image) capabilities, enabling users to fill or replace areas within an image based on specified criteria. It operates in two modes: * Single Image Mode: Submit one RGBA image. The API fills the specified inner area with content based on the prompt parameter. * Mask Mode: Along with the RGBA image, provide a mask of identical size and format. The API uses this mask to identify areas for inpainting with content determined by the prompt parameter."
+        },
+        {
+          "info": {
+            "name": "Outpaint Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/painting/outpaint",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The **Outpainting** service enables outpainting (image2image), allowing users to extend or replace specific parts of an image. This is a reversed form of the Inpainting service (drawing outside of the mask, not inside).\nIt supports two operational modes:\n  * Single Image Mode: Upload one RGBA image. The API enhances the outer area with content based on the prompt parameter.\n  * Mask Mode: Provide an RGBA image along with a mask of the same size. The API applies this mask to paint beyond the mask"
+        },
+        {
+          "info": {
+            "name": "Remove Object from an Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/painting/remove-object",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This service allows to remove objects from the original image by providing a mask.\nEven though the same type of a result can also achieved via the [Inpainting](https://docs.picsart.io/reference/genai-image-inpainting) service, this service uses a specially trained model to provide fine tuned results.\n"
+        },
+        {
+          "info": {
+            "name": "Smart Background",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/painting/replace-background",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The **Smart Background** service elevates photo customization to new heights by offering an innovative solution for altering the backdrop of images. Unlike the traditional \"Change Background\" feature accessed via the /removebg endpoint, where users must provide a specific image to serve as the new background, **Smart Background** harnesses the power of AI to generate a completely new backdrop based on user descriptions.\n  \nIn contrast, the /removebg endpoint's \"Change Background\" function requir"
+        },
+        {
+          "info": {
+            "name": "Expand Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/painting/expand",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The **Image Expansion** service offers a groundbreaking functionality designed to enhance digital imagery by enabling users to enlarge any image to specific width and height dimensions. This sophisticated feature not only allows generative resizing but also provides the capability to specify the direction of expansion, ensuring that users have complete control over the final appearance of their images.\n  \nThis service is engineered to accommodate the need for larger image sizes without compromis"
+        },
+        {
+          "info": {
+            "name": "Generate Bleed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/painting/bleed",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This service offers a groundbreaking functionality designed to enhance digital imagery by enabling users to enlarge any image. \nThis service enlarges the original images and generates additional pixels around the original from all sides. This helps print original images without needing to cut part of it during the print production process. The generated bleed area is a continuation of the original image and will ensure a consistent and high cut quality.\n"
+        },
+        {
+          "info": {
+            "name": "Get the results of the painting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/painting/:inference_id",
+            "params": [
+              {
+                "name": "inference_id",
+                "value": "1116b57cb-1999-4bfd-8c42-c739a006a111",
+                "type": "path",
+                "description": "The painting inference identifier."
+              }
+            ]
+          },
+          "docs": "Inpaint, Outpaint, Smart Background and Expand services can work asynchronously and expose an inference identifier that can be used later to fetch te results.\nUse this service to check up on the result.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

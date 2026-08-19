@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Transcriptions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transcriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transcribe Audio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/audio/transcribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transcribe your audio or video files. The input file can have one of the following mime types:\n  * audio/flac\n  * audio/mpeg\n  * audio/x-m4a\n  * audio/ogg\n  * audio/x-wav\n  * video/mp4\n  * video/mpeg\n  * video/webm\nNote, that the maximum audio/video file size supported is 25mb.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Transcribe Audio result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/audio/transcribe/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The Transaction ID returned from the [Transcribe Audio](https://docs.picsart.io/reference/video-transcribe-audio-1)."
+              }
+            ]
+          },
+          "docs": "Use this method, along with transaction_id, to retrieve the audio transcription.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

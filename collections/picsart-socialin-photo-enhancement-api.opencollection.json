@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Photo enhancement API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Photo enhancement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/upscale",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *upscale* service increases the resolutions of an image by a given upscale factor, without increasing its file size. Upscale increases the quality and resolution of your photos by leveraging predictive and generative AI to add pixels to your image. It works especially well on images without noise.\n"
+        },
+        {
+          "info": {
+            "name": "Ultra Upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/upscale/ultra",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "*Upscale Ultra* is a new upscaling technique which does upscaling with noise suppression. It works well on images with faces, small resolution images, stickers and objects with geometric shapes and clear edges. Upscale ultra increases the quality and resolution of low quality photos by leveraging predictive and generative AI technology in order to \"complete\" missing pixels for a best in class smoothing and enhancement effect. It works especially good on small resolution images with faces.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Ultra Upscale result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/upscale/ultra/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Use this method, along with transaction_id, to retrieve the upscale ultra finished image if the transformation was done asynchronously.\n"
+        },
+        {
+          "info": {
+            "name": "Ultra Enhance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/upscale/enhance",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "*Ultra enhance* is a new upscaling technique with a generative model which provides high frequency detail. It works well on images without noise and preserves details in a superior way.\n**Limitations:** \n\n **Minimums/Maximums:**\n   * Up to 64Mpx output images\n\n **Examples:**\n   Examples of where ultra enhance can be utilized include the following:\n   * Low resolution images\n   * Images that need smoothing and realistic details \n   * To de-noise an image\n   * Works best with the Face Enhance serv"
+        },
+        {
+          "info": {
+            "name": "Face Enhancement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/enhance/face",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "With our *enhance face* tool, you can turn your old, blurry photos into clear portraits and selfies. ur AI technology will find faces, perform restoration and do color enhancement simultaneously. It will improve the skin texture and sharpen details while keeping a good balance of realness and fidelity with much less artifacts.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

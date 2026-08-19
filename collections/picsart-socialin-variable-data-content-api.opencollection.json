@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Variable Data Content API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Variable Data Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Describe Replay's Variable Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/variable-data-content/describe",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Describes the Replay. Lists all variable data fields and their types: image, text, etc.\n"
+        },
+        {
+          "info": {
+            "name": "Export Variable Data Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/export/variable-data-content",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Export your Replays with async API in background to optimize for performance and improve your user experience.\nCustomize the output with your data. Here you can provide a CSV file with up to 50 rows and map your data to the variables in the Replay file. For each row in the data file, this service will export a file of the requested type.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Export Variable Data Content result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/export/variable-data-content/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method."
+              }
+            ]
+          },
+          "docs": "Use this method, along with transaction_id, to retrieve the export variable data content's finished results (e.g. list of PDF file URLs).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Utilities API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Credits Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/balance"
+          },
+          "docs": "Check your balance of credits.\n**Authorization:**\n    Requires an API key to be provided in the **X-Picsart-API-Key** request header.\n"
+        },
+        {
+          "info": {
+            "name": "Upload Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *upload* service is used to upload an image when you want to apply several transformations to it.\n  By uploading an image first, you'll receive a transaction_id which you can use repeatedly for transformations and thereby avoid having to upload an image for each and every one.\n  If you're sure you only want to do a single transformation to an image, there's no benefit to using this service. Just jump right to that service.\n\n **Limitations:** Supported source image formats are JPG, PNG, WEBP,"
+        },
+        {
+          "info": {
+            "name": "Get the Image result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/image/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Use the image editing transaction ID to get the result image file URL.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Video result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/video/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Use the video editing transaction ID to get the result video URL. This method works for effects, adjust, trim, crop, resize, fit, concatenation, highlights services.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Audio result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/audio/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Use the video editing transaction ID to get the result audio file URL.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

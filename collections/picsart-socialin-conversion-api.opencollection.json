@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Conversion API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Image Vectorizer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/vectorizer",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "With the *vectorizer* tool you can instantly turn your raster image into high quality vector graphic as it converts a PNG image to a SVG image. Using geometric figures, like curves and lines, the vectorizer converts the pixel information of raster input into vector image, which can be enlarged and edited without quality loss.\n"
+        },
+        {
+          "info": {
+            "name": "Design Import (beta)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/design2replay",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "With the *Design Import* tool you can instantly turn your design files (AI, SVG) into a Replay file (Picsart's proprietary project file format) that can be consumed by the [Photo and Video Editor SDK](https://docs.picsart.io/docs/photo-video-editor-overview).\n  \nUse this to import your existing designs and make them resuable in Picsart.\n\n**Suported Formats:** Examples of where the vectorizer can be used include:\n  * AI (Adobe Illustrator)\n  * SVG (Scalable Vector Graphics)\n"
+        },
+        {
+          "info": {
+            "name": "Get the Design Import Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/design2replay/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "1116b57cb-1999-4bfd-8c42-c739a006a111",
+                "type": "path",
+                "description": "The ID returned from the POST method."
+              }
+            ]
+          },
+          "docs": "Get the result of the Design Import. Use the inference identifier from the POST request to fetch the latest status and result here.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

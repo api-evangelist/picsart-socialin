@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Surfacemap API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Surfacemap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Surfacemap Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/surfacemap",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "With the *surface map* tool you can \"print\" a sticker over an (target) image. Using a mask, the Surfacemap tool maps the sticker pixels using the texture and curves on the target image thus ultimately giving a live-print-preview effect.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

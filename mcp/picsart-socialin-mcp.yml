@@ -20,12 +20,10 @@ server:
   - GitHub Copilot CLI
   - OpenClaw
   - Hermes Agent
-description: >-
-  Official hosted Picsart Creative APIs Model Context Protocol (MCP) server. Lets
-  AI editors and agent runtimes call Picsart Image, Video, and GenAI tools and
-  read the docs directly. Remote Streamable HTTP endpoint (with a wss:// fallback).
-  Tools mirror the API Reference operation grouping across the Image, Video, and
-  GenAI services.
+description: Official hosted Picsart Creative APIs Model Context Protocol (MCP) server. Lets AI editors
+  and agent runtimes call Picsart Image, Video, and GenAI tools and read the docs directly. Remote Streamable
+  HTTP endpoint (with a wss:// fallback). Tools mirror the API Reference operation grouping across the
+  Image, Video, and GenAI services.
 tools:
 - name: image-remove-background
   description: Remove & change background
@@ -67,7 +65,13 @@ tools:
   description: Outpaint Image
 - name: genai-smart-background
   description: Smart Background
-note: >-
-  Tool list is a representative subset captured from the docs; the live server
-  exposes the full Image/Video/GenAI operation set (see the openapi/ specs for the
-  complete operationId list).
+note: Tool list is a representative subset captured from the docs; the live server exposes the full Image/Video/GenAI
+  operation set (see the openapi/ specs for the complete operationId list).
+deployment:
+  mode: remote
+  endpoint: https://mcp.picsart.io/v1
+  verified: probed
+  probe: live
+  tools: 96
+  checked: '2026-08-12'
+  source: catalog MCP census

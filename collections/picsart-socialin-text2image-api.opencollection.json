@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Text2Image API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text2Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Text2Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/text2image",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The *Text2Image* service helps generate an image based on the text introduced as input by the user.\nThe result images can be as big as 1024x1024 pixels.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Text2Image result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/text2image/inferences/:inference_id",
+            "params": [
+              {
+                "name": "inference_id",
+                "value": "1116b57cb-1999-4bfd-8c42-c739a006a111",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Get the generated images.\n"
+        },
+        {
+          "info": {
+            "name": "Text2Sticker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/text2sticker",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The *Text2Sticker* service helps generate a sticker based on the text introduced as input by the user.\nThe result images can be as big as 1024x1024 pixels.\n"
+        },
+        {
+          "info": {
+            "name": "Text2Sticker with Laser Engraving Effect",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/text2sticker/laserengraving",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This service generates stickers similar to the standard /text2sticker service, and in addition to that it adds a laser engraving effect.\nThe result images can be as big as 1024x1024 pixels.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Text2Sticker result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/text2sticker/inferences/:inference_id",
+            "params": [
+              {
+                "name": "inference_id",
+                "value": "1116b57cb-1999-4bfd-8c42-c739a006a111",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Get the generated stickers.\n"
+        },
+        {
+          "info": {
+            "name": "Logo Generator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/logo",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Generate logos using company info, general description. You can add additional information to guide on the details you want to get on the logo. It is also possible to provide an example logo to generate similar logos. \n"
+        },
+        {
+          "info": {
+            "name": "Get the Logo Generator result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/logo/inferences/:inference_id",
+            "params": [
+              {
+                "name": "inference_id",
+                "value": "1116b57cb-1999-4bfd-8c42-c739a006a111",
+                "type": "path",
+                "description": "The inference identifier returned from the POST method [Logo Generator](https://docs.picsart.io/reference/genai-generate-logo)."
+              }
+            ]
+          },
+          "docs": "Get the results of your logo generation. Use the inference identifier from the [Logo Generator](https://docs.picsart.io/reference/genai-generate-logo).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

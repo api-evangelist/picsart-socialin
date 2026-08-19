@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Metadata API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Video Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Analysis the Video and provides the Metadata.\n"
+        },
+        {
+          "info": {
+            "name": "Get Video Thumbnail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/metadata/thumbnail/extract",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extracts (reads) Video Thumbnail.\n"
+        },
+        {
+          "info": {
+            "name": "Set Video Thumbnail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/metadata/thumbnail",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update/Set the Video Thumbnail.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Video with updated Thumbnail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/metadata/thumbnail/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Use this method, along with transaction_id, to retrieve the updated video with the new thumbnail.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

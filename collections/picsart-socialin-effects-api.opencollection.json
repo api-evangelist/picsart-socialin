@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Effects API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Effects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Effect Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/effects"
+          },
+          "docs": "This service retrieves a list of supported effects.\n"
+        },
+        {
+          "info": {
+            "name": "Effects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/effects",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "With the *effects* service you can apply up to 24 different effects to an image.\n"
+        },
+        {
+          "info": {
+            "name": "Effect Previews",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/effects/previews",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *effects previews* service applies an effect to a given input image and returns a preview (i.e., thumbnail) of the effect.\n"
+        },
+        {
+          "info": {
+            "name": "Laser Engraving Effect",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/effects/laserengraving",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Apply a laser engraving effect to your stickers.\n"
+        },
+        {
+          "info": {
+            "name": "AI Effect Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/effects/ai"
+          },
+          "docs": "This service retrieves the list of supported AI effects.\n"
+        },
+        {
+          "info": {
+            "name": "AI Effects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/effects/ai",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "With the *AI Effects* service you can apply up to 40+ different AI effects to an image.\n"
+        },
+        {
+          "info": {
+            "name": "Adjust",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/adjust",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *adjust* service applies adjustments to an input image. There are 11 different adjustments in all available. The adjust service can be used with all photo types.\n"
+        },
+        {
+          "info": {
+            "name": "Selective Blur",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/selective-blur",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Use AI to define the segment that should be blurred, e.g. foreground or background, faces or car plates.\n"
+        },
+        {
+          "info": {
+            "name": "Color Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/color-transfer",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *color transfer* tool transfers the color style from a reference image to the target image.\n"
+        },
+        {
+          "info": {
+            "name": "Style Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/styletransfer",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *style transfer* tool transfers a style from a reference image to a content image. The smart algorithm blends the two images together so the output looks like the content image, but \"painted\" in the style of the reference image.\n"
+        },
+        {
+          "info": {
+            "name": "Mask Previews",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/masks/previews",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *masks previews* service applies mask effects to a given input image and returns a preview (i.e., thumbnail) of the effect.\n"
+        },
+        {
+          "info": {
+            "name": "Masks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/masks",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *masks* service applies a mask to an image.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Content Generation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content Generation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Texture Generator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/background/texture",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This service is now renamed to [Pattern Generator](https://docs.picsart.io/reference/image-generate-pattern). This name is now deprecated and we recommend moving all integratings to using the new name.\n"
+        },
+        {
+          "info": {
+            "name": "Pattern Generator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/background/pattern",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *pattern generator* tool generates a background texture pattern for the input image. You can create unlimited patterns from the same source image.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

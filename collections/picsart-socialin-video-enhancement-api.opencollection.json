@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Video enhancement API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video enhancement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Video FPS Upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/upscale/fps",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upscale your low FPS videos to 60FPS high-quality videos using Generative AI technology.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Video FPS Upscale result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/upscale/fps/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method when it's done asynchronously."
+              }
+            ]
+          },
+          "docs": "Use this method, along with transaction_id, to retrieve the upscaled video.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

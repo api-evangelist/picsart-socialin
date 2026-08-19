@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Edit API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Edit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Edit Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/edit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Comprehensive editing with one operation. Apply effect, adjust, trim, crop, resize, change codecs, compression, framerates, etc.\n"
+        },
+        {
+          "info": {
+            "name": "Trim Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/trim",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trim the input video clip: pull a specific segment or trim to your desired video clip duration.\n"
+        },
+        {
+          "info": {
+            "name": "Crop Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/crop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Crop the input video clip to the desired size.\n"
+        },
+        {
+          "info": {
+            "name": "Concatenate Videos and Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/concat",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Concatenate several videos clips and images with transitions into one timeline. Helpful when adding intro/outro- or creating slideshows.\n"
+        },
+        {
+          "info": {
+            "name": "video-concat-highlights",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/concat/highlights",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a highlights video from the original one. This picks highlight clips and concatenates them into one output video.\n"
+        },
+        {
+          "info": {
+            "name": "Fit Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/fit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fit your original video to different ratios or width and height options. Apply fit when resizing and cropping is not an option.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

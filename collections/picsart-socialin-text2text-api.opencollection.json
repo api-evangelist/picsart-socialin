@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Text2Text API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text2Text",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Text2Text Completions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/text2text/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The *Text2Text Completion* service helps generate a text based on the text introduced as input by the user. It also takes the pain out of writing to give your social, marketing, and advertising copy a premium edge.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

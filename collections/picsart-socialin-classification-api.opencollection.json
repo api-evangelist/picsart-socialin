@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Classification API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Image Segmentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/multi-matting",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Performs multi-matting segmentation on the input image, identifying and isolating specific classes like hair, clothes, or sky.\n"
+        },
+        {
+          "info": {
+            "name": "Image Tagging",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/tags",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This tagging service analyzes the image and suggests hashtags that are relevant to the content.\n"
+        },
+        {
+          "info": {
+            "name": "Describe Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/describe",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The image *Describer* service helps generate a detailed text description for the provided image (image2text).\n"
+        },
+        {
+          "info": {
+            "name": "Classify the Car Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/cars/classify",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The car image *Classifier* service categorizes all provided images. The supported categories are exterior, interior, engine, undercarriage, other.\nIt is mandatory that the provided input image is a car image. If the image is not a car image, the service will not generate an error, and the result may not be relevant.\n"
+        },
+        {
+          "info": {
+            "name": "Extract Image Colors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/extract-colors",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Extract the key colors from an image to understand its visual style and palette.\nThe service analyzes an image and returns up to five prominent colors, including dominant foreground and background tones.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Replay API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Replay",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Replay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/export/replay",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Export your Replays with async API in background to optimize for performance and improve your user experience. Now you can export Print-Ready PDF only, but later more formats will be added to the support list. Feel free to reach out to our support team if you need updates to this API.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Export Replay result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/export/replay/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID returned from the POST method."
+              }
+            ]
+          },
+          "docs": "Use this method, along with transaction_id, to retrieve the export replay's finished result (e.g. PDF).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

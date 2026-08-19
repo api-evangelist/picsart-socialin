@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Text2Audio API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text2Audio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Text2Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/text2speech",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The *Text2Speech* service helps generate an audio based on the text introduced as input by the user. The audio will speak the text provided.\n"
+        },
+        {
+          "info": {
+            "name": "Text2Sound",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/text2sound",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The *Text2Sound* service helps generate an music/sound based on the prompt introduced as input by the user.\n"
+        },
+        {
+          "info": {
+            "name": "Get the Audio Generation result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://genai-api.picsart.io/v1/audio/:inference_id",
+            "params": [
+              {
+                "name": "inference_id",
+                "value": "1116b57cb-1999-4bfd-8c42-c739a006a111",
+                "type": "path",
+                "description": "The ID returned from the POST method."
+              }
+            ]
+          },
+          "docs": "Use this method, along with inference id, to retrieve the generated speech or sound/music.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

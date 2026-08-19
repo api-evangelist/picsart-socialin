@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picsart GenAI Ads Editing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Picsart-API-Key",
+      "value": "{{X-Picsart-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Editing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Basic Editing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/edit",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "The *Edit* service applies basic image editing to an input image. The basic editing operations are resize, crop, flip, rotate and perspective manipulation.\n"
+        },
+        {
+          "info": {
+            "name": "Smart Crop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/smart-crop",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Use AI to define the segment that should be cropped, e.g. foreground or product name (e.g. hat, gloves, boots, etc).\n"
+        },
+        {
+          "info": {
+            "name": "Blending",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/blend",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Whether you're adding a custom watermark, layering in a texture,  or composing multi-image layouts for eCommerce or social media,  Blend service turns simple images into sophisticated visuals with just one call.\nThis endpoint lets you seamlessly combine a base image with another visual layer -  like an overlay, mask, or logo - while giving you full control over how the two interact.  Think of it as your virtual creative layer engine: the same power you'd expect from a professional design tool,  "
+        },
+        {
+          "info": {
+            "name": "Zoom",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://genai-api.picsart.io/v1/zoom",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Zoom your images with 1-75 scale factors.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
