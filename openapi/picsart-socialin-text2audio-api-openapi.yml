@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: '1.0'
-  title: Picsart GenAI Ads Text2Audio API
+  title: Picsart GenAI Text2 Audio API
   description: '[Official technical documentation portal](https://docs.picsart.io/)
 
     [Developer Guidelines](https://picsart.io/terms)
@@ -148,102 +148,73 @@ paths:
         '503':
           $ref: '#/components/responses/503'
 components:
-  schemas:
-    Text2SoundParameters:
-      required:
-      - prompt
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt for the music/sound generation.
-          nullable: false
-        duration:
-          type: number
-          description: 'The duration for the generated audio in seconds
-
-            Note these ranges from vendors: ElevenLabs: 0.5-22. Kling: 3-10. Auto if omitted.
-
-            '
-          example: 3
-          nullable: true
-          maximum: 22
-          minimum: 0.5
-        loop:
-          type: boolean
-          default: false
-          description: 'Create looping audio. The usage of this param is not guarantteed as limited number of models do support this. (For example: Supported by ElevenLabs only.)
-
-            '
-    Text2SpeechParameters:
-      required:
-      - text
-      type: object
-      properties:
-        text:
-          type: string
-          description: The text to speak. Up to 5000 characters.
-          nullable: false
-        language:
-          type: string
-          description: 'The language to speak.
-
-            '
-          enum:
-          - en
-          - fr
-          default: en
-    Text2SoundModels:
-      type: object
-      properties:
-        model:
-          type: string
-          enum:
-          - urn:air:elevenlabs:model:elevenlabs:elevenlabs-sound-effects-v2@1
-          - urn:air:kling:model:kling:kling-text-to-audio@1
-          nullable: true
-          default: urn:air:elevenlabs:model:elevenlabs:elevenlabs-sound-effects-v2@1
-          description: 'Optionally choose a specific AI model to use for this audio generation.
-
-            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
-
-            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
-
-            '
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-    Text2SpeechModels:
-      type: object
-      properties:
-        model:
-          type: string
-          enum:
-          - urn:air:openai:model:openai:tts-1@1
-          - urn:air:elevenlabs:model:elevenlabs:eleven-v3@1
-          - urn:air:async:model:async:async-flash-v1.0@1
-          nullable: true
-          default: urn:air:openai:model:openai:tts-1@1
-          description: 'Optionally choose a specific AI model to use for this audio generation.
-
-            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
-
-            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
-
-            '
-        voice:
-          type: string
-          nullable: true
-          description: "Voice for speech synthesis.\nConsidering different models have different voices and that list changes over time, the list of supported voices is not provided here. Please go ahead to check for available voices on each provider's website.\nWhen not provided, the following default voices will be applied:\n  * OpenAI > alloy\n  * Eevenlabs > Rachel\n  * Async > nyomi\n"
   responses:
+    Text2ImageResponse:
+      description: Accepted.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: processing
+                enum:
+                - success
+                - error
+                - processing
+              inference_id:
+                type:
+                - string
+                - 'null'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
     '402':
       description: Payment Required
       content:
@@ -271,101 +242,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    Text2ImageResponse:
-      description: Accepted.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                default: processing
-                enum:
-                - success
-                - error
-                - processing
-                nullable: false
-              inference_id:
-                type: string
-                nullable: true
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
     '401':
       description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '431':
-      description: Request Header Fields Too Large
       content:
         application/json:
           schema:
@@ -418,25 +296,66 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    Text2VideoStatusResponse:
-      description: Success.
+    '503':
+      description: Service Unavailable
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              status:
-                type: string
-                nullable: false
-              data:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    nullable: true
-                  url:
-                    type: string
-                    nullable: false
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -512,87 +431,6 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '429':
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '503':
-      description: Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
     '400':
       description: Bad Request
       content:
@@ -620,8 +458,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
+    '431':
+      description: Request Header Fields Too Large
       content:
         application/json:
           schema:
@@ -647,6 +485,169 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    Text2VideoStatusResponse:
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: object
+                properties:
+                  id:
+                    type:
+                    - string
+                    - 'null'
+                  url:
+                    type: string
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+  schemas:
+    Text2SoundModels:
+      type: object
+      properties:
+        model:
+          type:
+          - string
+          - 'null'
+          enum:
+          - urn:air:elevenlabs:model:elevenlabs:elevenlabs-sound-effects-v2@1
+          - urn:air:kling:model:kling:kling-text-to-audio@1
+          default: urn:air:elevenlabs:model:elevenlabs:elevenlabs-sound-effects-v2@1
+          description: 'Optionally choose a specific AI model to use for this audio generation.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    Text2SpeechModels:
+      type: object
+      properties:
+        model:
+          type:
+          - string
+          - 'null'
+          enum:
+          - urn:air:openai:model:openai:tts-1@1
+          - urn:air:elevenlabs:model:elevenlabs:eleven-v3@1
+          - urn:air:async:model:async:async-flash-v1.0@1
+          default: urn:air:openai:model:openai:tts-1@1
+          description: 'Optionally choose a specific AI model to use for this audio generation.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+        voice:
+          type:
+          - string
+          - 'null'
+          description: "Voice for speech synthesis.\nConsidering different models have different voices and that list changes over time, the list of supported voices is not provided here. Please go ahead to check for available voices on each provider's website.\nWhen not provided, the following default voices will be applied:\n  * OpenAI > alloy\n  * Eevenlabs > Rachel\n  * Async > nyomi\n"
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+    Text2SpeechParameters:
+      required:
+      - text
+      type: object
+      properties:
+        text:
+          type: string
+          description: The text to speak. Up to 5000 characters.
+        language:
+          type: string
+          description: 'The language to speak.
+
+            '
+          enum:
+          - en
+          - fr
+          default: en
+    Text2SoundParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt for the music/sound generation.
+        duration:
+          type:
+          - number
+          - 'null'
+          description: 'The duration for the generated audio in seconds
+
+            Note these ranges from vendors: ElevenLabs: 0.5-22. Kling: 3-10. Auto if omitted.
+
+            '
+          example: 3
+          maximum: 22
+          minimum: 0.5
+        loop:
+          type: boolean
+          default: false
+          description: 'Create looping audio. The usage of this param is not guarantteed as limited number of models do support this. (For example: Supported by ElevenLabs only.)
+
+            '
   securitySchemes:
     apiKey:
       type: apiKey

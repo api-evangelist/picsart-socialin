@@ -1,14 +1,12 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
+  title: Picsart Socialin Effects API
   version: '1.0'
-  title: Picsart GenAI Ads Effects API
-  description: '[Official technical documentation portal](https://docs.picsart.io/)
-
-    [Developer Guidelines](https://picsart.io/terms)
-
-    '
+  description: 'Operations tagged Effects across 2 of this provider''s published API definitions: picsart-socialin-image-tools.yaml, picsart-socialin-video-tools.yaml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://genai-api.picsart.io/v1
+- url: https://api.picsart.io/tools/1.0
+  description: Production
+- url: https://video-api.picsart.io/v1
   description: Production
 security:
 - apiKey: []
@@ -97,6 +95,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /effects/previews:
     post:
       summary: Effect Previews
@@ -142,6 +143,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /effects/laserengraving:
     post:
       summary: Laser Engraving Effect
@@ -187,6 +191,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /effects/ai:
     get:
       summary: AI Effect Names
@@ -269,6 +276,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /adjust:
     post:
       summary: Adjust
@@ -314,6 +324,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /selective-blur:
     post:
       summary: Selective Blur
@@ -359,6 +372,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /color-transfer:
     post:
       summary: Color Transfer
@@ -404,6 +420,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /styletransfer:
     post:
       summary: Style Transfer
@@ -449,6 +468,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /masks/previews:
     post:
       summary: Mask Previews
@@ -494,6 +516,9 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
   /masks:
     post:
       summary: Masks
@@ -539,8 +564,38 @@ paths:
           $ref: '#/components/responses/500'
         '503':
           $ref: '#/components/responses/503'
+    servers:
+    - url: https://api.picsart.io/tools/1.0
+      description: Production
 components:
   responses:
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
     '422':
       description: Unprocessable Entity
       content:
@@ -595,72 +650,6 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    effectRetrievalSuccess:
-      description: Successful retrieval of all effects.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      nullable: false
-              status:
-                type: string
-                nullable: false
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
     200MasksPreviews:
       description: Success.
       content:
@@ -674,18 +663,16 @@ components:
                   type: object
                   properties:
                     id:
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                     url:
                       type: string
                       format: uri
-                      nullable: false
                     mask_name:
                       type: string
-                      nullable: false
               status:
                 type: string
-                nullable: false
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -734,54 +721,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    200EffectsPreviews:
-      description: Success.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      nullable: true
-                    url:
-                      type: string
-                      format: uri
-                      nullable: false
-                    effect_name:
-                      type: string
-                      nullable: false
-              status:
-                type: string
-                nullable: false
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '431':
-      description: Request Header Fields Too Large
+    '405':
+      description: Method Not Allowed
       content:
         application/json:
           schema:
@@ -807,8 +748,106 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '405':
-      description: Method Not Allowed
+    200EffectsPreviews:
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type:
+                      - string
+                      - 'null'
+                    url:
+                      type: string
+                      format: uri
+                    effect_name:
+                      type: string
+              status:
+                type: string
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '503':
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
       content:
         application/json:
           schema:
@@ -888,89 +927,62 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '429':
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '503':
-      description: Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
     '400':
       description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
       content:
         application/json:
           schema:
@@ -1007,15 +1019,14 @@ components:
                 type: object
                 properties:
                   id:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                   url:
                     type: string
                     format: uri
-                    nullable: false
               status:
                 type: string
-                nullable: false
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -1037,12 +1048,65 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
+    effectRetrievalSuccess:
+      description: Successful retrieval of all effects.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+              status:
+                type: string
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '202':
+      description: Request successfully accepted for an asynchronous transformation.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              transaction_id:
+                type:
+                - string
+                - 'null'
+              status:
+                type: string
+                enum:
+                - success
+                - error
+                - processing
+                - queued
+          example:
+            value:
+              transaction_id: 931aed0a-5efd-4b62-9712-069b7147eec5
+              status: processing
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -1065,6 +1129,120 @@ components:
             type: integer
           description: The remaining number of the credits on the balance.
   schemas:
+    AIEffectsParameters:
+      type: object
+      required:
+      - effect_name
+      properties:
+        effect_name:
+          type: string
+          enum:
+          - winterblues
+          - wispy
+          - geode
+          - '744'
+          - sketchy
+          - dystopia
+          - libtest2
+          - pastel
+          - moonlight
+          - rainbow
+          - money
+          - popsketch
+          - hintofyellow
+          - badlands
+          - letitsnow
+          - flora
+          - staygold
+          - holidayparty
+          - galaxy
+          - crushedmarble
+          - pow
+          - shades_of_gray
+          - haze
+          - shamrock
+          - '815'
+          - flare
+          - prettyinpink
+          - rosegold
+          - wonderland
+          - whiteice
+          - nightcore
+          - pleinair34_120
+          - soul
+          - rosequartz
+          - animation
+          - feast
+          - undead
+          - highlight
+          - neopop
+          - midnight
+          - colorbright
+          - cartoon1
+          - cartoon2
+          description: "Choose an effect from the dropdown menu. The list of effects are as follows\n  * winterblues\n  * wispy\n  * geode\n  * 744\n  * sketchy\n  * dystopia\n  * libtest2\n  * pastel\n  * moonlight\n  * rainbow\n  * money\n  * popsketch\n  * hintofyellow\n  * badlands\n  * letitsnow\n  * flora\n  * staygold\n  * holidayparty\n  * galaxy\n  * crushedmarble\n  * pow\n  * shades_of_gray\n  * haze\n  * shamrock\n  * 815\n  * flare\n  * prettyinpink\n  * rosegold\n  * wonderland\n  * whiteice\n  * nightcore\n  * pleinair34_120\n  * soul\n  * rosequartz\n  * animation\n  * feast\n  * undead\n  * highlight\n  * neopop\n  * midnight\n  * colorbright\n  * cartoon1\n  * cartoon2\n"
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+    LaserEngravingEffectParameters:
+      type: object
+      properties:
+        engrave_color:
+          type: string
+          description: 'Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
+
+            '
+          default: black
+        background_color:
+          type: string
+          description: 'Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
+
+            '
+          default: white
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          - SVG
+          description: "Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n  * SVG\n"
+    SelectiveBlurParameters:
+      required:
+      - segment
+      type: object
+      properties:
+        segment:
+          type: string
+          maxLength: 90
+          minLength: 1
+          description: 'The segment to add the blur effect to.
+
+            Use either ''foreground'', or ''background'', or define the name of the segments such as ''faces'' or ''car plates''.
+
+            Recommendation: use short and clear names of the segment (e.g. object or area). We don''t recommend using long prompts.
+
+            '
+        blur:
+          type: integer
+          minimum: 1
+          maximum: 100
+          description: The blur amount to add.
+          default: 50
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
     MasksParameters:
       type: object
       required:
@@ -1126,6 +1304,53 @@ components:
           - mirror vertical
           - turnaround
           description: "Choose a mask flip option. The choices are as follows.\n  * left\n  * right\n  * mirror horizontal\n  * mirror vertical\n  * turnaround\n"
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+    401_Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: Unauthorized
+        detail:
+          type: string
+      required:
+      - detail
+    ColorTransferParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        reference_image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        reference_image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Enter the Picsart image ID if you previously uploaded the image.
+        reference_image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
     EffectsPreviewsParameters:
       type: object
       required:
@@ -1231,96 +1456,6 @@ components:
           - PNG
           - WEBP
           description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-    AIEffectsParameters:
-      type: object
-      required:
-      - effect_name
-      properties:
-        effect_name:
-          type: string
-          enum:
-          - winterblues
-          - wispy
-          - geode
-          - '744'
-          - sketchy
-          - dystopia
-          - libtest2
-          - pastel
-          - moonlight
-          - rainbow
-          - money
-          - popsketch
-          - hintofyellow
-          - badlands
-          - letitsnow
-          - flora
-          - staygold
-          - holidayparty
-          - galaxy
-          - crushedmarble
-          - pow
-          - shades_of_gray
-          - haze
-          - shamrock
-          - '815'
-          - flare
-          - prettyinpink
-          - rosegold
-          - wonderland
-          - whiteice
-          - nightcore
-          - pleinair34_120
-          - soul
-          - rosequartz
-          - animation
-          - feast
-          - undead
-          - highlight
-          - neopop
-          - midnight
-          - colorbright
-          - cartoon1
-          - cartoon2
-          description: "Choose an effect from the dropdown menu. The list of effects are as follows\n  * winterblues\n  * wispy\n  * geode\n  * 744\n  * sketchy\n  * dystopia\n  * libtest2\n  * pastel\n  * moonlight\n  * rainbow\n  * money\n  * popsketch\n  * hintofyellow\n  * badlands\n  * letitsnow\n  * flora\n  * staygold\n  * holidayparty\n  * galaxy\n  * crushedmarble\n  * pow\n  * shades_of_gray\n  * haze\n  * shamrock\n  * 815\n  * flare\n  * prettyinpink\n  * rosegold\n  * wonderland\n  * whiteice\n  * nightcore\n  * pleinair34_120\n  * soul\n  * rosequartz\n  * animation\n  * feast\n  * undead\n  * highlight\n  * neopop\n  * midnight\n  * colorbright\n  * cartoon1\n  * cartoon2\n"
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-    SelectiveBlurParameters:
-      required:
-      - segment
-      type: object
-      properties:
-        segment:
-          type: string
-          maxLength: 90
-          minLength: 1
-          description: 'The segment to add the blur effect to.
-
-            Use either ''foreground'', or ''background'', or define the name of the segments such as ''faces'' or ''car plates''.
-
-            Recommendation: use short and clear names of the segment (e.g. object or area). We don''t recommend using long prompts.
-
-            '
-        blur:
-          type: integer
-          minimum: 1
-          maximum: 100
-          description: The blur amount to add.
-          default: 50
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
     EffectsParameters:
       type: object
       required:
@@ -1416,31 +1551,23 @@ components:
           - PNG
           - WEBP
           description: "Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-    ColorTransferParameters:
+    ImageParameters:
       type: object
       properties:
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        reference_image:
+        image:
           description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
           type: string
           format: binary
-        reference_image_id:
-          type: string
-          deprecated: true
-          description: Deprecated. Enter the Picsart image ID if you previously uploaded the image.
-        reference_image_url:
+        image_url:
           type: string
           description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
           maxLength: 2083
           minLength: 1
           format: uri
+        image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
     StyleTransferParameters:
       type: object
       properties:
@@ -1476,137 +1603,6 @@ components:
           maxLength: 2083
           minLength: 1
           format: uri
-    401_Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 401
-        message:
-          type: string
-          example: Unauthorized
-        detail:
-          type: string
-      required:
-      - detail
-    ImageParameters:
-      type: object
-      properties:
-        image:
-          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
-          type: string
-          format: binary
-        image_url:
-          type: string
-          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        image_id:
-          type: string
-          deprecated: true
-          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-    MasksPreviewParameters:
-      type: object
-      required:
-      - mask
-      properties:
-        format:
-          type: string
-          default: PNG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        blend:
-          type: string
-          enum:
-          - normal
-          - screen
-          - overlay
-          - multiply
-          - darken
-          - lighten
-          - add
-          default: screen
-          description: "Select one of the appearance types from the list (it will be _screen_ if left blank). The options are as follows.\n  * normal\n  * screen\n  * overlay\n  * multiply\n  * darken\n  * lighten\n  * add\n"
-        mask:
-          type: array
-          items:
-            type: string
-            enum:
-            - lace1
-            - lace2
-            - lace3
-            - lace4
-            - shdw2
-            - shdw17
-            - rpl3
-            - rpl5
-            - prsm3
-            - prsm9
-            - prsm10
-          minItems: 1
-          description: "Select up to 10 mask types from the list. The options are as follows\n  * lace1\n  * lace2\n  * lace3\n  * lace4\n  * shdw2\n  * shdw17\n  * rpl3\n  * rpl5\n  * prsm3\n  * prsm9\n  * prsm10\n"
-        opacity:
-          type: integer
-          minimum: 0
-          maximum: 100
-          default: 100
-          description: Enter an integer value from 0 to +100. The larger the number, the greater the opacity.
-        hue:
-          type: integer
-          minimum: -180
-          maximum: 180
-          default: 0
-          description: Enter an integer value from -180 to +180.
-        mask_flip:
-          type: string
-          enum:
-          - left
-          - right
-          - mirror horizontal
-          - mirror vertical
-          - turnaround
-          description: "Choose a mask flip option. The choices are as follows.\n  * left\n  * right\n  * mirror horizontal\n  * mirror vertical\n  * turnaround\n"
-        preview_size:
-          type: integer
-          default: 120
-          description: Enter the max size for the width or height of the preview image. The max value is 240px. If left blank it's 120px.
-    LaserEngravingEffectParameters:
-      type: object
-      properties:
-        engrave_color:
-          type: string
-          description: 'Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
-
-            '
-          default: black
-        background_color:
-          type: string
-          description: 'Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87).
-
-            '
-          default: white
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          - SVG
-          description: "Optionally select one of the output image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n  * SVG\n"
     AdjustParameters:
       type: object
       properties:
@@ -1684,8 +1680,258 @@ components:
           - PNG
           - WEBP
           description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+    MasksPreviewParameters:
+      type: object
+      required:
+      - mask
+      properties:
+        format:
+          type: string
+          default: PNG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        blend:
+          type: string
+          enum:
+          - normal
+          - screen
+          - overlay
+          - multiply
+          - darken
+          - lighten
+          - add
+          default: screen
+          description: "Select one of the appearance types from the list (it will be _screen_ if left blank). The options are as follows.\n  * normal\n  * screen\n  * overlay\n  * multiply\n  * darken\n  * lighten\n  * add\n"
+        mask:
+          type: array
+          items:
+            type: string
+            enum:
+            - lace1
+            - lace2
+            - lace3
+            - lace4
+            - shdw2
+            - shdw17
+            - rpl3
+            - rpl5
+            - prsm3
+            - prsm9
+            - prsm10
+          minItems: 1
+          description: "Select up to 10 mask types from the list. The options are as follows\n  * lace1\n  * lace2\n  * lace3\n  * lace4\n  * shdw2\n  * shdw17\n  * rpl3\n  * rpl5\n  * prsm3\n  * prsm9\n  * prsm10\n"
+        opacity:
+          type: integer
+          minimum: 0
+          maximum: 100
+          default: 100
+          description: Enter an integer value from 0 to +100. The larger the number, the greater the opacity.
+        hue:
+          type: integer
+          minimum: -180
+          maximum: 180
+          default: 0
+          description: Enter an integer value from -180 to +180.
+        mask_flip:
+          type: string
+          enum:
+          - left
+          - right
+          - mirror horizontal
+          - mirror vertical
+          - turnaround
+          description: "Choose a mask flip option. The choices are as follows.\n  * left\n  * right\n  * mirror horizontal\n  * mirror vertical\n  * turnaround\n"
+        preview_size:
+          type: integer
+          default: 120
+          description: Enter the max size for the width or height of the preview image. The max value is 240px. If left blank it's 120px.
+    ExportParameters:
+      type: object
+      properties:
+        export:
+          type: object
+          properties:
+            format:
+              type: string
+              default: MP4
+              enum:
+              - MOV
+              - MP4
+              - WEBM
+              - GIF
+              description: "Optionally select one of the output video formats (MP4 is chosen if left blank). Container options are as follows\n  * MOV\n  * MP4\n  * WEBM\n  * GIF\n"
+            frame_rate:
+              type: integer
+              default: 30
+              minimum: 1
+              maximum: 60
+              description: The output video frame rate.
+            bitrate:
+              type: integer
+              minimum: 1
+              maximum: 10000
+              description: The output video bitrate in kb/s. Leave empty to set automatically and optimize accordingly.
+          default:
+            format: MP4
+            frame_rate: 30
+    VideoParameters:
+      type: object
+      properties:
+        video_url:
+          type: string
+          description: Source video URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    EffectsParameters_2:
+      type: object
+      properties:
+        effect_name:
+          type: string
+          enum:
+          - apr1
+          - apr2
+          - apr3
+          - brnz1
+          - brnz2
+          - brnz3
+          - brnz4
+          - cyber1
+          - cyber2
+          - cyber3
+          - icy1
+          - icy2
+          - icy3
+          - icy4
+          - mnch1
+          - mnch2
+          - mnch3
+          - noise
+          - ntrl1
+          - ntrl2
+          - ntrl3
+          - pixelize
+          - saturation
+          - sft1
+          - sft2
+          - sft3
+          - sft4
+          - tl1
+          - tl2
+          - sharpen
+          - vignette
+          - Focal Zoom
+          - Lens Blur
+          - Motion Blur
+          - Radial Blur
+          - Smart Blur
+          - Blur
+          - Black And White
+          - stenciler1
+          - stenciler3
+          - stenciler4
+          - stenciler6
+          - stenciler7
+          - DTN1
+          - DTN2
+          - DTN3
+          - DTN4
+          - DTN5
+          description: "Choose an effect from the dropdown menu. The list of effects are as follows\n  * apr1\n  * apr2\n  * apr3\n  * brnz1\n  * brnz2\n  * brnz3\n  * brnz4\n  * cyber1\n  * cyber2\n  * cyber3\n  * icy1\n  * icy2\n  * icy3\n  * icy4\n  * mnch1\n  * mnch2\n  * mnch3\n  * noise\n  * ntrl1\n  * ntrl2\n  * ntrl3\n  * pixelize\n  * saturation\n  * sft1\n  * sft2\n  * sft3\n  * sft4\n  * tl1\n  * tl2\n  * sharpen\n  * vignette\n  * Focal Zoom\n  * Lens Blur\n  * Motion Blur\n  * Radial Blur\n  * Smart Blur\n  * Blur\n  * Black And White\n  * stenciler1\n  * stenciler3\n  * stenciler4\n  * stenciler6\n  * stenciler7\n  * DTN1\n  * DTN2\n  * DTN3\n  * DTN4\n  * DTN5\n"
+    AdjustParameters_2:
+      type: object
+      properties:
+        audio_url:
+          type:
+          - string
+          - 'null'
+          description: The sound file url.
+        audio_volume:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The volume of the audio.
+          default: 100
+        video_volume:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: The volume of the video.
+          default: 100
+        brightness:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        contrast:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        clarity:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        saturation:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        hue:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        shadows:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        highlights:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        temperature:
+          type: integer
+          minimum: -100
+          maximum: 100
+          description: Enter an integer value from -100 to 100.
+          default: 0
+        sharpen:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to 100.
+          default: 0
+        noise:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to 100.
+          default: 0
+        vignette:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Enter an integer value from 0 to 100.
+          default: 0
   securitySchemes:
     apiKey:
       type: apiKey
       in: header
       name: X-Picsart-API-Key
+x-refined-from:
+- picsart-socialin-image-tools.yaml
+- picsart-socialin-video-tools.yaml

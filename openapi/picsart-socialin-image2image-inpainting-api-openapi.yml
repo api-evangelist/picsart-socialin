@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: '1.0'
-  title: Picsart GenAI Ads Image2Image / Inpainting API
+  title: Picsart GenAI Image2Image / Inpainting API
   description: '[Official technical documentation portal](https://docs.picsart.io/)
 
     [Developer Guidelines](https://picsart.io/terms)
@@ -381,378 +381,9 @@ paths:
         '503':
           $ref: '#/components/responses/503'
 components:
-  schemas:
-    InpaintingParameters:
-      required:
-      - prompt
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt.
-        negative_prompt:
-          type: string
-          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
-          deprecated: true
-        count:
-          type: integer
-          description: The number of images to generate.
-          example: 2
-          minimum: 1
-          maximum: 10
-          default: 2
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        mode:
-          type: string
-          deprecated: true
-          default: sync
-          enum:
-          - sync
-          - async
-          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
-    MaskParameters:
-      type: object
-      properties:
-        mask_image:
-          description: Source mask file (binary). (If this parameter is present, the other mask source parameters must be empty.)
-          type: string
-          format: binary
-        mask_image_url:
-          type: string
-          description: Source mask URL. (If this parameter is present, the other mask source parameters must be empty.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        mask_image_id:
-          type: string
-          deprecated: true
-          description: Deprecated. Source mask ID of an mask previously uploaded to Picsart or result mask ID from a different API. (If this parameter is present, the other mask source parameters must be empty.)
-    EditWithPromptParameters:
-      required:
-      - prompt
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt.
-        count:
-          type: integer
-          description: The number of images to generate.
-          example: 2
-          minimum: 1
-          maximum: 10
-          default: 2
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        mode:
-          type: string
-          deprecated: true
-          default: sync
-          enum:
-          - sync
-          - async
-          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
-    ExpandParameters:
-      required:
-      - prompt
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt.
-        negative_prompt:
-          type: string
-          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
-          deprecated: true
-        width:
-          type: integer
-          description: Specify the width of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
-          default: 1024
-          maximum: 8000
-        height:
-          type: integer
-          description: Specify the width of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
-          default: 1024
-          maximum: 8000
-        direction:
-          type: string
-          default: center
-          enum:
-          - center
-          - top-left
-          - top-right
-          - bottom-left
-          - bottom-right
-          description: "Use this parameter to define in which direction the source image should be expanded. Available values are:\n  * center: Add pixels and expand the image from all sides. The original image will remain in the center.\n  * top-left: Add pixels and expand to the top-left. The original image will remain the bottom-right corner.\n  * top-right: Add pixels and expand to the top-right. The original image will remain the bottom-left corner.\n  * bottom-left: Add pixels and expand to the bottom-left. The original image will remain the top-right corner.\n  * bottom-right:Add pixels and expand to the bottom-right. The original image will remain the top-left corner.\n"
-        count:
-          type: integer
-          description: The number of images to generate.
-          example: 2
-          minimum: 1
-          maximum: 2
-          default: 2
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        mode:
-          type: string
-          deprecated: true
-          default: sync
-          enum:
-          - sync
-          - async
-          - auto
-          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
-    BleedParameters:
-      required:
-      - bleed_size
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt. Only apply if you are confident the provided prompt is going to generate good results. Otherwise leave empty as the default prompt is already optimized for bleed generation.
-        negative_prompt:
-          type: string
-          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
-          deprecated: true
-        bleed_size:
-          type: integer
-          description: 'Specify the bleed of the output image in pixels.
-
-            When specifying the value, take into account the DPI of the image. For example, for 300DPI and the 0.125inches bleed, the value should be 300*0.125=37/38.
-
-            '
-          default: 5
-          minimum: 1
-          maximum: 75
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-    RemoveObjectParameters:
-      type: object
-      properties:
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        mode:
-          type: string
-          deprecated: true
-          default: sync
-          enum:
-          - sync
-          - async
-          - auto
-          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
-    WatermarkParameters:
-      type: object
-      properties:
-        watermark_enabled:
-          type: boolean
-          default: false
-          nullable: true
-          description: 'Enables the watermark. This is primarily used to show that the image is AI-generated, but this can be used for other use cases as well.
-
-            When enabled, the default watermark will be added. When customization is needed, follow other "watermark**" parameters.
-
-            For more advanced watermarking, you can also check out the [Add Watermark](https://docs.picsart.io/reference/image-add-watermark) service.
-
-            '
-        watermark_url:
-          type: string
-          description: URL of the watermark image. If omitted or empty and watermark_enabled is true, a default watermark is applied.
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          nullable: true
-        watermark_anchor_point:
-          type: string
-          default: left-bottom
-          enum:
-          - left-top
-          - left-middle
-          - left-bottom
-          - center-top
-          - center-middle
-          - center-bottom
-          - right-top
-          - right-middle
-          - right-bottom
-          - pattern
-        watermark_width:
-          type: integer
-          minimum: 1
-          nullable: true
-          description: Width of watermark.
-        watermark_height:
-          type: integer
-          minimum: 1
-          nullable: true
-          description: Height of watermark.
-        watermark_opacity:
-          type: integer
-          nullable: true
-          default: 50
-          minimum: 0
-          maximum: 100
-          description: 'Define the opacity of the watermark. Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.
-
-            '
-        watermark_angle:
-          type: integer
-          minimum: 0
-          maximum: 360
-          nullable: true
-          description: 'Define the angle of the watermark. Takes values from 0 to 360. Default 45 for pattern case, otherwise 0.
-
-            '
-        watermark_padding_x:
-          type: integer
-          minimum: 0
-          default: 0
-          nullable: true
-          description: 'Define the horizontal padding of the watermark.
-
-            '
-        watermark_padding_y:
-          type: integer
-          minimum: 0
-          default: 0
-          nullable: true
-          description: 'Define the vertical padding of the watermark.
-
-            '
-    Image2ImageModels:
-      type: object
-      properties:
-        model:
-          type: string
-          enum:
-          - urn:air:sdxl:model:fluxai:flux_kontext_max-image-to-image@1
-          - urn:air:sdxl:model:fluxai:flux_kontext_pro-image-to-image@1
-          - urn:air:fluxai:model:fluxai:flux-2-flex-image-to-image@1
-          - urn:air:fluxai:model:fluxai:flux-2-pro-image-to-image@1
-          - urn:air:fluxai:model:fluxai:flux-2-max-image-to-image@1
-          - urn:air:seedream:model:seedream:seedream-4.0-image-to-image@1
-          - urn:air:seedream:model:seedream:seedream-4.5-image-to-image@1
-          - urn:air:seedream:model:seedream:seedream-5.0-lite-image-to-image@1
-          - urn:air:google:model:google:gemini-2.5-flash-image-image-to-image@1
-          - urn:air:google:model:google:gemini-3-pro-image-preview-image-to-image@1
-          - urn:air:google:model:google:gemini-3.1-flash-image-preview-image-to-image@1
-          - urn:air:google:model:google:gemini-3.1-pro-preview-image-to-image@1
-          - urn:air:openai:model:openai:gpt-image-1-image-to-image@1
-          - urn:air:reve:model:reve:reve-edit-image-to-image@1
-          - urn:air:runway:model:runway:gen4-image-ref-image-to-image@1
-          - urn:air:qwen:model:qwen:qwen-image-image-to-image@1
-          - urn:air:qwen:model:qwen:qwen-image-edit-plus-image-to-image@1
-          - urn:air:xai:model:xai:grok-imagine-image-edit-image-to-image@1
-          nullable: true
-          default: urn:air:sdxl:model:fluxai:flux_kontext_max-image-to-image@1
-          description: 'Optionally choose a specific AI model to use for this request.
-
-            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
-
-            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
-
-            '
-    ImageParameters:
-      type: object
-      properties:
-        image:
-          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
-          type: string
-          format: binary
-        image_url:
-          type: string
-          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        image_id:
-          type: string
-          deprecated: true
-          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
   responses:
-    ImageResponse:
-      description: Success.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    nullable: true
-                  url:
-                    type: string
-                    nullable: false
-              status:
-                type: string
-                nullable: false
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '402':
-      description: Payment Required
+    '500':
+      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -778,8 +409,49 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
+    InpaintingResultResponse:
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type:
+                      - string
+                      - 'null'
+                    url:
+                      type: string
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '402':
+      description: Payment Required
       content:
         application/json:
           schema:
@@ -832,184 +504,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '431':
-      description: Request Header Fields Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
     '405':
       description: Method Not Allowed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '404':
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '415':
-      description: Unsupported Media Type
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    InpaintingResultResponse:
-      description: Success.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      nullable: true
-                    url:
-                      type: string
-                      nullable: false
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '429':
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '403':
-      description: Forbidden
       content:
         application/json:
           schema:
@@ -1071,10 +567,157 @@ components:
             properties:
               status:
                 type: string
-                nullable: false
               inference_id:
+                type:
+                - string
+                - 'null'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    ImageResponse:
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type:
+                    - string
+                    - 'null'
+                  url:
+                    type: string
+              status:
                 type: string
-                nullable: true
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '415':
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -1123,8 +766,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
+    '431':
+      description: Request Header Fields Too Large
       content:
         application/json:
           schema:
@@ -1150,6 +793,371 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+  schemas:
+    EditWithPromptParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt.
+        count:
+          type: integer
+          description: The number of images to generate.
+          example: 2
+          minimum: 1
+          maximum: 10
+          default: 2
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        mode:
+          type: string
+          deprecated: true
+          default: sync
+          enum:
+          - sync
+          - async
+          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
+    BleedParameters:
+      required:
+      - bleed_size
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt. Only apply if you are confident the provided prompt is going to generate good results. Otherwise leave empty as the default prompt is already optimized for bleed generation.
+        negative_prompt:
+          type: string
+          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
+          deprecated: true
+        bleed_size:
+          type: integer
+          description: 'Specify the bleed of the output image in pixels.
+
+            When specifying the value, take into account the DPI of the image. For example, for 300DPI and the 0.125inches bleed, the value should be 300*0.125=37/38.
+
+            '
+          default: 5
+          minimum: 1
+          maximum: 75
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+    MaskParameters:
+      type: object
+      properties:
+        mask_image:
+          description: Source mask file (binary). (If this parameter is present, the other mask source parameters must be empty.)
+          type: string
+          format: binary
+        mask_image_url:
+          type: string
+          description: Source mask URL. (If this parameter is present, the other mask source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        mask_image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source mask ID of an mask previously uploaded to Picsart or result mask ID from a different API. (If this parameter is present, the other mask source parameters must be empty.)
+    Image2ImageModels:
+      type: object
+      properties:
+        model:
+          type:
+          - string
+          - 'null'
+          enum:
+          - urn:air:sdxl:model:fluxai:flux_kontext_max-image-to-image@1
+          - urn:air:sdxl:model:fluxai:flux_kontext_pro-image-to-image@1
+          - urn:air:fluxai:model:fluxai:flux-2-flex-image-to-image@1
+          - urn:air:fluxai:model:fluxai:flux-2-pro-image-to-image@1
+          - urn:air:fluxai:model:fluxai:flux-2-max-image-to-image@1
+          - urn:air:seedream:model:seedream:seedream-4.0-image-to-image@1
+          - urn:air:seedream:model:seedream:seedream-4.5-image-to-image@1
+          - urn:air:seedream:model:seedream:seedream-5.0-lite-image-to-image@1
+          - urn:air:google:model:google:gemini-2.5-flash-image-image-to-image@1
+          - urn:air:google:model:google:gemini-3-pro-image-preview-image-to-image@1
+          - urn:air:google:model:google:gemini-3.1-flash-image-preview-image-to-image@1
+          - urn:air:google:model:google:gemini-3.1-pro-preview-image-to-image@1
+          - urn:air:openai:model:openai:gpt-image-1-image-to-image@1
+          - urn:air:reve:model:reve:reve-edit-image-to-image@1
+          - urn:air:runway:model:runway:gen4-image-ref-image-to-image@1
+          - urn:air:qwen:model:qwen:qwen-image-image-to-image@1
+          - urn:air:qwen:model:qwen:qwen-image-edit-plus-image-to-image@1
+          - urn:air:xai:model:xai:grok-imagine-image-edit-image-to-image@1
+          default: urn:air:sdxl:model:fluxai:flux_kontext_max-image-to-image@1
+          description: 'Optionally choose a specific AI model to use for this request.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    WatermarkParameters:
+      type: object
+      properties:
+        watermark_enabled:
+          type:
+          - boolean
+          - 'null'
+          default: false
+          description: 'Enables the watermark. This is primarily used to show that the image is AI-generated, but this can be used for other use cases as well.
+
+            When enabled, the default watermark will be added. When customization is needed, follow other "watermark**" parameters.
+
+            For more advanced watermarking, you can also check out the [Add Watermark](https://docs.picsart.io/reference/image-add-watermark) service.
+
+            '
+        watermark_url:
+          type:
+          - string
+          - 'null'
+          description: URL of the watermark image. If omitted or empty and watermark_enabled is true, a default watermark is applied.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        watermark_anchor_point:
+          type: string
+          default: left-bottom
+          enum:
+          - left-top
+          - left-middle
+          - left-bottom
+          - center-top
+          - center-middle
+          - center-bottom
+          - right-top
+          - right-middle
+          - right-bottom
+          - pattern
+        watermark_width:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: Width of watermark.
+        watermark_height:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: Height of watermark.
+        watermark_opacity:
+          type:
+          - integer
+          - 'null'
+          default: 50
+          minimum: 0
+          maximum: 100
+          description: 'Define the opacity of the watermark. Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.
+
+            '
+        watermark_angle:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 360
+          description: 'Define the angle of the watermark. Takes values from 0 to 360. Default 45 for pattern case, otherwise 0.
+
+            '
+        watermark_padding_x:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          default: 0
+          description: 'Define the horizontal padding of the watermark.
+
+            '
+        watermark_padding_y:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          default: 0
+          description: 'Define the vertical padding of the watermark.
+
+            '
+    ImageParameters:
+      type: object
+      properties:
+        image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
+    ExpandParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt.
+        negative_prompt:
+          type: string
+          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
+          deprecated: true
+        width:
+          type: integer
+          description: Specify the width of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
+          default: 1024
+          maximum: 8000
+        height:
+          type: integer
+          description: Specify the width of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
+          default: 1024
+          maximum: 8000
+        direction:
+          type: string
+          default: center
+          enum:
+          - center
+          - top-left
+          - top-right
+          - bottom-left
+          - bottom-right
+          description: "Use this parameter to define in which direction the source image should be expanded. Available values are:\n  * center: Add pixels and expand the image from all sides. The original image will remain in the center.\n  * top-left: Add pixels and expand to the top-left. The original image will remain the bottom-right corner.\n  * top-right: Add pixels and expand to the top-right. The original image will remain the bottom-left corner.\n  * bottom-left: Add pixels and expand to the bottom-left. The original image will remain the top-right corner.\n  * bottom-right:Add pixels and expand to the bottom-right. The original image will remain the top-left corner.\n"
+        count:
+          type: integer
+          description: The number of images to generate.
+          example: 2
+          minimum: 1
+          maximum: 2
+          default: 2
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        mode:
+          type: string
+          deprecated: true
+          default: sync
+          enum:
+          - sync
+          - async
+          - auto
+          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
+    InpaintingParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt.
+        negative_prompt:
+          type: string
+          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
+          deprecated: true
+        count:
+          type: integer
+          description: The number of images to generate.
+          example: 2
+          minimum: 1
+          maximum: 10
+          default: 2
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        mode:
+          type: string
+          deprecated: true
+          default: sync
+          enum:
+          - sync
+          - async
+          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
+    RemoveObjectParameters:
+      type: object
+      properties:
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        mode:
+          type: string
+          deprecated: true
+          default: sync
+          enum:
+          - sync
+          - async
+          - auto
+          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
   securitySchemes:
     apiKey:
       type: apiKey

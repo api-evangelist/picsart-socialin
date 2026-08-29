@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: '1.0'
-  title: Picsart GenAI Ads Metadata API
+  title: Picsart Programmable Video Metadata API
   description: '[Official technical documentation portal](https://docs.picsart.io/)
 
     [Developer Guidelines](https://picsart.io/terms)
 
     '
 servers:
-- url: https://genai-api.picsart.io/v1
+- url: https://video-api.picsart.io/v1
   description: Production
 security:
 - apiKey: []
@@ -189,101 +189,13 @@ paths:
         '503':
           $ref: '#/components/responses/503'
 components:
-  schemas:
-    VideoGetThumbnailParameters:
-      type: object
-      properties:
-        source:
-          type: string
-          default: auto
-          enum:
-          - auto
-          - container
-          - timestamp
-        timestamps:
-          type: array
-          items:
-            type: string
-          minItems: 1
-          maxItems: 4
-          nullable: true
-          description: 'List up to 4 timestamps to extract frames from.  <a href="https://docs.picsart.io/docs/video-timestamps/">Several timestamp formats</a> are supported.
-
-            '
-    VideoParameters:
-      type: object
-      properties:
-        video_url:
-          type: string
-          description: Source video URL.
-          maxLength: 2083
-          minLength: 1
-          format: uri
-    401_Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 401
-        message:
-          type: string
-          example: Unauthorized
-        detail:
-          type: string
-      required:
-      - detail
-    ImageParameters:
-      type: object
-      properties:
-        image:
-          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
-          type: string
-          format: binary
-        image_url:
-          type: string
-          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
   responses:
-    200Thumbnails:
-      description: Success.
+    '500':
+      description: Internal Server Error
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      nullable: true
-                    url:
-                      type: string
-                      format: uri
-                      nullable: false
-                  minItems: 0
-                  maxItems: 4
-              status:
-                type: string
-                enum:
-                - success
-                - error
-                - processing
-                - queued
-                nullable: false
+            $ref: '#/components/schemas/Error'
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -305,108 +217,17 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    200Metadata:
-      description: Success.
+    '202':
+      description: Request successfully accepted for an asynchronous transformation.
       content:
         application/json:
           schema:
             type: object
             properties:
-              data:
-                type: object
-                properties:
-                  video_streams:
-                    type: integer
-                    description: Number of video streams in the file (including thumbnails)
-                    nullable: true
-                  audio_streams:
-                    type: integer
-                    description: Number of audio streams in the file
-                    nullable: true
-                  bit_rate:
-                    type: integer
-                    description: Overall bit rate of the file in bits per second
-                    nullable: true
-                  size:
-                    type: integer
-                    description: File size in bytes
-                    nullable: true
-                  duration:
-                    type: number
-                    description: Total duration of the file in seconds
-                    nullable: true
-                  format_name:
-                    type: string
-                    description: Container format name
-                    nullable: true
-                  video_codec_name:
-                    type: string
-                    description: Video codec name
-                    nullable: true
-                  video_width:
-                    type: integer
-                    description: Video width in pixels
-                    nullable: true
-                  video_height:
-                    type: integer
-                    description: Video height in pixels
-                    nullable: true
-                  video_duration:
-                    type: number
-                    description: Video stream duration in seconds
-                    nullable: true
-                  video_bit_rate:
-                    type: integer
-                    description: Video stream bit rate in bits per second
-                    nullable: true
-                  video_pix_fmt:
-                    type: string
-                    description: Video pixel format
-                    nullable: true
-                  video_fps:
-                    type: integer
-                    description: Video frame rate (frames per second)
-                    nullable: true
-                  audio_codec_name:
-                    type: string
-                    description: Audio codec name
-                    nullable: true
-                  audio_sample_rate:
-                    type: integer
-                    description: Audio sample rate in Hz
-                    nullable: true
-                  audio_channels:
-                    type: integer
-                    description: Number of audio channels
-                    nullable: true
-                  audio_channel_layout:
-                    type: string
-                    description: Audio channel layout
-                    nullable: true
-                  audio_duration:
-                    type: number
-                    description: Audio stream duration in seconds
-                    nullable: true
-                  audio_bit_rate:
-                    type: integer
-                    description: Audio stream bit rate in bits per second
-                    nullable: true
-                  thumbnail_codec_name:
-                    type: string
-                    description: Thumbnail codec name
-                    nullable: true
-                  thumbnail_width:
-                    type: integer
-                    description: Thumbnail width in pixels
-                    nullable: true
-                  thumbnail_height:
-                    type: integer
-                    description: Thumbnail height in pixels
-                    nullable: true
-                  thumbnail_pix_fmt:
-                    type: string
-                    description: Thumbnail pixel format
-                    nullable: true
+              transaction_id:
+                type:
+                - string
+                - 'null'
               status:
                 type: string
                 enum:
@@ -414,12 +235,10 @@ components:
                 - error
                 - processing
                 - queued
-                nullable: false
           example:
-            status: success
-            video:
-              id: 75c68cf6-9881-46a5-a3e8-6907640901eb
-              url: https://cdn.picsart.io/d04d0fd0-192f-4532-bd9a-aa63a728e39c.mp4
+            value:
+              transaction_id: 931aed0a-5efd-4b62-9712-069b7147eec5
+              status: processing
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -468,12 +287,143 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
+    200Metadata:
+      description: Success.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  video_streams:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Number of video streams in the file (including thumbnails)
+                  audio_streams:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Number of audio streams in the file
+                  bit_rate:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Overall bit rate of the file in bits per second
+                  size:
+                    type:
+                    - integer
+                    - 'null'
+                    description: File size in bytes
+                  duration:
+                    type:
+                    - number
+                    - 'null'
+                    description: Total duration of the file in seconds
+                  format_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: Container format name
+                  video_codec_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: Video codec name
+                  video_width:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Video width in pixels
+                  video_height:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Video height in pixels
+                  video_duration:
+                    type:
+                    - number
+                    - 'null'
+                    description: Video stream duration in seconds
+                  video_bit_rate:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Video stream bit rate in bits per second
+                  video_pix_fmt:
+                    type:
+                    - string
+                    - 'null'
+                    description: Video pixel format
+                  video_fps:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Video frame rate (frames per second)
+                  audio_codec_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: Audio codec name
+                  audio_sample_rate:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Audio sample rate in Hz
+                  audio_channels:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Number of audio channels
+                  audio_channel_layout:
+                    type:
+                    - string
+                    - 'null'
+                    description: Audio channel layout
+                  audio_duration:
+                    type:
+                    - number
+                    - 'null'
+                    description: Audio stream duration in seconds
+                  audio_bit_rate:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Audio stream bit rate in bits per second
+                  thumbnail_codec_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: Thumbnail codec name
+                  thumbnail_width:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Thumbnail width in pixels
+                  thumbnail_height:
+                    type:
+                    - integer
+                    - 'null'
+                    description: Thumbnail height in pixels
+                  thumbnail_pix_fmt:
+                    type:
+                    - string
+                    - 'null'
+                    description: Thumbnail pixel format
+              status:
+                type: string
+                enum:
+                - success
+                - error
+                - processing
+                - queued
+          example:
+            status: success
+            video:
+              id: 75c68cf6-9881-46a5-a3e8-6907640901eb
+              url: https://cdn.picsart.io/d04d0fd0-192f-4532-bd9a-aa63a728e39c.mp4
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -522,8 +472,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '431':
-      description: Request Header Fields Too Large
+    '405':
+      description: Method Not Allowed
       content:
         application/json:
           schema:
@@ -549,8 +499,62 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '405':
-      description: Method Not Allowed
+    '503':
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
       content:
         application/json:
           schema:
@@ -630,87 +634,6 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '429':
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '503':
-      description: Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
     '400':
       description: Bad Request
       content:
@@ -738,16 +661,81 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '202':
-      description: Request successfully accepted for an asynchronous transformation.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    200Thumbnails:
+      description: Success.
       content:
         application/json:
           schema:
             type: object
             properties:
-              transaction_id:
-                type: string
-                nullable: true
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type:
+                      - string
+                      - 'null'
+                    url:
+                      type: string
+                      format: uri
+                  minItems: 0
+                  maxItems: 4
               status:
                 type: string
                 enum:
@@ -755,11 +743,6 @@ components:
                 - error
                 - processing
                 - queued
-                nullable: false
-          example:
-            value:
-              transaction_id: 931aed0a-5efd-4b62-9712-069b7147eec5
-              status: processing
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -792,12 +775,12 @@ components:
                 type: object
                 properties:
                   id:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                   url:
                     type: string
                     format: uri
-                    nullable: false
               status:
                 type: string
                 enum:
@@ -805,7 +788,6 @@ components:
                 - error
                 - processing
                 - queued
-                nullable: false
           example:
             status: success
             data:
@@ -832,33 +814,72 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+    401_Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: Unauthorized
+        detail:
+          type: string
+      required:
+      - detail
+    VideoParameters:
+      type: object
+      properties:
+        video_url:
+          type: string
+          description: Source video URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+    VideoGetThumbnailParameters:
+      type: object
+      properties:
+        source:
+          type: string
+          default: auto
+          enum:
+          - auto
+          - container
+          - timestamp
+        timestamps:
+          type:
+          - array
+          - 'null'
+          items:
             type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
+          minItems: 1
+          maxItems: 4
+          description: 'List up to 4 timestamps to extract frames from.  <a href="https://docs.picsart.io/docs/video-timestamps/">Several timestamp formats</a> are supported.
+
+            '
+    ImageParameters:
+      type: object
+      properties:
+        image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
   securitySchemes:
     apiKey:
       type: apiKey
