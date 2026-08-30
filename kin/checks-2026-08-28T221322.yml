@@ -2,8 +2,8 @@
 kin_checks:
   slug: picsart-socialin
   schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T140727
+  scored_at: '2026-08-28'
+  run_ts: 2026-08-28T221322
   note: Actionable checks only (missed + partial). earned/na are every other check
     in rubric/scoring-0.15.1.yml; counts below let you verify that.
   counts:
@@ -107,8 +107,8 @@ kin_checks:
     earned: 0.27
   - id: components_reuse
     status: partial
-    earned: 1.96
-    detail: 15 of 23 openapi documents pass
+    earned: 2.09
+    detail: 16 of 23 openapi documents pass
   - id: conformance_declared
     status: partial
     earned: 1.5
