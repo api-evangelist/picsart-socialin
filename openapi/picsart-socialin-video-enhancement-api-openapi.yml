@@ -2,11 +2,9 @@ openapi: 3.2.0
 info:
   version: '1.0'
   title: Picsart Programmable Video Video enhancement API
-  description: '[Official technical documentation portal](https://docs.picsart.io/)
+  description: 'Official technical documentation portal
 
-    [Developer Guidelines](https://picsart.io/terms)
-
-    '
+    Developer Guidelines'
 servers:
 - url: https://video-api.picsart.io/v1
   description: Production
@@ -19,9 +17,7 @@ paths:
     post:
       summary: Video FPS Upscale
       operationId: video-upscale-fps
-      description: 'Upscale your low FPS videos to 60FPS high-quality videos using Generative AI technology.
-
-        '
+      description: Upscale your low FPS videos to 60FPS high-quality videos using Generative AI technology.
       tags:
       - Video enhancement
       requestBody:
@@ -63,9 +59,7 @@ paths:
     get:
       summary: Get the Video FPS Upscale result
       operationId: video-upscale-fps-getresult
-      description: 'Use this method, along with transaction_id, to retrieve the upscaled video.
-
-        '
+      description: Use this method, along with transaction_id, to retrieve the upscaled video.
       parameters:
       - in: path
         name: transaction_id
@@ -106,15 +100,15 @@ paths:
           $ref: '#/components/responses/503'
 components:
   schemas:
-    Error:
+    VideoParameters:
       type: object
       properties:
-        message:
+        video_url:
           type: string
-        detail:
-          type: string
-      required:
-      - detail
+          description: Source video URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
     401_Error:
       type: object
       properties:
@@ -128,99 +122,18 @@ components:
           type: string
       required:
       - detail
-    VideoParameters:
+    Error:
       type: object
       properties:
-        video_url:
+        message:
           type: string
-          description: Source video URL.
-          maxLength: 2083
-          minLength: 1
-          format: uri
+        detail:
+          type: string
+      required:
+      - detail
   responses:
-    '401':
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/401_Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '405':
-      description: Method Not Allowed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '429':
-      description: Too Many Requests
+    '503':
+      description: Service Unavailable
       content:
         application/json:
           schema:
@@ -248,6 +161,164 @@ components:
           description: The remaining number of the credits on the balance.
     '500':
       description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '402':
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type:
+                    - string
+                    - 'null'
+                  url:
+                    type: string
+                    format: uri
+              status:
+                type: string
+                enum:
+                - success
+                - error
+                - processing
+                - queued
+          example:
+            status: success
+            data:
+              id: 75c68cf6-9881-46a5-a3e8-6907640901eb
+              url: https://cdn.picsart.io/d04d0fd0-192f-4532-bd9a-aa63a728e39c.mp4
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '415':
+      description: Unsupported Media Type
       content:
         application/json:
           schema:
@@ -343,6 +414,87 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
+    '429':
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '405':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
     '413':
       description: Request Entity Too Large
       content:
@@ -370,66 +522,12 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '404':
-      description: Not Found
+    '401':
+      description: Unauthorized
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '402':
-      description: Payment Required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '415':
-      description: Unsupported Media Type
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/401_Error'
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -453,110 +551,6 @@ components:
           description: The remaining number of the credits on the balance.
     '400':
       description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '503':
-      description: Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '200':
-      description: Success.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type:
-                    - string
-                    - 'null'
-                  url:
-                    type: string
-                    format: uri
-              status:
-                type: string
-                enum:
-                - success
-                - error
-                - processing
-                - queued
-          example:
-            status: success
-            data:
-              id: 75c68cf6-9881-46a5-a3e8-6907640901eb
-              url: https://cdn.picsart.io/d04d0fd0-192f-4532-bd9a-aa63a728e39c.mp4
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '431':
-      description: Request Header Fields Too Large
       content:
         application/json:
           schema:

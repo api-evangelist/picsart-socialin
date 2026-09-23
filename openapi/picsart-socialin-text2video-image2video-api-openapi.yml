@@ -2,11 +2,9 @@ openapi: 3.2.0
 info:
   version: '1.0'
   title: Picsart GenAI Text2Video & Image2Video API
-  description: '[Official technical documentation portal](https://docs.picsart.io/)
+  description: 'Official technical documentation portal
 
-    [Developer Guidelines](https://picsart.io/terms)
-
-    '
+    Developer Guidelines'
 servers:
 - url: https://genai-api.picsart.io/v1
   description: Production
@@ -23,9 +21,7 @@ paths:
 
         Note, that considering the big number of different models that are supported with this service, some limitations may apply. For example, some models (e.g. Grok Imagine Video / OVI) don''t support the option to disable sound. With these models the result video will always be generated regardless to the provided input params.
 
-        Similarly, note that different models do support different resolutions and output video quality parameters. In this case as well, the output video''s resolutions and quality are not guaranteed to be exactly the same as provided input params. The service will provide what''s "closer" to the original request. To make sure there are minimal deviations, we recommend doing test requests and checking the output video as well as doing research on original model''s official documentation.
-
-        '
+        Similarly, note that different models do support different resolutions and output video quality parameters. In this case as well, the output video''s resolutions and quality are not guaranteed to be exactly the same as provided input params. The service will provide what''s "closer" to the original request. To make sure there are minimal deviations, we recommend doing test requests and checking the output video as well as doing research on original model''s official documentation.'
       tags:
       - Text2Video & Image2Video
       requestBody:
@@ -70,9 +66,7 @@ paths:
 
         Note, that considering the big number of different models that are supported with this service, some limitations may apply. For example, some models (e.g. Grok Imagine Video / OVI) don''t support the option to disable sound. With these models the result video will always be generated regardless to the provided input params.
 
-        Similarly, note that different models do support different resolutions and output video quality parameters. In this case as well, the output video''s resolutions and quality are not guaranteed to be exactly the same as provided input params. The service will provide what''s "closer" to the original request. To make sure there are minimal deviations, we recommend doing test requests and checking the output video as well as doing research on original model''s official documentation.
-
-        '
+        Similarly, note that different models do support different resolutions and output video quality parameters. In this case as well, the output video''s resolutions and quality are not guaranteed to be exactly the same as provided input params. The service will provide what''s "closer" to the original request. To make sure there are minimal deviations, we recommend doing test requests and checking the output video as well as doing research on original model''s official documentation.'
       tags:
       - Text2Video & Image2Video
       requestBody:
@@ -114,9 +108,7 @@ paths:
     get:
       summary: Get the Video Generation result
       operationId: genai-text2video-getresult
-      description: 'Use this method, along with inference id, to retrieve the generated video.
-
-        '
+      description: Use this method, along with inference id, to retrieve the generated video.
       parameters:
       - in: path
         name: inference_id
@@ -157,154 +149,171 @@ paths:
         '503':
           $ref: '#/components/responses/503'
 components:
+  schemas:
+    Text2VideoModels:
+      type: object
+      properties:
+        model:
+          type:
+          - string
+          - 'null'
+          enum:
+          - urn:air:seedance:model:seedance:seedance-1.0-pro-text-to-video@1
+          - urn:air:seedance:model:seedance:seedance-1.0-pro-fast-text-to-video@1
+          - urn:air:seedance:model:seedance:seedance-1.5-pro-text-to-video@1
+          - urn:air:pika:model:pika:pika-text-to-video-v2.2@1
+          - urn:air:kling:model:kling:kling-v2-master-text-to-video@1
+          - urn:air:kling:model:kling:kling-v2-1-master-text-to-video@1
+          - urn:air:kling:model:kling:kling-v2-5-turbo-text-to-video@1
+          - urn:air:kling:model:kling:kling-v2-6-text-to-video@1
+          - urn:air:kling:model:kling:kling-v3-text-to-video@1
+          - urn:air:runway:model:runway:gen4.5-text-to-video@1
+          - urn:air:minimax:model:minimax:hailuo-02-pro-text-to-video@1
+          - urn:air:ltxv:model:ltxv:ltxv-2-text-to-video@1
+          - urn:air:ltxv:model:ltxv:ltxv-2-text-to-video-fast@1
+          - urn:air:ovi:model:ovi:ovi-text-to-video@1
+          - urn:air:xai:model:xai:grok-imagine-video-text-to-video@1
+          - urn:air:google:model:google:veo-2.0-text-to-video@1
+          - urn:air:google:model:google:veo-2.0-exp-text-to-video@1
+          - urn:air:google:model:google:veo-3.1-text-to-video@1
+          - urn:air:google:model:google:veo-3.1-fast-text-to-video@1
+          - urn:air:google:model:google:veo-3.1-preview-text-to-video@1
+          - urn:air:google:model:google:veo-3.1-fast-preview-text-to-video@1
+          - urn:air:wan:model:wan:wan-2.7-text-to-video@1
+          default: urn:air:wan:model:wan:wan-2.7-text-to-video@1
+          description: 'Optionally choose a specific AI model to use for this video generation.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    Text2VideoParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt.
+        width:
+          type: number
+          description: 'Desired width used to determine the aspect ratio and resolution tier. The actual output width is determined by the AI provider based on the closest matching supported aspect ratio.
+
+            Supported ratios vary by model (common: 1:1, 4:3, 3:4, 16:9, 9:16, 21:9).
+
+            '
+          example: 512
+          default: 1024
+          maximum: 1024
+          minimum: 64
+        height:
+          type: number
+          description: 'Desired height used to determine the aspect ratio and resolution tier. The actual output height is determined by the AI provider based on the closest matching supported aspect ratio.
+
+            Supported ratios vary by model (common: 1:1, 4:3, 3:4, 16:9, 9:16, 21:9).
+
+            '
+          example: 512
+          default: 1024
+          maximum: 1024
+          minimum: 64
+        quality:
+          type: string
+          description: Video output quality/resolution.
+          enum:
+          - 480p
+          - 720p
+          - 1080p
+          default: 480p
+        audio:
+          type: boolean
+          default: false
+          description: 'Generate the video with audio or not.
+
+            Some models (e.g. Grok Imagine Video / OVI) don''t support the option to disable sound. With these models the result video will always be generated regardless to the provided input params.
+
+            '
+        length:
+          type: number
+          description: 'Desired video length in seconds. Mapped to the closest supported duration for the selected model.
+
+            '
+          default: 3
+          maximum: 20
+          minimum: 1
+    ImageParameters:
+      type: object
+      properties:
+        image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
+    Image2VideoModels:
+      type: object
+      properties:
+        model:
+          type:
+          - string
+          - 'null'
+          enum:
+          - urn:air:seedance:model:seedance:seedance-1.0-pro-image-to-video@1
+          - urn:air:seedance:model:seedance:seedance-1.0-pro-fast-image-to-video@1
+          - urn:air:seedance:model:seedance:seedance-1.5-pro-image-to-video@1
+          - urn:air:kling:model:kling:kling-v2-master-image-to-video@1
+          - urn:air:kling:model:kling:kling-v2-1-master-image-to-video@1
+          - urn:air:kling:model:kling:kling-v2-1-image-to-video@1
+          - urn:air:kling:model:kling:kling-v2-5-turbo-image-to-video@1
+          - urn:air:kling:model:kling:kling-v2-6-image-to-video@1
+          - urn:air:kling:model:kling:kling-v3-image-to-video@1
+          - urn:air:runway:model:runway:gen4.5-image-to-video@1
+          - urn:air:luma:model:luma:ray-1-6-image-to-video@1
+          - urn:air:luma:model:luma:ray-2-image-to-video@1
+          - urn:air:luma:model:luma:ray-flash-2-image-to-video@1
+          - urn:air:luma:model:luma:photon-1-image-to-video@1
+          - urn:air:luma:model:luma:photon-flash-1-image-to-video@1
+          - urn:air:google:model:google:veo-2.0-image-to-video@1
+          - urn:air:google:model:google:veo-2.0-exp-image-to-video@1
+          - urn:air:google:model:google:veo-3.1-image-to-video@1
+          - urn:air:google:model:google:veo-3.1-fast-image-to-video@1
+          - urn:air:google:model:google:veo-3.1-preview-image-to-video@1
+          - urn:air:google:model:google:veo-3.1-fast-preview-image-to-video@1
+          - urn:air:wan:model:wan:wan-2.5-image-to-video@1
+          - urn:air:wan:model:wan:wan-2.6-image-to-video@1
+          - urn:air:wan:model:wan:wan-2.7-image-to-video@1
+          - urn:air:minimax:model:minimax:hailuo-02-pro-image-to-video@1
+          - urn:air:ovi:model:ovi:ovi-image-to-video@1
+          - urn:air:xai:model:xai:grok-imagine-video-image-to-video@1
+          default: urn:air:wan:model:wan:wan-2.7-image-to-video@1
+          description: 'Optionally choose a specific AI model to use for this video generation.
+
+            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
+
+            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
+
+            '
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
   responses:
-    Text2ImageResponse:
-      description: Accepted.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                default: processing
-                enum:
-                - success
-                - error
-                - processing
-              inference_id:
-                type:
-                - string
-                - 'null'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '402':
-      description: Payment Required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '401':
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '405':
-      description: Method Not Allowed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
     '503':
       description: Service Unavailable
       content:
@@ -359,8 +368,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
+    '400':
+      description: Bad Request
       content:
         application/json:
           schema:
@@ -386,12 +395,51 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '404':
-      description: Not Found
+    '500':
+      description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    Text2ImageResponse:
+      description: Accepted.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: processing
+                enum:
+                - success
+                - error
+                - processing
+              inference_id:
+                type:
+                - string
+                - 'null'
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -440,8 +488,89 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '400':
-      description: Bad Request
+    '402':
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '404':
+      description: Not Found
       content:
         application/json:
           schema:
@@ -560,170 +689,33 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-  schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-    ImageParameters:
-      type: object
-      properties:
-        image:
-          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
-          type: string
-          format: binary
-        image_url:
-          type: string
-          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        image_id:
-          type: string
-          deprecated: true
-          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
-    Image2VideoModels:
-      type: object
-      properties:
-        model:
-          type:
-          - string
-          - 'null'
-          enum:
-          - urn:air:seedance:model:seedance:seedance-1.0-pro-image-to-video@1
-          - urn:air:seedance:model:seedance:seedance-1.0-pro-fast-image-to-video@1
-          - urn:air:seedance:model:seedance:seedance-1.5-pro-image-to-video@1
-          - urn:air:kling:model:kling:kling-v2-master-image-to-video@1
-          - urn:air:kling:model:kling:kling-v2-1-master-image-to-video@1
-          - urn:air:kling:model:kling:kling-v2-1-image-to-video@1
-          - urn:air:kling:model:kling:kling-v2-5-turbo-image-to-video@1
-          - urn:air:kling:model:kling:kling-v2-6-image-to-video@1
-          - urn:air:kling:model:kling:kling-v3-image-to-video@1
-          - urn:air:runway:model:runway:gen4.5-image-to-video@1
-          - urn:air:luma:model:luma:ray-1-6-image-to-video@1
-          - urn:air:luma:model:luma:ray-2-image-to-video@1
-          - urn:air:luma:model:luma:ray-flash-2-image-to-video@1
-          - urn:air:luma:model:luma:photon-1-image-to-video@1
-          - urn:air:luma:model:luma:photon-flash-1-image-to-video@1
-          - urn:air:google:model:google:veo-2.0-image-to-video@1
-          - urn:air:google:model:google:veo-2.0-exp-image-to-video@1
-          - urn:air:google:model:google:veo-3.1-image-to-video@1
-          - urn:air:google:model:google:veo-3.1-fast-image-to-video@1
-          - urn:air:google:model:google:veo-3.1-preview-image-to-video@1
-          - urn:air:google:model:google:veo-3.1-fast-preview-image-to-video@1
-          - urn:air:wan:model:wan:wan-2.5-image-to-video@1
-          - urn:air:wan:model:wan:wan-2.6-image-to-video@1
-          - urn:air:wan:model:wan:wan-2.7-image-to-video@1
-          - urn:air:minimax:model:minimax:hailuo-02-pro-image-to-video@1
-          - urn:air:ovi:model:ovi:ovi-image-to-video@1
-          - urn:air:xai:model:xai:grok-imagine-video-image-to-video@1
-          default: urn:air:wan:model:wan:wan-2.7-image-to-video@1
-          description: 'Optionally choose a specific AI model to use for this video generation.
-
-            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
-
-            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
-
-            '
-    Text2VideoParameters:
-      required:
-      - prompt
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt.
-        width:
-          type: number
-          description: 'Desired width used to determine the aspect ratio and resolution tier. The actual output width is determined by the AI provider based on the closest matching supported aspect ratio.
-
-            Supported ratios vary by model (common: 1:1, 4:3, 3:4, 16:9, 9:16, 21:9).
-
-            '
-          example: 512
-          default: 1024
-          maximum: 1024
-          minimum: 64
-        height:
-          type: number
-          description: 'Desired height used to determine the aspect ratio and resolution tier. The actual output height is determined by the AI provider based on the closest matching supported aspect ratio.
-
-            Supported ratios vary by model (common: 1:1, 4:3, 3:4, 16:9, 9:16, 21:9).
-
-            '
-          example: 512
-          default: 1024
-          maximum: 1024
-          minimum: 64
-        quality:
-          type: string
-          description: Video output quality/resolution.
-          enum:
-          - 480p
-          - 720p
-          - 1080p
-          default: 480p
-        audio:
-          type: boolean
-          default: false
-          description: 'Generate the video with audio or not.
-
-            Some models (e.g. Grok Imagine Video / OVI) don''t support the option to disable sound. With these models the result video will always be generated regardless to the provided input params.
-
-            '
-        length:
-          type: number
-          description: 'Desired video length in seconds. Mapped to the closest supported duration for the selected model.
-
-            '
-          default: 3
-          maximum: 20
-          minimum: 1
-    Text2VideoModels:
-      type: object
-      properties:
-        model:
-          type:
-          - string
-          - 'null'
-          enum:
-          - urn:air:seedance:model:seedance:seedance-1.0-pro-text-to-video@1
-          - urn:air:seedance:model:seedance:seedance-1.0-pro-fast-text-to-video@1
-          - urn:air:seedance:model:seedance:seedance-1.5-pro-text-to-video@1
-          - urn:air:pika:model:pika:pika-text-to-video-v2.2@1
-          - urn:air:kling:model:kling:kling-v2-master-text-to-video@1
-          - urn:air:kling:model:kling:kling-v2-1-master-text-to-video@1
-          - urn:air:kling:model:kling:kling-v2-5-turbo-text-to-video@1
-          - urn:air:kling:model:kling:kling-v2-6-text-to-video@1
-          - urn:air:kling:model:kling:kling-v3-text-to-video@1
-          - urn:air:runway:model:runway:gen4.5-text-to-video@1
-          - urn:air:minimax:model:minimax:hailuo-02-pro-text-to-video@1
-          - urn:air:ltxv:model:ltxv:ltxv-2-text-to-video@1
-          - urn:air:ltxv:model:ltxv:ltxv-2-text-to-video-fast@1
-          - urn:air:ovi:model:ovi:ovi-text-to-video@1
-          - urn:air:xai:model:xai:grok-imagine-video-text-to-video@1
-          - urn:air:google:model:google:veo-2.0-text-to-video@1
-          - urn:air:google:model:google:veo-2.0-exp-text-to-video@1
-          - urn:air:google:model:google:veo-3.1-text-to-video@1
-          - urn:air:google:model:google:veo-3.1-fast-text-to-video@1
-          - urn:air:google:model:google:veo-3.1-preview-text-to-video@1
-          - urn:air:google:model:google:veo-3.1-fast-preview-text-to-video@1
-          - urn:air:wan:model:wan:wan-2.7-text-to-video@1
-          default: urn:air:wan:model:wan:wan-2.7-text-to-video@1
-          description: 'Optionally choose a specific AI model to use for this video generation.
-
-            If not specified, a default model will be applied. Please note that the default model may change over time as Picsart continues to improve performance and accuracy. Any change to the default will be made only after thorough testing and validation to ensure it delivers better results.
-
-            If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
-
-            '
+    '405':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
   securitySchemes:
     apiKey:
       type: apiKey

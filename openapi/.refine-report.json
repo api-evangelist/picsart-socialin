@@ -72,7 +72,8 @@
     "tag 'Utilities' spans 4 source specs (picsart-socialin-genai-tools.yaml, picsart-socialin-image-tools.yaml, picsart-socialin-variable-data-tools.yaml, picsart-socialin-video-tools.yaml): per-path servers applied",
     "tag 'Effects' spans 2 source specs (picsart-socialin-image-tools.yaml, picsart-socialin-video-tools.yaml): per-path servers applied",
     "tag 'Remove Background' spans 2 source specs (picsart-socialin-image-tools.yaml, picsart-socialin-video-tools.yaml): per-path servers applied",
-    "tag 'Watermark' spans 2 source specs (picsart-socialin-image-tools.yaml, picsart-socialin-video-tools.yaml): per-path servers applied"
+    "tag 'Watermark' spans 2 source specs (picsart-socialin-image-tools.yaml, picsart-socialin-video-tools.yaml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "picsart-socialin-ads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
