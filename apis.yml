@@ -63,7 +63,7 @@ tags:
 - Creative Tools
 - Image Processing
 - Background Removal
-- Machine-Learning
+- Machine Learning
 - Content Generation
 tags_raw:
 - Company
@@ -76,6 +76,7 @@ tags_raw:
 - Background Removal
 - Machine Learning
 - Content Generation
+- Machine-Learning
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
