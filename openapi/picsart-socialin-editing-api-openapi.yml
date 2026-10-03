@@ -191,210 +191,35 @@ paths:
           $ref: '#/components/responses/503'
 components:
   responses:
+    '422':
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
     '503':
       description: Service Unavailable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '402':
-      description: Payment Required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '431':
-      description: Request Header Fields Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '403':
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '200':
-      description: Success.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type:
-                    - string
-                    - 'null'
-                  url:
-                    type: string
-                    format: uri
-              status:
-                type: string
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '404':
-      description: Not Found
       content:
         application/json:
           schema:
@@ -447,12 +272,120 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '400':
-      description: Bad Request
+    '403':
+      description: Forbidden
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '402':
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/401_Error'
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -528,8 +461,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '422':
-      description: Unprocessable Entity
+    '413':
+      description: Request Entity Too Large
       content:
         application/json:
           schema:
@@ -555,12 +488,79 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '401':
-      description: Unauthorized
+    '500':
+      description: Internal Server Error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/401_Error'
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '200':
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type:
+                    - string
+                    - 'null'
+                  url:
+                    type: string
+                    format: uri
+              status:
+                type: string
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -583,199 +583,6 @@ components:
             type: integer
           description: The remaining number of the credits on the balance.
   schemas:
-    ImageParameters:
-      type: object
-      properties:
-        image:
-          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
-          type: string
-          format: binary
-        image_url:
-          type: string
-          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        image_id:
-          type: string
-          deprecated: true
-          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
-    SmartCropParameters:
-      required:
-      - segment
-      type: object
-      properties:
-        segment:
-          type: string
-          maxLength: 90
-          minLength: 1
-          description: 'The segment to crop.
-
-            Use either ''foreground'', or define the name of the segments such as ''hat'' or ''boots''.
-
-            Recommendation: use short and clear names of the segment (e.g. object or area). We don''t recommend using long prompts.
-
-            '
-        ratio:
-          type: string
-          enum:
-          - '1:1'
-          - '4:3'
-          - '3:2'
-          - '16:9'
-          - '21:9'
-          - '4:5'
-          - '9:16'
-          - '2:3'
-          - '5:4'
-          description: 'Optionally enforce the ration of the result image. When both width and height parameters are provided, they should match this ratio.
-
-            In case either width or height are provided, the other value will be calculated based on this ratio.
-
-            '
-        width:
-          type: integer
-          description: Specify the width of the output image in pixels.
-          minimum: 0
-        height:
-          type: integer
-          description: Specify the height of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
-          minimum: 0
-        margin:
-          type: integer
-          minimum: 0
-          maximum: 100
-          description: 'The margin to add around the crop segment. Values are defined in pixels.
-
-            When ratio is provided, that is applied after the margin is applied to guarantee the minimum gap before the edge of the image.
-
-            '
-          default: 0
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-    401_Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 401
-        message:
-          type: string
-          example: Unauthorized
-        detail:
-          type: string
-      required:
-      - detail
-    ZoomParameters:
-      required:
-      - scale_factor
-      type: object
-      properties:
-        scale_factor:
-          type: integer
-          minimum: 1
-          maximum: 75
-          description: The scale factor. 50 means 2x, and 75 means 1.5x.
-          default: 2
-        anchor_point:
-          type: string
-          default: center-middle
-          enum:
-          - left-top
-          - left-middle
-          - left-bottom
-          - center-top
-          - center-middle
-          - center-bottom
-          - right-top
-          - right-middle
-          - right-bottom
-          - ai
-          description: Anchor point for zooming. Determines which part of the image to focus on. Expect longer response times when 'ai' is used.
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-    OverlayParameters:
-      type: object
-      properties:
-        overlay_image:
-          description: Overlay image file (binary). (If this parameter is present, the other image source parameters must be empty.) This only has an effect when output=cutout.
-          type:
-          - string
-          - 'null'
-          format: binary
-        overlay_image_url:
-          type:
-          - string
-          - 'null'
-          description: Overlay image URL. (If this parameter is present, the other image source parameters must be empty.) If this has a value, the output value is dismissed.
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        overlay_image_id:
-          type:
-          - string
-          - 'null'
-          deprecated: true
-          description: Deprecated. Overlay image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.) See /upload method. If this has a value, the output value is dismissed.
-        opacity:
-          type:
-          - integer
-          - 'null'
-          default: 100
-          minimum: 0
-          maximum: 100
-          description: "Define the opacity of the overlay added to the main image.\n  Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.\n"
-        blend_mode:
-          type:
-          - string
-          - 'null'
-          enum:
-          - normal
-          - darken
-          - multiply
-          - lighten
-          - screen
-          - color_dodge
-          - overlay
-          - soft_light
-          - hard_light
-          - hue
-          - saturation
-          - color
-          - luminosity
-          default: normal
-          description: 'The blend mode. Choose one of normal, darken, multiply, lighten, screen, color_dodge, overlay, soft_light, hard_light, hue, saturation, color, luminosity.  Defaults to normal.
-
-            '
-        format:
-          type: string
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          default: JPG
-          description: "Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
     EditParameters:
       type: object
       properties:
@@ -867,6 +674,199 @@ components:
           minimum: 10
           maximum: 100
           description: This refers to the level of accuracy of the image processing. The greater the quality (i.e., the larger the number), the larger the image file size. The default value is 90, which is a good compromise between quality and file size.
+    401_Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: Unauthorized
+        detail:
+          type: string
+      required:
+      - detail
+    SmartCropParameters:
+      required:
+      - segment
+      type: object
+      properties:
+        segment:
+          type: string
+          maxLength: 90
+          minLength: 1
+          description: 'The segment to crop.
+
+            Use either ''foreground'', or define the name of the segments such as ''hat'' or ''boots''.
+
+            Recommendation: use short and clear names of the segment (e.g. object or area). We don''t recommend using long prompts.
+
+            '
+        ratio:
+          type: string
+          enum:
+          - '1:1'
+          - '4:3'
+          - '3:2'
+          - '16:9'
+          - '21:9'
+          - '4:5'
+          - '9:16'
+          - '2:3'
+          - '5:4'
+          description: 'Optionally enforce the ration of the result image. When both width and height parameters are provided, they should match this ratio.
+
+            In case either width or height are provided, the other value will be calculated based on this ratio.
+
+            '
+        width:
+          type: integer
+          description: Specify the width of the output image in pixels.
+          minimum: 0
+        height:
+          type: integer
+          description: Specify the height of the output image in pixels. The default is 1024 and the maximum acceptable value is 8000.
+          minimum: 0
+        margin:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: 'The margin to add around the crop segment. Values are defined in pixels.
+
+            When ratio is provided, that is applied after the margin is applied to guarantee the minimum gap before the edge of the image.
+
+            '
+          default: 0
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+    ZoomParameters:
+      required:
+      - scale_factor
+      type: object
+      properties:
+        scale_factor:
+          type: integer
+          minimum: 1
+          maximum: 75
+          description: The scale factor. 50 means 2x, and 75 means 1.5x.
+          default: 2
+        anchor_point:
+          type: string
+          default: center-middle
+          enum:
+          - left-top
+          - left-middle
+          - left-bottom
+          - center-top
+          - center-middle
+          - center-bottom
+          - right-top
+          - right-middle
+          - right-bottom
+          - ai
+          description: Anchor point for zooming. Determines which part of the image to focus on. Expect longer response times when 'ai' is used.
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats. Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+    OverlayParameters:
+      type: object
+      properties:
+        overlay_image:
+          description: Overlay image file (binary). (If this parameter is present, the other image source parameters must be empty.) This only has an effect when output=cutout.
+          type:
+          - string
+          - 'null'
+          format: binary
+        overlay_image_url:
+          type:
+          - string
+          - 'null'
+          description: Overlay image URL. (If this parameter is present, the other image source parameters must be empty.) If this has a value, the output value is dismissed.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        overlay_image_id:
+          type:
+          - string
+          - 'null'
+          deprecated: true
+          description: Deprecated. Overlay image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.) See /upload method. If this has a value, the output value is dismissed.
+        opacity:
+          type:
+          - integer
+          - 'null'
+          default: 100
+          minimum: 0
+          maximum: 100
+          description: "Define the opacity of the overlay added to the main image.\n  Takes values from 0 to 100. Default is 100 (opaque). Set to 0 to make it transparent.\n"
+        blend_mode:
+          type:
+          - string
+          - 'null'
+          enum:
+          - normal
+          - darken
+          - multiply
+          - lighten
+          - screen
+          - color_dodge
+          - overlay
+          - soft_light
+          - hard_light
+          - hue
+          - saturation
+          - color
+          - luminosity
+          default: normal
+          description: 'The blend mode. Choose one of normal, darken, multiply, lighten, screen, color_dodge, overlay, soft_light, hard_light, hue, saturation, color, luminosity.  Defaults to normal.
+
+            '
+        format:
+          type: string
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          default: JPG
+          description: "Optionally select one of the image formats (JPG is chosen if left blank). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+    ImageParameters:
+      type: object
+      properties:
+        image:
+          description: Source image file (binary). (If this parameter is present, the other image source parameters must be empty.)
+          type: string
+          format: binary
+        image_url:
+          type: string
+          description: Source image URL. (If this parameter is present, the other image source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
   securitySchemes:
     apiKey:
       type: apiKey

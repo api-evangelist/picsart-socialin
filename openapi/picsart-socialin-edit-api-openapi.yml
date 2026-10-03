@@ -294,89 +294,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '402':
-      description: Payment Required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '431':
-      description: Request Header Fields Too Large
+    '429':
+      description: Too Many Requests
       content:
         application/json:
           schema:
@@ -429,6 +348,60 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
+    '431':
+      description: Request Header Fields Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '402':
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
     '404':
       description: Not Found
       content:
@@ -456,8 +429,116 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '429':
-      description: Too Many Requests
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/401_Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '405':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '415':
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '500':
+      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -553,110 +634,14 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '405':
-      description: Method Not Allowed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '415':
-      description: Unsupported Media Type
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '401':
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/401_Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
   schemas:
-    Error:
+    EditParameters:
       type: object
       properties:
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-    401_Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 401
-        message:
-          type: string
-          example: Unauthorized
-        detail:
-          type: string
-      required:
-      - detail
+        fit:
+          $ref: '#/components/schemas/FitParameters'
+        crop:
+          $ref: '#/components/schemas/CropParameters'
     ConcatSegmentsParameters:
       type: object
       properties:
@@ -700,6 +685,19 @@ components:
             - end
           minItems: 2
           maxItems: 10
+    401_Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: Unauthorized
+        detail:
+          type: string
+      required:
+      - detail
     FitParameters:
       type: object
       properties:
@@ -754,86 +752,6 @@ components:
           maxLength: 2083
           minLength: 1
           format: uri
-    ConcatParameters:
-      type: object
-      properties:
-        items:
-          type: array
-          description: List of videos and images to combine into a slideshow.
-          items:
-            allOf:
-            - $ref: '#/components/schemas/ConcatVideoParameters'
-            - $ref: '#/components/schemas/ConcatImageParameters'
-            - $ref: '#/components/schemas/Transition'
-          minItems: 1
-          maxItems: 10
-        bg_audio_url:
-          type:
-          - string
-          - 'null'
-          description: Background audio/sound URL.
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        bg_audio_repeat:
-          type:
-          - boolean
-          - 'null'
-          default: true
-          description: Use true to repeat the audion in the background for the whole video duration or false if you want to play the audio only once.
-        bg_audio_volume:
-          type:
-          - integer
-          - 'null'
-          default: 100
-          minimum: 0
-          maximum: 100
-          description: Control the audio volume. Adjust from 0 to 100. 0 will mute the audio completely and 100 will have it at max.
-    CropParameters:
-      type: object
-      properties:
-        width:
-          type: integer
-          minimum: 16
-          description: 'Width of the outcome video. If the new width is larger than the original width, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original width. Value must be at least 16 px.
-
-            '
-        height:
-          type: integer
-          minimum: 16
-          description: 'Height of the output video. If the new height is larger than the original height, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original height. Value must be at least 16 px.
-
-            '
-        start_x:
-          type: integer
-          default: 0
-          minimum: 0
-          description: The starting x location of the crop in px as measured from the left edge.
-        start_y:
-          type: integer
-          default: 0
-          minimum: 0
-          description: The starting y location of the crop in px as measured from the bottom edge.
-    Transition:
-      type: object
-      properties:
-        transition:
-          type: string
-          default: none
-          enum:
-          - none
-          - fade
-          - zoom_in
-          - zoom_out
-          - spin
-          - fly_in_from_left
-          - fly_in_from_right
-          - fly_in_from_top
-          - fly_in_from_bottom
-          - fly_out_to_left
-          - fly_out_to_right
-          - fly_out_to_bottom
-          - fly_out_to_top
     VideoParameters:
       type: object
       properties:
@@ -872,6 +790,15 @@ components:
           minimum: 1
           default: 1000
           description: Duration of the image in milliseconds. Applies only if the image_url is provided.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
     ExportParameters:
       type: object
       properties:
@@ -901,13 +828,121 @@ components:
           default:
             format: MP4
             frame_rate: 30
-    EditParameters:
+    TrimParameters:
       type: object
       properties:
-        fit:
-          $ref: '#/components/schemas/FitParameters'
-        crop:
-          $ref: '#/components/schemas/CropParameters'
+        start:
+          type: integer
+          default: 0
+          minimum: 0
+          description: This is the point in time of the video from where the trimming begins in milliseconds.
+        end:
+          type: integer
+          default: 1000
+          minimum: 1000
+          description: This is the point in time of the video where the trimming ends in milliseconds. It must be greater than `start`.
+      required:
+      - start
+      - end
+    CropParameters:
+      type: object
+      properties:
+        width:
+          type: integer
+          minimum: 16
+          description: 'Width of the outcome video. If the new width is larger than the original width, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original width. Value must be at least 16 px.
+
+            '
+        height:
+          type: integer
+          minimum: 16
+          description: 'Height of the output video. If the new height is larger than the original height, the blurry mirror effect should be applied to the additional part. The measurement unit is px. The default value is the original height. Value must be at least 16 px.
+
+            '
+        start_x:
+          type: integer
+          default: 0
+          minimum: 0
+          description: The starting x location of the crop in px as measured from the left edge.
+        start_y:
+          type: integer
+          default: 0
+          minimum: 0
+          description: The starting y location of the crop in px as measured from the bottom edge.
+    ConcatParameters:
+      type: object
+      properties:
+        items:
+          type: array
+          description: List of videos and images to combine into a slideshow.
+          items:
+            allOf:
+            - $ref: '#/components/schemas/ConcatVideoParameters'
+            - $ref: '#/components/schemas/ConcatImageParameters'
+            - $ref: '#/components/schemas/Transition'
+          minItems: 1
+          maxItems: 10
+        bg_audio_url:
+          type:
+          - string
+          - 'null'
+          description: Background audio/sound URL.
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        bg_audio_repeat:
+          type:
+          - boolean
+          - 'null'
+          default: true
+          description: Use true to repeat the audion in the background for the whole video duration or false if you want to play the audio only once.
+        bg_audio_volume:
+          type:
+          - integer
+          - 'null'
+          default: 100
+          minimum: 0
+          maximum: 100
+          description: Control the audio volume. Adjust from 0 to 100. 0 will mute the audio completely and 100 will have it at max.
+    Transition:
+      type: object
+      properties:
+        transition:
+          type: string
+          default: none
+          enum:
+          - none
+          - fade
+          - zoom_in
+          - zoom_out
+          - spin
+          - fly_in_from_left
+          - fly_in_from_right
+          - fly_in_from_top
+          - fly_in_from_bottom
+          - fly_out_to_left
+          - fly_out_to_right
+          - fly_out_to_bottom
+          - fly_out_to_top
+    ConcatVideoParameters:
+      type: object
+      properties:
+        video_url:
+          type:
+          - string
+          - 'null'
+          description: Source video URL. (Use either image_url or video_url.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        volume:
+          type:
+          - integer
+          - 'null'
+          default: 100
+          minimum: 0
+          maximum: 100
+          description: Control the video volume. Adjust from 0 to 100. 0 will mute the video completely and 100 will have it at max.
     ExtendedExportParameters:
       type: object
       properties:
@@ -993,41 +1028,6 @@ components:
             audio_codec: default,
             frame_rate: 30,
             color_space: SRGB
-    TrimParameters:
-      type: object
-      properties:
-        start:
-          type: integer
-          default: 0
-          minimum: 0
-          description: This is the point in time of the video from where the trimming begins in milliseconds.
-        end:
-          type: integer
-          default: 1000
-          minimum: 1000
-          description: This is the point in time of the video where the trimming ends in milliseconds. It must be greater than `start`.
-      required:
-      - start
-      - end
-    ConcatVideoParameters:
-      type: object
-      properties:
-        video_url:
-          type:
-          - string
-          - 'null'
-          description: Source video URL. (Use either image_url or video_url.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        volume:
-          type:
-          - integer
-          - 'null'
-          default: 100
-          minimum: 0
-          maximum: 100
-          description: Control the video volume. Adjust from 0 to 100. 0 will mute the video completely and 100 will have it at max.
   securitySchemes:
     apiKey:
       type: apiKey
