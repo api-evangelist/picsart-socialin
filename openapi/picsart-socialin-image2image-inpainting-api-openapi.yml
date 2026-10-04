@@ -389,71 +389,6 @@ paths:
           $ref: '#/components/responses/503'
 components:
   schemas:
-    BleedParameters:
-      required:
-      - bleed_size
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt. Only apply if you are confident the provided prompt is going to generate good results. Otherwise leave empty as the default prompt is already optimized for bleed generation.
-        negative_prompt:
-          type: string
-          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
-          deprecated: true
-        bleed_size:
-          type: integer
-          description: 'Specify the bleed of the output image in pixels.
-
-            When specifying the value, take into account the DPI of the image. For example, for 300DPI and the 0.125inches bleed, the value should be 300*0.125=37/38.
-
-            '
-          default: 5
-          minimum: 1
-          maximum: 75
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-    InpaintingParameters:
-      required:
-      - prompt
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt.
-        negative_prompt:
-          type: string
-          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
-          deprecated: true
-        count:
-          type: integer
-          description: The number of images to generate.
-          example: 2
-          minimum: 1
-          maximum: 10
-          default: 2
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        mode:
-          type: string
-          deprecated: true
-          default: sync
-          enum:
-          - sync
-          - async
-          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
     WatermarkParameters:
       type: object
       properties:
@@ -540,6 +475,88 @@ components:
           description: 'Define the vertical padding of the watermark.
 
             '
+    BleedParameters:
+      required:
+      - bleed_size
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt. Only apply if you are confident the provided prompt is going to generate good results. Otherwise leave empty as the default prompt is already optimized for bleed generation.
+        negative_prompt:
+          type: string
+          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
+          deprecated: true
+        bleed_size:
+          type: integer
+          description: 'Specify the bleed of the output image in pixels.
+
+            When specifying the value, take into account the DPI of the image. For example, for 300DPI and the 0.125inches bleed, the value should be 300*0.125=37/38.
+
+            '
+          default: 5
+          minimum: 1
+          maximum: 75
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+    InpaintingParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt.
+        negative_prompt:
+          type: string
+          description: Deprecated. The negative prompt (don’t generate this type of images). Don't use the nagitve keywords such as 'no', e.g. don't use 'no distorted faces', use 'distorted faces'.
+          deprecated: true
+        count:
+          type: integer
+          description: The number of images to generate.
+          example: 2
+          minimum: 1
+          maximum: 10
+          default: 2
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        mode:
+          type: string
+          deprecated: true
+          default: sync
+          enum:
+          - sync
+          - async
+          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
+    MaskParameters:
+      type: object
+      properties:
+        mask_image:
+          description: Source mask file (binary). (If this parameter is present, the other mask source parameters must be empty.)
+          type: string
+          format: binary
+        mask_image_url:
+          type: string
+          description: Source mask URL. (If this parameter is present, the other mask source parameters must be empty.)
+          maxLength: 2083
+          minLength: 1
+          format: uri
+        mask_image_id:
+          type: string
+          deprecated: true
+          description: Deprecated. Source mask ID of an mask previously uploaded to Picsart or result mask ID from a different API. (If this parameter is present, the other mask source parameters must be empty.)
     RemoveObjectParameters:
       type: object
       properties:
@@ -560,6 +577,17 @@ components:
           - async
           - auto
           description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
     Image2ImageModels:
       type: object
       properties:
@@ -594,48 +622,6 @@ components:
             If you require consistent behavior or wish to evaluate different models on your own, we recommend explicitly setting this parameter.
 
             '
-    EditWithPromptParameters:
-      required:
-      - prompt
-      type: object
-      properties:
-        prompt:
-          type: string
-          description: The prompt.
-        count:
-          type: integer
-          description: The number of images to generate.
-          example: 2
-          minimum: 1
-          maximum: 10
-          default: 2
-        format:
-          type: string
-          default: JPG
-          enum:
-          - JPG
-          - PNG
-          - WEBP
-          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
-        mode:
-          type: string
-          deprecated: true
-          default: sync
-          enum:
-          - sync
-          - async
-          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
     ExpandParameters:
       required:
       - prompt
@@ -692,23 +678,6 @@ components:
           - async
           - auto
           description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
-    MaskParameters:
-      type: object
-      properties:
-        mask_image:
-          description: Source mask file (binary). (If this parameter is present, the other mask source parameters must be empty.)
-          type: string
-          format: binary
-        mask_image_url:
-          type: string
-          description: Source mask URL. (If this parameter is present, the other mask source parameters must be empty.)
-          maxLength: 2083
-          minLength: 1
-          format: uri
-        mask_image_id:
-          type: string
-          deprecated: true
-          description: Deprecated. Source mask ID of an mask previously uploaded to Picsart or result mask ID from a different API. (If this parameter is present, the other mask source parameters must be empty.)
     ImageParameters:
       type: object
       properties:
@@ -726,9 +695,40 @@ components:
           type: string
           deprecated: true
           description: Deprecated. Source image ID of an image previously uploaded to Picsart or result image ID from a different API. (If this parameter is present, the other image source parameters must be empty.)
+    EditWithPromptParameters:
+      required:
+      - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt.
+        count:
+          type: integer
+          description: The number of images to generate.
+          example: 2
+          minimum: 1
+          maximum: 10
+          default: 2
+        format:
+          type: string
+          default: JPG
+          enum:
+          - JPG
+          - PNG
+          - WEBP
+          description: "Optionally select one of the image formats (JPG is default). Options are as follows:\n  * JPG\n  * PNG\n  * WEBP\n"
+        mode:
+          type: string
+          deprecated: true
+          default: sync
+          enum:
+          - sync
+          - async
+          description: "Deprecated. The mode parameter is now deprecated. To control synchronous vs asynchronous execution, use the standard HTTP Prefer header (RFC 7240). If both mode and Prefer are provided, Prefer takes precedence. For migration guidance and examples, see the [Sync and Async Execution guide](https://docs.picsart.io/docs/sync-async-execution).\nUse this query parameter to establish the processing mode. Acceptable values are sync, async and auto (sync is default):\n  * sync: issues a synchronous request, response is given when the result is ready.\n  * async: forces an asynchronous request, the response, which is instantaneous, contains a \"transaction_id\" which is used to poll for the result.\n  * REMOVED - auto: the processing mode decision is made by the service, which depends upon the expected processing time.\n"
   responses:
-    InpaintingResponse:
-      description: Processing.
+    InpaintingResultResponse:
+      description: Success.
       content:
         application/json:
           schema:
@@ -736,10 +736,17 @@ components:
             properties:
               status:
                 type: string
-              inference_id:
-                type:
-                - string
-                - 'null'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type:
+                      - string
+                      - 'null'
+                    url:
+                      type: string
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -761,12 +768,78 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '503':
-      description: Service Unavailable
+    '415':
+      description: Unsupported Media Type
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '413':
+      description: Request Entity Too Large
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    ImageResponse:
+      description: Success.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type:
+                    - string
+                    - 'null'
+                  url:
+                    type: string
+              status:
+                type: string
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -790,33 +863,6 @@ components:
           description: The remaining number of the credits on the balance.
     '429':
       description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '403':
-      description: Forbidden
       content:
         application/json:
           schema:
@@ -869,12 +915,127 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
+    '405':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
     '402':
       description: Payment Required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      headers:
+        X-Picsart-Correlation-Id:
+          schema:
+            type: string
+          description: The id which will help for troubleshooting request chain in the system.
+        X-Picsart-Ratelimit-Available:
+          schema:
+            type: integer
+          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Limit:
+          schema:
+            type: integer
+          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
+        X-Picsart-Ratelimit-Reset-Time:
+          schema:
+            type: integer
+          description: The time when the used request count resets and the number of available calls gets equal to the total number.
+        X-Picsart-Credit-Available:
+          schema:
+            type: integer
+          description: The remaining number of the credits on the balance.
+    InpaintingResponse:
+      description: Processing.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              inference_id:
+                type:
+                - string
+                - 'null'
       headers:
         X-Picsart-Correlation-Id:
           schema:
@@ -950,8 +1111,8 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '405':
-      description: Method Not Allowed
+    '403':
+      description: Forbidden
       content:
         application/json:
           schema:
@@ -977,173 +1138,12 @@ components:
           schema:
             type: integer
           description: The remaining number of the credits on the balance.
-    '415':
-      description: Unsupported Media Type
+    '503':
+      description: Service Unavailable
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    InpaintingResultResponse:
-      description: Success.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-              data:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type:
-                      - string
-                      - 'null'
-                    url:
-                      type: string
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '413':
-      description: Request Entity Too Large
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '500':
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    '400':
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      headers:
-        X-Picsart-Correlation-Id:
-          schema:
-            type: string
-          description: The id which will help for troubleshooting request chain in the system.
-        X-Picsart-Ratelimit-Available:
-          schema:
-            type: integer
-          description: The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Limit:
-          schema:
-            type: integer
-          description: The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.
-        X-Picsart-Ratelimit-Reset-Time:
-          schema:
-            type: integer
-          description: The time when the used request count resets and the number of available calls gets equal to the total number.
-        X-Picsart-Credit-Available:
-          schema:
-            type: integer
-          description: The remaining number of the credits on the balance.
-    ImageResponse:
-      description: Success.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type:
-                    - string
-                    - 'null'
-                  url:
-                    type: string
-              status:
-                type: string
       headers:
         X-Picsart-Correlation-Id:
           schema:
