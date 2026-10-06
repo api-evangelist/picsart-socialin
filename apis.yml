@@ -48,7 +48,7 @@ accessModel:
 image: https://docs.picsart.io/images/logo.svg
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-10-06'
 x-enrichment:
   date: '2026-07-20'
   status: enriched
@@ -321,6 +321,10 @@ apis:
   - type: OpenAPI
     url: openapi/picsart-socialin-watermark-api-openapi.yml
 common:
+- url: https://picsart.com/blog/
+  type: Blog
+- url: https://picsart.com/blog/feed/
+  type: BlogRSS
 - type: AgenticAccess
   url: agentic-access/picsart-socialin-agentic-access.yml
 - type: DomainSecurity
