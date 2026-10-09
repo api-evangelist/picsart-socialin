@@ -1,24 +1,34 @@
-generated: '2026-07-20'
+generated: '2026-09-23'
 method: generated
-source: openapi/picsart-socialin-genai-tools.yaml, openapi/picsart-socialin-image-tools.yaml,
-  openapi/picsart-socialin-variable-data-tools.yaml, openapi/picsart-socialin-video-tools.yaml
+source: openapi/picsart-socialin-ads-api-openapi.yml, openapi/picsart-socialin-audio-api-openapi.yml,
+  openapi/picsart-socialin-classification-api-openapi.yml, openapi/picsart-socialin-content-generation-api-openapi.yml,
+  openapi/picsart-socialin-conversion-api-openapi.yml, openapi/picsart-socialin-edit-api-openapi.yml,
+  openapi/picsart-socialin-editing-api-openapi.yml, openapi/picsart-socialin-effects-api-openapi.yml,
+  openapi/picsart-socialin-image2image-inpainting-api-openapi.yml, openapi/picsart-socialin-metadata-api-openapi.yml,
+  openapi/picsart-socialin-photo-enhancement-api-openapi.yml, openapi/picsart-socialin-remove-background-api-openapi.yml,
+  openapi/picsart-socialin-replay-api-openapi.yml, openapi/picsart-socialin-surfacemap-api-openapi.yml,
+  openapi/picsart-socialin-text2audio-api-openapi.yml, openapi/picsart-socialin-text2image-api-openapi.yml,
+  openapi/picsart-socialin-text2text-api-openapi.yml, openapi/picsart-socialin-text2video-image2video-api-openapi.yml,
+  openapi/picsart-socialin-transcriptions-api-openapi.yml, openapi/picsart-socialin-utilities-api-openapi.yml,
+  openapi/picsart-socialin-variable-data-content-api-openapi.yml, openapi/picsart-socialin-video-enhancement-api-openapi.yml,
+  openapi/picsart-socialin-watermark-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 91
+  operations: 84
   by_action_class:
-    acting: 69
-    connected: 22
+    acting: 63
+    connected: 21
   by_consequence:
-    write: 67
-    read: 22
+    write: 61
+    read: 21
     physical: 2
   human_in_the_loop_required: 0
 operations:
-- path: /text2text/chat/completions
+- path: /encode/ctv
   method: post
-  operationId: genai-text2text-completions
+  operationId: video-encode-ctv
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -32,9 +42,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /text2image
+- path: /audio/adjust
   method: post
-  operationId: genai-text2image
+  operationId: video-adjust-audio
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -48,9 +58,169 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /text2image/inferences/{inference_id}
+- path: /export/audio
+  method: post
+  operationId: video-extract-audio
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /multi-matting
+  method: post
+  operationId: image-segmentation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /tags
+  method: post
+  operationId: image-tagging
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /describe
+  method: post
+  operationId: image-describer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /cars/classify
+  method: post
+  operationId: image-cars-classifier
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /extract-colors
+  method: post
+  operationId: image-extract-colors
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /background/texture
+  method: post
+  operationId: image-generate-texture
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /background/pattern
+  method: post
+  operationId: image-generate-pattern
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /vectorizer
+  method: post
+  operationId: image-vectorize-raster-to-svg
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /design2replay
+  method: post
+  operationId: image-design-import
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /design2replay/{transaction_id}
   method: get
-  operationId: genai-text2image-getresult
+  operationId: image-design-import-getresult
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -58,9 +228,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /text2sticker
+- path: /edit
   method: post
-  operationId: genai-text2sticker
+  operationId: video-edit
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -74,9 +244,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /text2sticker/laserengraving
+- path: /trim
   method: post
-  operationId: genai-text2sticker-laser-engraving
+  operationId: video-trim
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -90,19 +260,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /text2sticker/inferences/{inference_id}
-  method: get
-  operationId: genai-text2sticker-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /logo
+- path: /crop
   method: post
-  operationId: genai-generate-logo
+  operationId: video-crop
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -116,19 +276,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /logo/inferences/{inference_id}
-  method: get
-  operationId: genai-generate-logo-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /painting/edit
+- path: /concat
   method: post
-  operationId: genai-image-edit
+  operationId: video-concat
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -142,9 +292,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /painting/inpaint
+- path: /concat/highlights
   method: post
-  operationId: genai-image-inpainting
+  operationId: video-concat-highlights
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -158,9 +308,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /painting/outpaint
+- path: /fit
   method: post
-  operationId: genai-image-outpainting
+  operationId: video-fit
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -174,9 +324,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /painting/remove-object
+- path: /edit
   method: post
-  operationId: genai-remove-object
+  operationId: image-edit
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -190,9 +340,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /painting/replace-background
+- path: /smart-crop
   method: post
-  operationId: genai-smart-background
+  operationId: image-smart-crop
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -206,9 +356,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /painting/expand
+- path: /blend
   method: post
-  operationId: genai-expand-image
+  operationId: image-blend
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -222,203 +372,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /painting/bleed
+- path: /zoom
   method: post
-  operationId: genai-generate-image-bleed
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /painting/{inference_id}
-  method: get
-  operationId: genai-image-inpainting-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /text2video
-  method: post
-  operationId: genai-text2video
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /image2video
-  method: post
-  operationId: genai-image2video
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /video/{inference_id}
-  method: get
-  operationId: genai-text2video-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /text2speech
-  method: post
-  operationId: genai-text2speech
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /text2sound
-  method: post
-  operationId: genai-text2sound
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /audio/{inference_id}
-  method: get
-  operationId: genai-text2audio-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /balance
-  method: get
-  operationId: genai-credits-balance
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /removebg
-  method: post
-  operationId: image-remove-background
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /upscale
-  method: post
-  operationId: image-upscale
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /upscale/ultra
-  method: post
-  operationId: image-ultra-upscale
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /upscale/ultra/{transaction_id}
-  method: get
-  operationId: image-ultra-upscale-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /upscale/enhance
-  method: post
-  operationId: image-ultra-enhance
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /enhance/face
-  method: post
-  operationId: image-face-enhance
+  operationId: image-zoom
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -616,9 +572,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /background/texture
+- path: /painting/edit
   method: post
-  operationId: image-generate-texture
+  operationId: genai-image-edit
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -632,9 +588,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /background/pattern
+- path: /painting/inpaint
   method: post
-  operationId: image-generate-pattern
+  operationId: genai-image-inpainting
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -648,9 +604,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /vectorizer
+- path: /painting/outpaint
   method: post
-  operationId: image-vectorize-raster-to-svg
+  operationId: genai-image-outpainting
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -664,9 +620,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /design2replay
+- path: /painting/remove-object
   method: post
-  operationId: image-design-import
+  operationId: genai-remove-object
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -680,9 +636,57 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /design2replay/{transaction_id}
+- path: /painting/replace-background
+  method: post
+  operationId: genai-smart-background
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /painting/expand
+  method: post
+  operationId: genai-expand-image
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /painting/bleed
+  method: post
+  operationId: genai-generate-image-bleed
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /painting/{inference_id}
   method: get
-  operationId: image-design-import-getresult
+  operationId: genai-image-inpainting-getresult
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -690,57 +694,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /surfacemap
+- path: /metadata
   method: post
-  operationId: image-surfacemap
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /watermark
-  method: post
-  operationId: image-add-watermark
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /upload
-  method: post
-  operationId: image-upload
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /image/{transaction_id}
-  method: get
-  operationId: image-getresult
+  operationId: video-metadata
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -748,9 +704,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /balance
-  method: get
-  operationId: image-credits-balance
+- path: /metadata/thumbnail/extract
+  method: post
+  operationId: video-get-thumbnail
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -758,9 +714,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit
+- path: /metadata/thumbnail
   method: post
-  operationId: image-edit
+  operationId: video-set-thumbnail
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -774,9 +730,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /smart-crop
+- path: /metadata/thumbnail/{transaction_id}
+  method: get
+  operationId: video-set-thumbnail-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /upscale
   method: post
-  operationId: image-smart-crop
+  operationId: image-upscale
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -790,9 +756,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /blend
+- path: /upscale/ultra
   method: post
-  operationId: image-blend
+  operationId: image-ultra-upscale
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -806,9 +772,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /zoom
+- path: /upscale/ultra/{transaction_id}
+  method: get
+  operationId: image-ultra-upscale-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /upscale/enhance
   method: post
-  operationId: image-zoom
+  operationId: image-ultra-enhance
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -822,9 +798,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /multi-matting
+- path: /enhance/face
   method: post
-  operationId: image-segmentation
+  operationId: image-face-enhance
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -838,9 +814,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /tags
+- path: /removebg
   method: post
-  operationId: image-tagging
+  operationId: image-remove-background
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -854,41 +830,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /describe
+- path: /remove-background
   method: post
-  operationId: image-describer
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /cars/classify
-  method: post
-  operationId: image-cars-classifier
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /extract-colors
-  method: post
-  operationId: image-extract-colors
+  operationId: video-remove-background
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -921,6 +865,298 @@ operations:
 - path: /export/replay/{transaction_id}
   method: get
   operationId: vd-export-replay-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /surfacemap
+  method: post
+  operationId: image-surfacemap
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /text2speech
+  method: post
+  operationId: genai-text2speech
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /text2sound
+  method: post
+  operationId: genai-text2sound
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /audio/{inference_id}
+  method: get
+  operationId: genai-text2audio-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /text2image
+  method: post
+  operationId: genai-text2image
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /text2image/inferences/{inference_id}
+  method: get
+  operationId: genai-text2image-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /text2sticker
+  method: post
+  operationId: genai-text2sticker
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /text2sticker/laserengraving
+  method: post
+  operationId: genai-text2sticker-laser-engraving
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /text2sticker/inferences/{inference_id}
+  method: get
+  operationId: genai-text2sticker-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /logo
+  method: post
+  operationId: genai-generate-logo
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /logo/inferences/{inference_id}
+  method: get
+  operationId: genai-generate-logo-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /text2text/chat/completions
+  method: post
+  operationId: genai-text2text-completions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /text2video
+  method: post
+  operationId: genai-text2video
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /image2video
+  method: post
+  operationId: genai-image2video
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /video/{inference_id}
+  method: get
+  operationId: genai-text2video-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /audio/transcribe
+  method: post
+  operationId: video-transcribe-audio
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /audio/transcribe/{transaction_id}
+  method: get
+  operationId: video-transcribe-audio-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /balance
+  method: get
+  operationId: genai-credits-balance
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /upload
+  method: post
+  operationId: image-upload
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /image/{transaction_id}
+  method: get
+  operationId: image-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /video/{transaction_id}
+  method: get
+  operationId: video-getresult
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /audio/{transaction_id}
+  method: get
+  operationId: video-getaudioresult
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -970,16 +1206,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /balance
-  method: get
-  operationId: vd-credits-balance
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /upscale/fps
   method: post
   operationId: video-upscale-fps
@@ -1006,285 +1232,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /remove-background
-  method: post
-  operationId: video-remove-background
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /adjust
-  method: post
-  operationId: video-adjust
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /effects
-  method: post
-  operationId: video-apply-effect
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit
-  method: post
-  operationId: video-edit
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /trim
-  method: post
-  operationId: video-trim
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /crop
-  method: post
-  operationId: video-crop
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /concat
-  method: post
-  operationId: video-concat
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /concat/highlights
-  method: post
-  operationId: video-concat-highlights
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /fit
-  method: post
-  operationId: video-fit
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /metadata
-  method: post
-  operationId: video-metadata
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /metadata/thumbnail/extract
-  method: post
-  operationId: video-get-thumbnail
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /metadata/thumbnail
-  method: post
-  operationId: video-set-thumbnail
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /metadata/thumbnail/{transaction_id}
-  method: get
-  operationId: video-set-thumbnail-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /encode/ctv
-  method: post
-  operationId: video-encode-ctv
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /audio/adjust
-  method: post
-  operationId: video-adjust-audio
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /export/audio
-  method: post
-  operationId: video-extract-audio
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /audio/transcribe
-  method: post
-  operationId: video-transcribe-audio
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /audio/transcribe/{transaction_id}
-  method: get
-  operationId: video-transcribe-audio-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /watermark
   method: post
-  operationId: video-add-watermark
+  operationId: image-add-watermark
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1298,49 +1248,3 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /video/{transaction_id}
-  method: get
-  operationId: video-getresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /audio/{transaction_id}
-  method: get
-  operationId: video-getaudioresult
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /upload
-  method: post
-  operationId: video-upload
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /balance
-  method: get
-  operationId: video-credits-balance
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
