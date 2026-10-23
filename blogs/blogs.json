@@ -5,7 +5,7 @@
       "source": "https://picsart.com/blog/",
       "feed_url": "https://picsart.com/blog/feed/",
       "title": "",
-      "saved": 6,
+      "saved": 0,
       "method": "discovered"
     },
     {
@@ -30,6 +30,6 @@
       "method": "none"
     }
   ],
-  "post_count": 6,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 19,
+  "fetched": "2026-10-17T14:53:57Z"
 }
