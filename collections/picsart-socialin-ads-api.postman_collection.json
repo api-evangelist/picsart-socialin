@@ -1,1138 +1,1404 @@
 {
+  "info": {
+    "_postman_id": "9851cc34-63a5-451e-a9e0-66cfae0bd1f2",
+    "name": "Picsart Programmable Video Ads API",
+    "description": "Official technical documentation portal\nDeveloper Guidelines",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:56:22.000Z",
+    "updatedAt": "2026-10-21T20:56:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9851cc34-63a5-451e-a9e0-66cfae0bd1f2"
+  },
   "item": [
     {
-      "id": "33e427a7-01fd-4df9-abb2-39dcdd9b697c",
-      "name": "Ads",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "encode",
       "item": [
         {
-          "id": "cfe8ac68-f71a-40ae-b756-d24eab793a60",
-          "name": "Make Video CTV-Compatible",
-          "request": {
-            "name": "Make Video CTV-Compatible",
-            "description": {
-              "content": "Converts your original video to meet <a href=\"https://docs.picsart.io/docs/ctv-ads-format-requirements/\">CTV requirements</a>.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "encode",
-                "ctv"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "ctv",
+          "item": [
             {
-              "id": "2ef8efa7-0acf-4d27-81f6-f7c2f0108baa",
-              "name": "Request successfully accepted for an asynchronous transformation.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Make Video CTV-Compatible",
+              "id": "a8732ecf-eb23-4f18-a410-a09ce26328cb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"video_url\": \"<uri>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Accepted",
-              "code": 202,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
                 },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"value\": {\n    \"transaction_id\": \"931aed0a-5efd-4b62-9712-069b7147eec5\",\n    \"status\": \"processing\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2ca64c6d-21df-4451-8941-b6f112727b83",
-              "name": "Bad Request",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
+                  "raw": "{{baseUrl}}/encode/ctv",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cd266db7-736f-4c8c-8316-dfbebc8c3d1b",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "encode",
                     "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Converts your original video to meet CTV requirements."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
+                  "id": "c937eab7-0635-4f70-80c0-366c54c96391",
+                  "name": "Request successfully accepted for an asynchronous transformation.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transaction_id\": \"<string,null>\",\n  \"status\": \"queued\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-c937eab7-0635-4f70-80c0-366c54c96391"
                 },
                 {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
+                  "id": "3fd9797e-a0a8-4c35-a914-6f7f5e07a52b",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-3fd9797e-a0a8-4c35-a914-6f7f5e07a52b"
                 },
                 {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
+                  "id": "15de819a-b947-4a51-985b-86e12348b7be",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-15de819a-b947-4a51-985b-86e12348b7be"
                 },
                 {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
+                  "id": "966f65cd-1964-408d-8cc9-46050734b890",
+                  "name": "Payment Required",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Payment Required",
+                  "code": 402,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-966f65cd-1964-408d-8cc9-46050734b890"
                 },
                 {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
+                  "id": "08734b4b-d5e5-4356-bd54-e2cdd6453d36",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-08734b4b-d5e5-4356-bd54-e2cdd6453d36"
                 },
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "e0b17490-a71b-4797-9b6a-8fdea199c4bf",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-e0b17490-a71b-4797-9b6a-8fdea199c4bf"
+                },
+                {
+                  "id": "ccd3b10e-370b-4b63-8a30-31cc555dc72f",
+                  "name": "Method Not Allowed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Method Not Allowed",
+                  "code": 405,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-ccd3b10e-370b-4b63-8a30-31cc555dc72f"
+                },
+                {
+                  "id": "309da042-afd6-40cb-8963-49f1e726b4c7",
+                  "name": "Request Entity Too Large",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Request Entity Too Large",
+                  "code": 413,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-309da042-afd6-40cb-8963-49f1e726b4c7"
+                },
+                {
+                  "id": "af5da3c0-5ff5-4a57-9750-8905b1432725",
+                  "name": "Unsupported Media Type",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Unsupported Media Type",
+                  "code": 415,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-af5da3c0-5ff5-4a57-9750-8905b1432725"
+                },
+                {
+                  "id": "549a3107-eda4-44b9-bdfc-7ba28003567f",
+                  "name": "Too Many Requests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-549a3107-eda4-44b9-bdfc-7ba28003567f"
+                },
+                {
+                  "id": "541d962c-0e06-4a5d-aca6-37be088c6369",
+                  "name": "Request Header Fields Too Large",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Request Header Fields Too Large",
+                  "code": 431,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-541d962c-0e06-4a5d-aca6-37be088c6369"
+                },
+                {
+                  "id": "33819c9b-c789-4fc8-9dca-34088dfc911b",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-33819c9b-c789-4fc8-9dca-34088dfc911b"
+                },
+                {
+                  "id": "afa94d06-737f-46ae-8391-c9cfe4ff50c8",
+                  "name": "Service Unavailable",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-Picsart-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"video_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/encode/ctv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "encode",
+                        "ctv"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The id which will help for troubleshooting request chain in the system.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Correlation-Id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Available",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Ratelimit-Reset-Time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The remaining number of the credits on the balance.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Picsart-Credit-Available",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:56:22.000Z",
+                  "updatedAt": "2026-10-21T20:56:22.000Z",
+                  "uid": "35240-afa94d06-737f-46ae-8391-c9cfe4ff50c8"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ed9370b2-ad04-4ba5-9d42-af2a48b49068",
-              "name": "Payment Required",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Payment Required",
-              "code": 402,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8f0b6e6b-d946-47a3-8ef3-329207a09128",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b91cb2e6-bb18-43f9-b9b3-f1dd542f2698",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "31b9cf2b-6b20-424e-9892-01d3b9ab82e6",
-              "name": "Method Not Allowed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Method Not Allowed",
-              "code": 405,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5ff4a0cc-52eb-457f-918a-e08212615b46",
-              "name": "Request Entity Too Large",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Request Entity Too Large",
-              "code": 413,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "64fdb82b-7c32-472e-9001-8a924fe27733",
-              "name": "Unsupported Media Type",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unsupported Media Type",
-              "code": 415,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a68b787b-703b-4db1-be00-74e97f88d553",
-              "name": "Too Many Requests",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5a882128-4190-4025-97c7-b1ac529a333c",
-              "name": "Request Header Fields Too Large",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Request Header Fields Too Large",
-              "code": 431,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "223fb6c4-4474-4bd6-bcca-63784590dd56",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a36f5261-d55a-4542-8787-ce2ba9c647b1",
-              "name": "Service Unavailable",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "encode",
-                    "ctv"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"video_url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Service Unavailable",
-              "code": 503,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "3820"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "3820"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:56:22.000Z",
+              "updatedAt": "2026-10-21T20:56:22.000Z",
+              "uid": "35240-a8732ecf-eb23-4f18-a410-a09ce26328cb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d443302e-f694-4297-9563-0cd9da5e7195",
+          "createdAt": "2026-10-21T20:56:22.000Z",
+          "updatedAt": "2026-10-21T20:56:22.000Z",
+          "uid": "35240-d443302e-f694-4297-9563-0cd9da5e7195"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://genai-api.picsart.io/v1",
-      "key": "baseUrl"
+      "id": "b3a580db-7937-4b88-aa23-90fa7a00c2e4",
+      "createdAt": "2026-10-21T20:56:22.000Z",
+      "updatedAt": "2026-10-21T20:56:22.000Z",
+      "uid": "35240-b3a580db-7937-4b88-aa23-90fa7a00c2e4"
     }
   ],
   "auth": {
@@ -1140,25 +1406,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Picsart-API-Key"
+        "value": "X-Picsart-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "82b5b668-a280-497d-a2ca-4d8bab569b99",
-    "name": "Picsart GenAI Ads API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "[Official technical documentation portal](https://docs.picsart.io/)\n[Developer Guidelines](https://picsart.io/terms)\n",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://video-api.picsart.io/v1"
     }
-  }
+  ]
 }

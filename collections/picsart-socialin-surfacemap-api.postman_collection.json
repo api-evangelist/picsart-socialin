@@ -1,32 +1,26 @@
 {
+  "info": {
+    "_postman_id": "509548fe-dc3f-4dfb-b9b3-31ee9c41a83d",
+    "name": "Picsart Programmable Image Surfacemap API",
+    "description": "Official technical documentation portal\nDeveloper Guidelines",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:57:54.000Z",
+    "updatedAt": "2026-10-21T20:57:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-509548fe-dc3f-4dfb-b9b3-31ee9c41a83d"
+  },
   "item": [
     {
-      "id": "f818bd12-2ede-4d5b-b999-33a7804038fb",
-      "name": "Surfacemap",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "surfacemap",
       "item": [
         {
-          "id": "39110141-a670-4de2-9d8a-a14205870069",
           "name": "Surfacemap Image",
+          "id": "1936c802-f7ac-4d86-b97a-28f58dc21888",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Surfacemap Image",
-            "description": {
-              "content": "With the *surface map* tool you can \"print\" a sticker over an (target) image. Using a mask, the Surfacemap tool maps the sticker pixels using the texture and curves on the target image thus ultimately giving a live-print-preview effect.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "surfacemap"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -37,2429 +31,2127 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "formdata",
               "formdata": [
                 {
                   "key": "image",
                   "value": "<binary>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "image_url",
                   "value": "<uri>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "image_id",
                   "value": "<string>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "mask",
                   "value": "<binary>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "mask_url",
                   "value": "<uri>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "mask_id",
                   "value": "<string>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "sticker",
                   "value": "<binary>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "sticker_url",
                   "value": "<uri>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "sticker_id",
                   "value": "<string>",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 },
                 {
                   "key": "format",
                   "value": "JPG",
-                  "type": "text",
-                  "description": "undefined"
+                  "type": "text"
                 }
               ]
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/surfacemap",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "surfacemap"
+              ]
+            },
+            "description": "With the *surface map* tool you can \"print\" a sticker over an (target) image. Using a mask, the Surfacemap tool maps the sticker pixels using the texture and curves on the target image thus ultimately giving a live-print-preview effect."
           },
           "response": [
             {
-              "id": "3adf1d84-8560-40cc-8ad9-1e035c2b914f",
+              "id": "f741e3e9-b497-41b9-8d5e-7a55727a247d",
               "name": "Success.",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"url\": \"https://htaPrtyWJLKRO.oqt.1EYQL3pCjY,4YjyTKnx6Dirq4m4dqaZLKrotkqHHGv2aF-umgSOmtyRja,wPmr69\"\n  },\n  \"status\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string,null>\",\n    \"url\": \"<uri>\"\n  },\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-f741e3e9-b497-41b9-8d5e-7a55727a247d"
             },
             {
-              "id": "c92e7dfb-fa1e-4365-8757-628029fd7b77",
+              "id": "8f8aff5d-a3cf-4c7c-8ed0-facc28d09c42",
               "name": "Bad Request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-8f8aff5d-a3cf-4c7c-8ed0-facc28d09c42"
             },
             {
-              "id": "58fa95dc-faf9-4163-83e9-45be88dd08a9",
+              "id": "8f2f006f-5aba-483d-998a-34b53cf40b1e",
               "name": "Unauthorized",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-8f2f006f-5aba-483d-998a-34b53cf40b1e"
             },
             {
-              "id": "9e34c8d4-1199-4888-8b96-1bed53101404",
+              "id": "4a676d75-52a3-4bab-9b4f-e568b397c2a7",
               "name": "Payment Required",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Payment Required",
               "code": 402,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-4a676d75-52a3-4bab-9b4f-e568b397c2a7"
             },
             {
-              "id": "a949aecd-b668-4a01-986f-1fe4f515e2dc",
+              "id": "f738131f-5160-436c-8ec0-f07496c0afaa",
               "name": "Forbidden",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-f738131f-5160-436c-8ec0-f07496c0afaa"
             },
             {
-              "id": "cff971ba-2e32-491a-bcaf-95d06f9307d7",
+              "id": "c851ff1f-bf9d-48f3-83a2-8f594aa5ee9e",
               "name": "Not Found",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Not Found",
               "code": 404,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-c851ff1f-bf9d-48f3-83a2-8f594aa5ee9e"
             },
             {
-              "id": "87744585-e136-40ed-8021-d9378c873b5a",
+              "id": "27bd9813-40d3-49ab-98fe-6cd29d8e3b6a",
               "name": "Method Not Allowed",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Method Not Allowed",
               "code": 405,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-27bd9813-40d3-49ab-98fe-6cd29d8e3b6a"
             },
             {
-              "id": "edc78ffd-83b2-4deb-b09f-ad74443f7251",
+              "id": "79761d32-de76-454f-8252-92875121e1e1",
               "name": "Request Entity Too Large",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Request Entity Too Large",
               "code": 413,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-79761d32-de76-454f-8252-92875121e1e1"
             },
             {
-              "id": "21b59c14-466c-4e6c-bbad-a8f3970344ea",
+              "id": "b807f923-202d-4d70-af19-d688b7c08fdf",
               "name": "Unsupported Media Type",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Unsupported Media Type",
               "code": 415,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-b807f923-202d-4d70-af19-d688b7c08fdf"
             },
             {
-              "id": "825d75ba-3ed1-42b7-a880-9ad0167121ea",
+              "id": "a22b4af7-ebe1-4ec7-8e0d-0e5eeb4868fd",
               "name": "Unprocessable Entity",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
               "code": 422,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-a22b4af7-ebe1-4ec7-8e0d-0e5eeb4868fd"
             },
             {
-              "id": "c1342e0b-9a29-44b3-a0db-b98689128949",
+              "id": "ef4194a2-6683-421d-8322-700631b1e6dc",
               "name": "Too Many Requests",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Too Many Requests",
               "code": 429,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-ef4194a2-6683-421d-8322-700631b1e6dc"
             },
             {
-              "id": "cbf6d4bc-e28f-4855-b790-18dcfbfad771",
+              "id": "182a3b7b-8956-4ed0-ac38-7038fb3c2746",
               "name": "Request Header Fields Too Large",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Request Header Fields Too Large",
               "code": 431,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-182a3b7b-8956-4ed0-ac38-7038fb3c2746"
             },
             {
-              "id": "269045ad-3fec-4c74-80d6-0ee71a1a21bb",
+              "id": "d5d5a1b3-85ba-43c4-a5e7-bb977a878278",
               "name": "Internal Server Error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
                   ]
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-d5d5a1b3-85ba-43c4-a5e7-bb977a878278"
             },
             {
-              "id": "933512dc-05d1-4295-8dab-6cc44db8dfb1",
+              "id": "bf3b08ab-e8eb-48a9-a4e9-234d476ebf79",
               "name": "Service Unavailable",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "surfacemap"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Picsart-API-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Picsart-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "image_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "mask_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker",
                       "value": "<binary>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_url",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "sticker_id",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "undefined",
-                        "type": "text/plain"
-                      },
                       "key": "format",
                       "value": "JPG",
                       "type": "text"
                     }
                   ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/surfacemap",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "surfacemap"
+                  ]
                 }
               },
               "status": "Service Unavailable",
               "code": 503,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The id which will help for troubleshooting request chain in the system.",
-                  "key": "X-Picsart-Correlation-Id",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Available",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
-                  "key": "X-Picsart-Ratelimit-Limit",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The time when the used request count resets and the number of available calls gets equal to the total number.",
-                  "key": "X-Picsart-Ratelimit-Reset-Time",
-                  "value": "7916"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining number of the credits on the balance.",
-                  "key": "X-Picsart-Credit-Available",
-                  "value": "7916"
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The id which will help for troubleshooting request chain in the system.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Correlation-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The number of available calls within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Available",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The total number of requests that can be done within the timeframe. See the X-Picsart-Ratelimit-Reset-Time.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The time when the used request count resets and the number of available calls gets equal to the total number.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Ratelimit-Reset-Time",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The remaining number of the credits on the balance.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Picsart-Credit-Available",
+                  "value": "<integer>"
                 }
               ],
-              "body": "{\n  \"detail\": \"string\",\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:57:54.000Z",
+              "updatedAt": "2026-10-21T20:57:54.000Z",
+              "uid": "35240-bf3b08ab-e8eb-48a9-a4e9-234d476ebf79"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:57:54.000Z",
+          "updatedAt": "2026-10-21T20:57:54.000Z",
+          "uid": "35240-1936c802-f7ac-4d86-b97a-28f58dc21888"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://genai-api.picsart.io/v1",
-      "key": "baseUrl"
+      "id": "723e6521-f868-4c5c-b31e-57248e0df2b4",
+      "createdAt": "2026-10-21T20:57:54.000Z",
+      "updatedAt": "2026-10-21T20:57:54.000Z",
+      "uid": "35240-723e6521-f868-4c5c-b31e-57248e0df2b4"
     }
   ],
   "auth": {
@@ -2467,25 +2159,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-Picsart-API-Key"
+        "value": "X-Picsart-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "d765f142-abfa-4d9b-a011-4ae7ec18981c",
-    "name": "Picsart GenAI Ads Surfacemap API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "[Official technical documentation portal](https://docs.picsart.io/)\n[Developer Guidelines](https://picsart.io/terms)\n",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.picsart.io/tools/1.0"
     }
-  }
+  ]
 }
